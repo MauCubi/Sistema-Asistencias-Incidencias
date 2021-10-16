@@ -2,6 +2,6 @@
 
 @section('content')
 
-<p>Bienvenido al main</p>
+<p>Bienvenido al main V2</p>
 
 @endsection
