@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEmpresaPost;
+use Illuminate\Support\Facades\Redirect;
 
 class EmpresaController extends Controller
 {
@@ -41,7 +42,8 @@ class EmpresaController extends Controller
     public function store(StoreEmpresaPost $request)
     {
         Empresa::create($request->validated());
-        return back()->with('status','Empresa Creada');
+        return Redirect::to("empresa")->with('status','Empresa Creada Exitosamente');
+        // return back()->with('status','Empresa Creada');
     }
 
     /**
@@ -76,7 +78,9 @@ class EmpresaController extends Controller
     public function update(StoreEmpresaPost $request, Empresa $empresa)
     {
         $empresa->update($request->validated());
-        return back()->with('status','Empresa Actualizada');
+        return Redirect::to("empresa")->with('status','Empresa Actualizada');
+        // return view("empresa.show", ["empresa" => $empresa])->with('status','Empresa Actualizada');
+        // return back()->with('status','Empresa Actualizada');
     }
 
     /**

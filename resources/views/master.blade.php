@@ -1,3 +1,6 @@
+{{-- @extends('partials.admin')
+@section('content2') --}}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +12,12 @@
     <title>Document</title>
 </head>
 
-<body>
-    @include('partials.nav-header-main')
+<link rel="stylesheet" href="{{ asset("css/app.css")}}">
 
-    <div class="container">
+<body>
+    {{-- @include('partials.nav-header-main') --}}
+    {{-- @include('partials.admin') --}}
+    <div class="container">        
         @include('partials.session-status')
         @yield('content')
     </div>
@@ -24,3 +29,5 @@
 
 
 </html>
+
+{{-- @endsection --}}

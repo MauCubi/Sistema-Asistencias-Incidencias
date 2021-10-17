@@ -1,26 +1,42 @@
-@extends('master')
+@extends('partials.admin')
+
 
 
 @section('content')
+<div class="row d-flex flex-row">
+    <div class="p-2">
+        <h3 class="text-primary">Listado de Empresas</h3>
+    </div>
+</div>
 
-<a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a>
+{{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
 
-<table class="table">
-    <thead>
+
+@include('partials.session-status')
+<p class="alert alert-info d-none d-sm-block animated fadeIn" >
+    Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Empresa.
+</p>
+<table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
+    <thead class="bg-dark text-white">
         <tr>
             <td>
                 Id
             </td>
             <td>
                 Nombre
-            </td>            
+            </td>          
             <td>
-
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('empresa.create') }}" >
+                        <button class="btn btn-success btn-sm" type="button"><i class="fa fw fa-plus"></i> Nuevo</button>
+                    </a>
+                </div>
             </td>
         </tr>
     </thead>
     <tbody>
        @foreach ( $empresas as $empresa)
+       <tr>
             <td>
                 {{ $empresa->id }}
             </td>
@@ -28,11 +44,12 @@
                 {{ $empresa->nombre }}
             </td>
             <td>
-                <a href="{{ route('empresa.show', $empresa->id)}}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('empresa.edit', $empresa->id)}}" class="btn btn-warning">Editar</a>
+                <div class="d-flex justify-content-center">
+                <a href="{{ route('empresa.show', $empresa->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
+                <a href="{{ route('empresa.edit', $empresa->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
                 
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="">Eliminar</button>
-                
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empresa->id }}"><i class="fas fa-trash"></i> Eliminar</button>
+                </div>
             </td>
         </tr>
         @endforeach
@@ -59,7 +76,7 @@
                 <form  id="formDelete" action="{{ route('empresa.destroy',0) }}" method="POST" data-action="{{ route('empresa.destroy',0) }}">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
                 </form>
             </div>
         </div>
@@ -87,3 +104,4 @@
 </script>
 
 @endsection
+
