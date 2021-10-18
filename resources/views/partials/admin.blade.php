@@ -67,9 +67,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="{{ route('empresa.index')}}">Lista de Empresas</a>
-                        <a class="collapse-item" href="#">Lista de Areas</a>
-                        <a class="collapse-item" href="#">Lista de Departamentos</a>
-                        <a class="collapse-item" href="#">Lista de Puestos</a>
+                        <a class="collapse-item" href="{{ route('area.index')}}">Lista de Areas</a>
+                        <a class="collapse-item" href="{{ route('departamento.index')}}">Lista de Departamentos</a>
+                        <a class="collapse-item" href="{{ route('puesto.index')}}">Lista de Puestos</a>
                     </div>
                 </div>
             </li>
@@ -85,7 +85,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
-                        <a class="collapse-item" href="utilities-color.html">Lista de Empleados</a> 
+                        <a class="collapse-item" href="{{ route('empleado.index')}}">Lista de Empleados</a> 
                     </div>
                 </div>
             </li>
