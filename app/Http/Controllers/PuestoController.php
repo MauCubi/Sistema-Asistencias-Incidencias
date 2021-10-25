@@ -17,7 +17,7 @@ class PuestoController extends Controller
      */
     public function index()
     {
-        $puestos = Puesto::orderBy('created_at','desc')->paginate(10);
+        $puestos = Puesto::orderBy('departamento_id')->paginate(10);
         return view("puesto/index",['puestos' => $puestos]);
     }
 

@@ -20,6 +20,10 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales-all.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -31,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-business-time"></i>
                 </div>
@@ -213,6 +217,9 @@
     <!-- Custom scripts for all pages-->
     
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+
+    <script src="{{asset('js/schedule.js')}}"></script>
+
     
     
 

@@ -86,7 +86,7 @@
     <label for="puesto_id" class="col-form-label col-form-label-sm">Puesto</label>
     <select class="form-control form-control-sm" name="puesto_id" id="puesto_id">
         @foreach ($puestos as $puesto)
-            <option {{ $empleado->puesto_id == $puesto->id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>{{ $puesto->nombre}}</option>
+            <option {{ $empleado->puesto_id == $puesto->id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>Dpto.{{ $puesto->departamento->nombre}} - {{ $puesto->nombre}}</option>
         @endforeach
     </select>
     
