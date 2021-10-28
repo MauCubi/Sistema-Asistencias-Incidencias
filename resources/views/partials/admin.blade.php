@@ -20,9 +20,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales-all.js"></script>
+
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <script src='fullcalendar/locales-all.js'></script>
+
+
+    
+
 
 </head>
 
@@ -94,6 +99,21 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#calendarutil"
+                    aria-expanded="true" aria-controls="calendarutil">
+                    <i class="fas fa-calendar-alt"></i>
+                                        <span>Calendario</span>
+                </a>
+                <div id="calendarutil" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="{{ route('event.index')}}">Calendario Maestro</a> 
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -159,6 +179,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
+                
                 <div class="container">        
                     
                     @yield('content')
@@ -211,14 +232,20 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     
-    <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+    
 
-    <script src="{{asset('js/schedule.js')}}"></script>
+
+
+
+
 
     
     

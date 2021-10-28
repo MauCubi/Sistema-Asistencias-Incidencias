@@ -28,5 +28,5 @@
 </div>
 
 <div class="row col-md-6 mb-3">
-<input class="btn btn-primary" type="submit" value="Enviar">
+<input class="btn btn-primary" type="submit" value="Guardar">
 </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EmpleadoController;
@@ -21,6 +22,18 @@ Route::resource('/area', AreaController::class);
 Route::resource('/departamento', DepartamentoController::class);
 Route::resource('/puesto', PuestoController::class);
 Route::resource('/empleado', EmpleadoController::class);
+
+
+// Route::resource('/event', EventController::class);
+
+
+Route::post('/event/editar/{id}', [EventController::class, 'edit'])->name('event.editar');
+
+Route::get('/event/mostrar', [EventController::class, 'mostrar'])->name('event.mostrar');
+Route::get('/event', [EventController::class, 'index'])->name('event.index');
+Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
+
+
 
 
 
