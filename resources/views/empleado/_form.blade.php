@@ -69,6 +69,17 @@
 </div>
 
 <div class="row">
+    <div class="form-group col-md-6 mb-3">
+        <label for="altafip" class="col-form-label col-form-label-sm">Fecha Alta AFIP</label>
+        <input class="form-control form-control-sm" type="date" name="altafip" id="altafip" value="{{ old('altafip', $empleado->altafip)}}">
+    
+        @error('altafip')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
+    </div>
+</div>
+
+<div class="row">
 {{-- <div class="form-group col-md-3 mb-3">
     <label for="departamento_id" class="col-form-label col-form-label-sm">Departamento</label>
     <select class="form-control form-control-sm" name="departamento_id" id="departamento_id" disabled required autofocus>

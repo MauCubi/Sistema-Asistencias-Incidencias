@@ -32,7 +32,7 @@
                 Puesto    
             </td>
             <td>
-                Alta    
+                Estado    
             </td>           
             <td>
                 <div class="d-flex justify-content-center">
@@ -58,15 +58,23 @@
             <td>
                 {{ $empleado->puesto->nombre }}
             </td>
+            @if ( $empleado->alta == true)
             <td>
-                {{ $empleado->created_at }}
+                <b style="color: green">Alta</b>
             </td>
+            @else
+            <td>
+                <b style="color: red">Baja</b>
+            </td>
+            @endif
+
+
             <td>
                 <div class="d-flex justify-content-center">
                 <a href="{{ route('empleado.show', $empleado->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
                 <a href="{{ route('empleado.edit', $empleado->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
                 
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->id }}"><i class="fas fa-trash"></i> Eliminar</button>
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->id }}"><i class="fas fa-user-slash"></i> Baja</button>
                 </div>
             </td>
         </tr>
@@ -87,14 +95,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Seguro que desea borrar el registro seleccionado?</p>
+                <p>¿Seguro que desea dar de baja el empleado seleccionado?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form  id="formDelete" action="{{ route('empleado.destroy',0) }}" method="POST" data-action="{{ route('empleado.destroy',0) }}">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i> Dar de Baja</button>
                 </form>
             </div>
         </div>
@@ -116,7 +124,7 @@
   
   
   var modal = $(this)
-  modal.find('.modal-title').text('Vas a borrar el empleado con el id: ' + id)
+  modal.find('.modal-title').text('Vas a dar de baja el empleado con el id: ' + id)
 })
 }
 </script>

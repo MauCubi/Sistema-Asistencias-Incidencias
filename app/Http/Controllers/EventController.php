@@ -90,7 +90,10 @@ class EventController extends Controller
      */
     public function update(StoreEventPost $request, Event $event)
     {
-        //
+        
+        $event->update($request->all());
+        return response()->json($event);
+
     }
 
     /**
@@ -99,8 +102,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        $event = Event::find($id)->delete();
+        return response()->json($event);
+
     }
 }

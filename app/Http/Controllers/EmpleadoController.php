@@ -89,7 +89,8 @@ class EmpleadoController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
-        $empleado->delete();
-        return back()->with('status','Empleado Eliminado');
+        $empleado->alta = false;
+        $empleado->save();
+        return back()->with('status','Empleado Dado de Baja');
     }
 }

@@ -33,21 +33,21 @@
                     {{ $empleado->nombre }}
                 </label>
 
-                <br>  
+                <br>
 
                 <label class="control-label">
                     <strong>Apellido:</strong>
                     {{ $empleado->apellido }}
                 </label>
 
-                <br>  
-                
+                <br>
+
                 <label class="control-label">
                     <strong>DNI:</strong>
                     {{ $empleado->dni }}
                 </label>
 
-                <br>  
+                <br>
 
                 <label class="control-label">
                     <strong>Dirección:</strong>
@@ -55,23 +55,47 @@
                 </label>
 
                 <br>
-                
+
                 <label class="control-label">
                     <strong>Teléfono:</strong>
                     {{ $empleado->telefono }}
                 </label>
 
-                <br>  
+                <br>
 
                 <label class="control-label">
                     <strong>E-Mail:</strong>
                     {{ $empleado->email }}
                 </label>
 
-                <br>  
+                <br>
+
+                <label class="control-label">
+                    <strong>Alta Sistema:</strong>
+                    {{ $empleado->created_at->format('d-m-Y') }}
+                </label>
+
+                <br>
+
+                <label class="control-label">
+                    <strong>Alta AFIP:</strong>
+                    {{ Carbon\Carbon::parse($empleado->altafip)->format('d-m-Y') }}
+                </label>
+
+                <br>
                 <label class="control-label">
                     <strong>Puesto:</strong>
                     {{ $empleado->puesto->nombre }}
+                </label>
+
+                <br>
+                <label class="control-label">
+                    <strong>Estado:</strong>
+                    @if ($empleado->alta == true)
+                        <b style="color: green">Alta</b>
+                    @else
+                        <b style="color: red">Baja</b>
+                    @endif
                 </label>
 
                 <br>

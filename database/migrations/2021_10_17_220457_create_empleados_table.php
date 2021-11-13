@@ -20,7 +20,9 @@ class CreateEmpleadosTable extends Migration
             $table->string('dni')->unique();
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->nullable()->unique();
+            $table->string('alta')->default(true);
+            $table->date('altafip');
 
 
             $table->bigInteger('puesto_id')->unsigned()->nullable();

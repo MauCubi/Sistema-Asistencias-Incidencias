@@ -25,7 +25,9 @@
     <script src='fullcalendar/main.js'></script>
     <script src='fullcalendar/locales-all.js'></script>
 
-
+    <script type="text/javascript">
+        var baseURL = {{!! json_encode(url('/'))  !!}}
+    </script>
     
 
 

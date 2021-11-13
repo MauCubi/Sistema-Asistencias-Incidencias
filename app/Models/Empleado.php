@@ -10,7 +10,7 @@ class Empleado extends Model
 {
 
 
-    Protected $fillable = ['nombre','apellido','dni','direccion','telefono','email','puesto_id'];
+    Protected $fillable = ['nombre','apellido','dni','direccion','telefono','email','puesto_id','alta','altafip'];
 
 
     public function puesto()

@@ -28,9 +28,10 @@ class StoreEmpleadoPost extends FormRequest
             'apellido' => 'required',
             'dni' => 'required|max:8|min:8',
             'puesto_id' => 'required',
-            'direccion' => '',
-            'telefono' => '',
-            'email' => ''
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'email' => 'required',
+            'altafip' => 'required',
         ];
     }
 }

@@ -17,7 +17,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nuevo Evento</h5>
+        <h5 class="modal-title">Nueva Incidencia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -26,14 +26,12 @@
 
         <form action="">
           @csrf
-          {{-- <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
-            <small id="helpId" class="form-text text-muted">Help text</small>
-          </div> --}}
+          <div class="form-group d-none">
+            <input type="hidden" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
+          </div> 
 
           <div class="form-group">
-            <label for="title">Nombre Evento</label>
+            <label for="title">Nombre Incidencia</label>
             <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="">
           </div>
 
@@ -43,14 +41,12 @@
           </div>
 
           <div class="form-group">
-            <label for="start">Inicia</label>
-            <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+            <input type="hidden" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
 
           </div>
 
           <div class="form-group">
-            <label for="end">Finaliza</label>
-            <input type="date" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
+            <input type="hidden" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
 
           </div>
 
