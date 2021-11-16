@@ -10,8 +10,10 @@ use App\Http\Controllers\DepartamentoController;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('partials.admin');
 });
+
+
 
 Route::get('/admin', function () {
     return view('partials.admin');
