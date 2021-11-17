@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         aspectRatio: 2,
 
-        events: "http://asistencias.test/event/mostrar",        
+        events: "http://asistencias.test/event/personal",        
 
   
 

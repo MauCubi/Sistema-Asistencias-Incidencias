@@ -28,6 +28,7 @@ class StoreEventPost extends FormRequest
             'description' => 'required',
             'start' => 'required',
             'end' => 'required',
+            'user_id' =>'',
             
         ];
     }

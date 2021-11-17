@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\EmpleadoSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AreaSeeder::class,
             DepartamentoSeeder::class,
             PuestoSeeder::class,
+            EmpleadoSeeder::class,
         ]);
     }
 }

@@ -73,7 +73,7 @@
 
 <br>
 
-<script src="{{asset('fullcalendar/agenda.js')}}"></script>
+<script src="{{asset('fullcalendar/agenda-personal.js')}}"></script>
 {{-- <script>
 
 let formulario = document.querySelector("form");

@@ -33,7 +33,12 @@ Route::post('/event/editar/{id}', [EventController::class, 'edit'])->name('event
 Route::post('/event/borrar/{id}', [EventController::class, 'destroy'])->name('event.borrar');
 Route::post('/event/actualizar/{event}', [EventController::class, 'update'])->name('event.update');
 
+
 Route::get('/event/mostrar', [EventController::class, 'mostrar'])->name('event.mostrar');
+
+Route::get('/event/personal', [EventController::class, 'personal'])->name('event.personal');
+Route::get('/eventper', [EventController::class, 'indexper'])->name('event.indexper');
+
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
 

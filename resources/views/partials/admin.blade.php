@@ -25,9 +25,6 @@
     <script src='fullcalendar/main.js'></script>
     <script src='fullcalendar/locales-all.js'></script>
 
-    <script type="text/javascript">
-        var baseURL = {{!! json_encode(url('/'))  !!}}
-    </script>
     
 
 
@@ -101,6 +98,9 @@
                 </div>
             </li>
 
+            
+                
+                     
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#calendarutil"
                     aria-expanded="true" aria-controls="calendarutil">
@@ -112,9 +112,18 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="{{ route('event.index')}}">Calendario Maestro</a> 
+
+                        <a class="collapse-item" href="{{ route('event.indexper')}}">Calendario Personal</a> 
                     </div>
+                    
+                    
+                        
+                    
                 </div>
+
             </li>
+
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -156,13 +165,13 @@
                         @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                             </li>
                         @endif
                     @else
@@ -249,6 +258,8 @@
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 
     <!-- Custom scripts for all pages-->
     

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventPost;
-use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -15,12 +16,17 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
-
+    {        
         //dd($empresas);
 
         return view("event/index");
+    }
+
+    public function indexper()
+    {        
+        //dd($empresas);
+
+        return view("event/indexper");
     }
 
     /**
@@ -41,8 +47,14 @@ class EventController extends Controller
      */
     public function store(StoreEventPost $request)
     {
-        
+        // dd(Auth::user()->id);
+        $user = Auth::user();
+        // dd($user);
+
         $event = Event::create($request->all());
+        
+        $event->user_id = $user->id;
+        $event->save();
 
     }
 
@@ -59,7 +71,21 @@ class EventController extends Controller
 
     public function mostrar(Event $event)
     {
+
+        // $user = Auth::user();
+        // $event = Event::where('user_id',$user->id)->get();
+
         $event = Event::all();
+        return response()->json($event);
+    }
+
+    public function personal(Event $event)
+    {
+
+        $user = Auth::user();
+        $event = Event::where('user_id',$user->id)->get();
+
+       
         return response()->json($event);
     }
 
