@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     formulario.description.value = response.data.description;
 
+                    //select.options[response.data.tipoevento].setAttribute("selected","selected");
+                    //select.value = response.data.tipo;
+                    //document.getElementById(response.data.tipoevento_id).selected;
+                   formulario.tipoevento_id.value = response.data.tipoevento_id;
+
+                    //formulario.tipoevento.options[response.data.tipoevento_id].setAttribute("selected","selected");
+
                     formulario.start.value = response.data.start;
                     formulario.end.value = response.data.end;
                     $("#event").modal("show");

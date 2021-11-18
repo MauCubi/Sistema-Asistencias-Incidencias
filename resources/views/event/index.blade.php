@@ -17,7 +17,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nueva Incidencia</h5>
+        <h5 class="modal-title">Incidencia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -39,6 +39,15 @@
             <label for="description">Descripción</label>
             <textarea class="form-control" name="description" id="description" rows="3"></textarea>
           </div>
+
+          <div class="form-group">
+            <label for="tipoevento">Tipo de Incidencia</label>
+            <select class="form-control form-control-sm" name="tipoevento_id" id="tipoevento_id">
+              @foreach ($tipos as $tipo)                
+                  <option value="{{ $tipo->id}}">{{ $tipo->nombre}}</option>
+              @endforeach
+          </select>          
+        </div>
 
           <div class="form-group">
             <input type="hidden" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">

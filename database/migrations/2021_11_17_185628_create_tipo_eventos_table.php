@@ -15,6 +15,11 @@ class CreateTipoEventosTable extends Migration
     {
         Schema::create('tipo_eventos', function (Blueprint $table) {
             $table->id();
+
+            $table->string('nombre')->unique();
+            $table->boolean('general');
+
+
             $table->timestamps();
         });
     }

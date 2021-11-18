@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Event;
+use App\Models\TipoEvento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventPost;
@@ -18,15 +19,16 @@ class EventController extends Controller
     public function index()
     {        
         //dd($empresas);
+        $tipos = TipoEvento::where('general', true)->get();
 
-        return view("event/index");
+        return view("event/index", ["tipos" => $tipos]);
     }
 
     public function indexper()
     {        
         //dd($empresas);
-
-        return view("event/indexper");
+        $tipos = TipoEvento::where('general', false)->get();
+        return view("event/indexper", ["tipos" => $tipos]);
     }
 
     /**
@@ -54,6 +56,7 @@ class EventController extends Controller
         $event = Event::create($request->all());
         
         $event->user_id = $user->id;
+        //$event->tipoevento_id = $request->tipoevento;
         $event->save();
 
     }
@@ -98,10 +101,23 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
+        $tipo = TipoEvento::find($event->id);
+
+        // $evento = array(
+        //     "id" => $event->id,
+        //     "title" => $event->title,
+        //     "description" => $event->description,
+        //     "start" => $event->start,
+        //     "end" => $event->end,
+        //     "user_id" => $event->user_id,
+        //     "tipo" => $tipo->id,
+        // );
 
         $event->start =  Carbon::createFromFormat('Y-m-d H:i:s', $event->start)->format('Y-m-d');
         $event->end =  Carbon::createFromFormat('Y-m-d H:i:s', $event->end)->format('Y-m-d');
 
+
+        //return response()->json($event);
 
         return response()->json($event);
 
@@ -116,7 +132,7 @@ class EventController extends Controller
      */
     public function update(StoreEventPost $request, Event $event)
     {
-        
+        //dd($request);
         $event->update($request->all());
         return response()->json($event);
 
