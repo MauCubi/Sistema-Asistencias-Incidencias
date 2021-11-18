@@ -5,7 +5,7 @@
 @section('content')
 <div class="row d-flex flex-row">
     <div class="p-2">
-        <h3 class="text-primary">Listado de Empleados</h3>
+        <h3 class="text-primary">Listado de Empleades</h3>
     </div>
 </div>
 
