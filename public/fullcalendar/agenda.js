@@ -1,9 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     
 
+    //Define la variable de calendario, el ID de getelementbyid es un div en el index.blade de eventos.
+    //Ese div es donde va a estar el calendario
     var calendarEl = document.getElementById("agenda");
 
+    //Varibale que toma los campos del formulario "event-form" en index.blade de eventos.
     let formulario = document.getElementById("event-form");
+
+    //opciones de calendario, formato, idioma, si es editable, etc
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         locale: "es",
@@ -16,23 +21,25 @@ document.addEventListener("DOMContentLoaded", function() {
             right: "dayGridMonth, listWeek"
         },
 
+        //tamaño
         aspectRatio: 2,
 
+        //events es una funcion propia de fullcalendar, toma que eventos va a mostrar, en este caso
+        //se le indica el link que esta en la ruta que dirige al controlador que trae todos los eventos
         events: "http://asistencias.test/event/mostrar",        
 
   
-
+        //funcion propia del fullcalendar, que hace cuando se le da un click a una fecha
         dateClick: function(info) {
-            formulario.reset();
-            
+            formulario.reset();           
 
-            // formulario.description.value = info.dateStr;
             formulario.start.value = info.dateStr;
             formulario.end.value = info.dateStr;
 
             $("#event").modal("show");
         },
 
+        //funcion propia del fullcalendar, que hace cuando se le da click a un evento
         eventClick: function(info) {
             var evento = info.event;
             console.log(evento);
@@ -43,17 +50,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log(response);
 
                     formulario.id.value = response.data.id;
-
                     formulario.title.value = response.data.title;
 
-                    formulario.description.value = response.data.description;
-
-                    //select.options[response.data.tipoevento].setAttribute("selected","selected");
-                    //select.value = response.data.tipo;
-                    //document.getElementById(response.data.tipoevento_id).selected;
-                   formulario.tipoevento_id.value = response.data.tipoevento_id;
-
-                    //formulario.tipoevento.options[response.data.tipoevento_id].setAttribute("selected","selected");
+                    formulario.description.value = response.data.description; 
+                    formulario.tipoevento_id.value = response.data.tipoevento_id;
 
                     formulario.start.value = response.data.start;
                     formulario.end.value = response.data.end;
@@ -65,8 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    //renderiza el calendari en donde se especifico arriba de todo
     calendar.render();
 
+
+    //Opciones de que hace cada boton del modal
     document.getElementById("btnGuardar").addEventListener("click", function() {
         enviarDatos("/event/store");
 
@@ -88,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
 
-
+        //funcion de enviar los datos por axios, DOLOR DE BOLAS
         function enviarDatos(url){
 
             const datos = new FormData(formulario);

@@ -18,7 +18,9 @@ class EventController extends Controller
      */
     public function index()
     {        
-        //dd($empresas);
+        //Lleva a la vista de calendario con los tipos de eventos
+        //En este caso no se hace como siempre que llevas los eventos
+        //Ya que eso se hace con el controlador Mostrar y una linea en agenda.js
         $tipos = TipoEvento::where('general', true)->get();
 
         return view("event/index", ["tipos" => $tipos]);
@@ -26,7 +28,7 @@ class EventController extends Controller
 
     public function indexper()
     {        
-        //dd($empresas);
+        //Igual que arriba, solo que trae tipos de eventos que son personales, hace falta control del usuario
         $tipos = TipoEvento::where('general', false)->get();
         return view("event/indexper", ["tipos" => $tipos]);
     }
@@ -49,14 +51,11 @@ class EventController extends Controller
      */
     public function store(StoreEventPost $request)
     {
-        // dd(Auth::user()->id);
-        $user = Auth::user();
-        // dd($user);
 
-        $event = Event::create($request->all());
-        
+        //Almacenar el evento
+        $user = Auth::user();
+        $event = Event::create($request->all());        
         $event->user_id = $user->id;
-        //$event->tipoevento_id = $request->tipoevento;
         $event->save();
 
     }
@@ -75,8 +74,7 @@ class EventController extends Controller
     public function mostrar(Event $event)
     {
 
-        // $user = Auth::user();
-        // $event = Event::where('user_id',$user->id)->get();
+       //Trae y muestra en el calendario todos los eventos GENERALES
 
         $event = Event::all();
         return response()->json($event);
@@ -84,7 +82,9 @@ class EventController extends Controller
 
     public function personal(Event $event)
     {
-
+        //Trae y muestra en el calendario todos los eventos PERSONALES
+        //Por ahora solo trae los del usuario, pero no personales, sino todos los que dio de alta el user
+        //voy a arreglar en estos dias eso
         $user = Auth::user();
         $event = Event::where('user_id',$user->id)->get();
 
@@ -100,6 +100,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
+
+        //editar evento
         $event = Event::find($id);
         $tipo = TipoEvento::find($event->id);
 
@@ -132,7 +134,7 @@ class EventController extends Controller
      */
     public function update(StoreEventPost $request, Event $event)
     {
-        //dd($request);
+        //actualizar evento
         $event->update($request->all());
         return response()->json($event);
 
@@ -146,6 +148,7 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
+        //Eliminar evento
         $event = Event::find($id)->delete();
         return response()->json($event);
 

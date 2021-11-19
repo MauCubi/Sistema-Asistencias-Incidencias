@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-
+    //Lo mismo que agenda.js pero para eventos personales, van a cambiar algunas cosas como "events:"
+    //Que ahora usa la ruta/controlador para eventos personales
     var calendarEl = document.getElementById("agenda");
 
     let formulario = document.getElementById("event-form");

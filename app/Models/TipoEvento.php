@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipoEvento extends Model
 {
 
-    Protected $fillable = ['nombre','general'];
+    Protected $fillable = ['nombre','general','descuento'];
 
     use HasFactory;
 }
