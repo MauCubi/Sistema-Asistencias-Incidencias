@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Empleado;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Puesto extends Model
 {
@@ -15,6 +16,11 @@ class Puesto extends Model
     public function departamento()
     {
     	return $this->belongsTo(Departamento::class);
+    }
+
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class);
     }
     use HasFactory;
 }

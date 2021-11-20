@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Departamento;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Area extends Model
 {
@@ -15,6 +16,11 @@ class Area extends Model
     	return $this->belongsTo(Empresa::class);
     }
 
+    public function departamentos()
+    {
+        return $this->hasMany(Departamento::class);
+    }
+    
     use HasFactory;
 
 

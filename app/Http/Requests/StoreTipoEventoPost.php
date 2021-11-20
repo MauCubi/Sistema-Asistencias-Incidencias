@@ -13,7 +13,7 @@ class StoreTipoEventoPost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,6 @@ class StoreTipoEventoPost extends FormRequest
     {
         return [
             'nombre' => 'required',
-            'general' => 'required'
         ];
     }
 }

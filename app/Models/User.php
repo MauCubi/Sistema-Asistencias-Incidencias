@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Event;
 use App\Models\Empleado;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function empleado()
     {
     	return $this->belongsTo(Empleado::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 }

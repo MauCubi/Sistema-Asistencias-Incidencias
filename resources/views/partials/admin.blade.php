@@ -82,6 +82,8 @@
                 </div>
             </li>
 
+
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -98,9 +100,26 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-thumbtack"></i>
+                    <span>Incidencias</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                        <a class="collapse-item" href="#">Incidencias Generales</a>
+                        <a class="collapse-item" href="#">Incidencias de Empleados</a>
+                        <a class="collapse-item" href="{{ route('tipoevento.index')}}">Tipos de Incidencias</a>
+
+                    </div>
+                </div>
+            </li>
+
             
                 
-                     
+       
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#calendarutil"
                     aria-expanded="true" aria-controls="calendarutil">

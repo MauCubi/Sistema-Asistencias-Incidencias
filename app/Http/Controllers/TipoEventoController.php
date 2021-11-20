@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\TipoEvento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\StoreTipoEventoPost;
 
 class TipoEventoController extends Controller
 {
@@ -14,7 +16,8 @@ class TipoEventoController extends Controller
      */
     public function index()
     {
-        //
+        $tipoeventos = TipoEvento::orderBy('created_at','desc')->paginate(10);
+        return view("tipoevento/index",['tipoeventos' => $tipoeventos]);
     }
 
     /**
@@ -24,7 +27,8 @@ class TipoEventoController extends Controller
      */
     public function create()
     {
-        //
+        return view("tipoevento/create",["tipoevento" => new TipoEvento()]);
+
     }
 
     /**
@@ -33,9 +37,27 @@ class TipoEventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTipoEventoPost $request)
     {
-        //
+
+        $tipoevento = new TipoEvento();
+        $tipoevento->nombre = $request->nombre;
+
+        if ($request->has('general')) {
+            $tipoevento->general = true;
+        }else{
+            $tipoevento->general = false;
+        }
+
+        if ($request->has('descuento')) {
+            $tipoevento->descuento = true;
+        }else{
+            $tipoevento->descuento = false;
+        }
+
+        $tipoevento->save();
+        
+        return Redirect::to("tipoevento")->with('status','Tipo de Incidencia Creado Exitosamente');
     }
 
     /**
@@ -55,9 +77,9 @@ class TipoEventoController extends Controller
      * @param  \App\Models\TipoEvento  $tipoEvento
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoEvento $tipoEvento)
+    public function edit(TipoEvento $tipoevento)
     {
-        //
+        return view("tipoevento.edit", ["tipoevento" => $tipoevento]);
     }
 
     /**
@@ -67,9 +89,27 @@ class TipoEventoController extends Controller
      * @param  \App\Models\TipoEvento  $tipoEvento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoEvento $tipoEvento)
+    public function update(StoreTipoEventoPost $request, TipoEvento $tipoevento)
     {
-        //
+        $tipoevento->nombre = $request->nombre;
+
+        if ($request->has('general')) {
+            $tipoevento->general = true;
+        }else{
+            $tipoevento->general = false;
+        }
+
+        if ($request->has('descuento')) {
+            $tipoevento->descuento = true;
+        }else{
+            $tipoevento->descuento = false;
+        }
+
+        $tipoevento->save();
+
+        return Redirect::to("tipoevento")->with('status','Tipo de Incidencia Actualizado Exitosamente');
+
+
     }
 
     /**
@@ -78,8 +118,9 @@ class TipoEventoController extends Controller
      * @param  \App\Models\TipoEvento  $tipoEvento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoEvento $tipoEvento)
+    public function destroy(TipoEvento $tipoevento)
     {
-        //
+        $tipoevento->delete();
+        return back()->with('status','Tipo de Incidencia Eliminado');
     }
 }

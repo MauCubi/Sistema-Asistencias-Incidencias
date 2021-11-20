@@ -42,6 +42,7 @@ class EmpleadoController extends Controller
     public function store(StoreEmpleadoPost $request)
     {
         Empleado::create($request->validated());        
+        
         return Redirect::to("empleado")->with('status','Empleado Creado Exitosamente'); 
     }
 

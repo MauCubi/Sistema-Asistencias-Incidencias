@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\DepartamentoController;
 
 
@@ -24,6 +25,8 @@ Route::resource('/area', AreaController::class);
 Route::resource('/departamento', DepartamentoController::class);
 Route::resource('/puesto', PuestoController::class);
 Route::resource('/empleado', EmpleadoController::class);
+Route::resource('/tipoevento', TipoEventoController::class);
+
 
 
 // Route::resource('/event', EventController::class);
