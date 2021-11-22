@@ -1,3 +1,5 @@
+{{-- <script src="{{asset('js/app.js')}}"></script> --}}
+
 @csrf
 
 <div class="row">
@@ -94,16 +96,30 @@
 </div> --}}
 
 <div class="form-group col-md-6 mb-3">
-    <label for="puesto_id" class="col-form-label col-form-label-sm">Puesto</label>
-    <select class="form-control form-control-sm" name="puesto_id" id="puesto_id">
-        @foreach ($puestos as $puesto)
-            <option {{ $empleado->puesto_id == $puesto->id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>Dpto.{{ $puesto->departamento->nombre}} - {{ $puesto->nombre}}</option>
+    <label for="departamento_id" class="col-form-label col-form-label-sm">Departamento</label>
+    <select class="form-control form-control-sm" name="departamento_id" id="departamento_id" required>
+        @foreach ($departamentos as $departamento)
+            @isset($puestoid)
+                <option {{ $departamento->id == $puestoid->departamento_id ? 'selected="selected"' : ''}} value="{{ $departamento->id}}" required focus>{{ $departamento->nombre}}</option>
+            @else
+                <option value="{{ $departamento->id}}" required focus>{{ $departamento->nombre}}</option>
+            @endisset
         @endforeach
     </select>
     
-    @error('puesto_id')
+    @error('departamento_id')
     <small class="text-danger">{{ $message }}</small>
     @enderror   
+</div>
+
+
+<div class="form-group col-md-6 mb-3">
+    <label for="puesto_id" class="col-form-label col-form-label-sm">Puesto</label>
+    <select id="puesto_id" name="puesto_id" class="form-control form-control-sm" required>
+    @foreach ($puestos as $puesto)
+        <option {{ $puesto->id == $empleado->puesto_id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>{{ $puesto->nombre}}</option>
+    @endforeach
+    </select>
 </div>
 </div>
 
@@ -114,7 +130,11 @@
 </div>
 
 
+@isset($record)
+    
+@else
 
+@endisset
 {{-- <script>
     var departamento = document.getElementById("departamento_id");
     var puesto = document.getElementById("puesto_id");
@@ -127,3 +147,30 @@
 
 
 </script> --}}
+
+
+<script>
+    $(document).ready(function () {
+    $(document).on('change', '#departamento_id', function() {
+        var departamento_id = $(this).val();
+        
+        var op = " ";
+        $.ajax({
+            type: 'get',
+            url: '{!!URL::to('/empleado/createfind')!!}',
+            data: {'id':departamento_id},
+            success: function(data){
+                for (var i = 0; i < data.length; i++){
+                    op += '<option value="'+data[i].id+'">'+data[i].nombre+'</option>';
+                }
+                $('#puesto_id').html(" ");
+                $('#puesto_id').append(op);
+            },
+            error: function(){
+                console.log('success');
+            },
+        });
+    });
+});
+
+</script>

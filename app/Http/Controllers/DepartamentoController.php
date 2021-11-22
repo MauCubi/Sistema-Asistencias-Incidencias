@@ -92,4 +92,7 @@ class DepartamentoController extends Controller
         $departamento->delete();
         return back()->with('status','Departamento Eliminado');
     }
+
+
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Puesto;
 use App\Models\Empleado;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEmpleadoPost;
 use Illuminate\Support\Facades\Redirect;
@@ -29,8 +30,9 @@ class EmpleadoController extends Controller
     public function create()
     {
         $puestos = Puesto::get();
+        $departamentos = Departamento::get();
 
-        return view("empleado/create",["empleado" => new Empleado(), "puestos" => $puestos]);
+        return view("empleado/create",["empleado" => new Empleado(), "puestos" => $puestos,"departamentos" => $departamentos]);
     }
 
     /**
@@ -66,7 +68,9 @@ class EmpleadoController extends Controller
     public function edit(Empleado $empleado)
     {
         $puestos = Puesto::get();
-        return view("empleado.edit", ["empleado" => $empleado, "puestos" => $puestos]); 
+        $departamentos = Departamento::get();
+        $puestoid = Puesto::where('id',$empleado->puesto_id)->first();
+        return view("empleado.edit", ["empleado" => $empleado, "puestos" => $puestos,"departamentos" => $departamentos, "puestoid" => $puestoid]); 
     }
 
     /**
@@ -94,4 +98,14 @@ class EmpleadoController extends Controller
         $empleado->save();
         return back()->with('status','Empleado Dado de Baja');
     }
+
+
+    public function createfind(Request $request)
+    {
+        $data = Puesto::select('id', 'nombre')->where('departamento_id', $request->id)->get();
+
+        return response()->json($data);
+    }
+
+
 }

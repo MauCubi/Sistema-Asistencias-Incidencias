@@ -20,6 +20,10 @@ Route::get('/admin', function () {
     return view('partials.admin');
 });
 
+
+Route::get('/empleado/createfind', [EmpleadoController::class, 'createfind'])->name('empleado.createfind');
+
+
 Route::resource('/empresa', EmpresaController::class);
 Route::resource('/area', AreaController::class);
 Route::resource('/departamento', DepartamentoController::class);
@@ -30,6 +34,8 @@ Route::resource('/tipoevento', TipoEventoController::class);
 
 
 // Route::resource('/event', EventController::class);
+
+
 
 
 Route::post('/event/editar/{id}', [EventController::class, 'edit'])->name('event.editar');

@@ -104,7 +104,7 @@ class PuestoSeeder extends Seeder
 
         DB::table('puestos')->insert([
             'nombre' => 'Director de Tesorería',
-            'departamento_id' => '6',
+            'departamento_id' => '7',
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -112,7 +112,7 @@ class PuestoSeeder extends Seeder
 
         DB::table('puestos')->insert([
             'nombre' => 'Auxiliar de Tesorería',
-            'departamento_id' => '6',
+            'departamento_id' => '7',
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -120,7 +120,7 @@ class PuestoSeeder extends Seeder
 
         DB::table('puestos')->insert([
             'nombre' => 'Director de Contabilidad',
-            'departamento_id' => '5',
+            'departamento_id' => '6',
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -128,7 +128,7 @@ class PuestoSeeder extends Seeder
 
         DB::table('puestos')->insert([
             'nombre' => 'Analista de Contabilidad',
-            'departamento_id' => '5',
+            'departamento_id' => '6',
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -136,7 +136,7 @@ class PuestoSeeder extends Seeder
 
         DB::table('puestos')->insert([
             'nombre' => 'Auxiliar de Contabilidad',
-            'departamento_id' => '5',
+            'departamento_id' => '6',
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  

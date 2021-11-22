@@ -25,6 +25,11 @@
     <script src='fullcalendar/main.js'></script>
     <script src='fullcalendar/locales-all.js'></script>
 
+    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
     
 
 
@@ -273,10 +278,10 @@
 
     <!-- Bootstrap core JavaScript-->
     
-    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
 
 
 
