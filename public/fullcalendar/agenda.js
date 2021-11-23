@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
 
         //tamaño
-        aspectRatio: 2,
+        // aspectRatio: 2,
 
         //events es una funcion propia de fullcalendar, toma que eventos va a mostrar, en este caso
         //se le indica el link que esta en la ruta que dirige al controlador que trae todos los eventos
@@ -30,14 +30,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
         //funcion propia del fullcalendar, que hace cuando se le da un click a una fecha
-        dateClick: function(info) {
-            formulario.reset();           
+        // dateClick: function(info) {
+        //     formulario.reset();           
 
-            formulario.start.value = info.dateStr;
-            formulario.end.value = info.dateStr;
+        //     formulario.start.value = info.dateStr;
+        //     formulario.end.value = info.dateStr;
 
-            $("#event").modal("show");
-        },
+        //     $("#event").modal("show");
+        // },
 
         //funcion propia del fullcalendar, que hace cuando se le da click a un evento
         eventClick: function(info) {

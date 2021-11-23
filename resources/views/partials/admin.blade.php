@@ -20,14 +20,19 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
-
+    {{-- fullcalendar --}}
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script>
     <script src='fullcalendar/locales-all.js'></script>
 
+    {{-- scripts bootstrap sbadmin --}}
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    {{-- select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     
@@ -114,7 +119,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="#">Incidencias Generales</a>
+                        <a class="collapse-item" href="{{ route('event.index2')}}">Incidencias Generales</a>
                         <a class="collapse-item" href="#">Incidencias de Empleados</a>
                         <a class="collapse-item" href="{{ route('tipoevento.index')}}">Tipos de Incidencias</a>
 

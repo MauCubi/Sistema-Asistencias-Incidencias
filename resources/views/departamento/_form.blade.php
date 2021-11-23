@@ -30,3 +30,13 @@
 <div class="row col-md-6 mb-3">
 <input class="btn btn-primary" type="submit" value="Guardar">
 </div>
+
+{{-- <script>
+    $(document).ready(function() {
+        $('#area_id').select2();
+    });
+
+    $(document).on('select2:open', () => {
+    document.querySelector('.select2-search__field').focus();
+  });
+</script> --}}

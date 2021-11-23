@@ -68,14 +68,14 @@ class TipoEventoSeeder extends Seeder
  
         ]);
 
-        DB::table('tipo_eventos')->insert([
-            'nombre' => 'Asistencia',
-            'general' => false,
-            'descuento' => false,
-            'created_at'   => date("Y-m-d H:i:s"),
-            'updated_at'   => date("Y-m-d H:i:s"),
+        // DB::table('tipo_eventos')->insert([
+        //     'nombre' => 'Asistencia',
+        //     'general' => false,
+        //     'descuento' => false,
+        //     'created_at'   => date("Y-m-d H:i:s"),
+        //     'updated_at'   => date("Y-m-d H:i:s"),
  
-        ]);
+        // ]);
 
         DB::table('tipo_eventos')->insert([
             'nombre' => 'Feriado',

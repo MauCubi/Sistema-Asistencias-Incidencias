@@ -12,6 +12,7 @@ class Event extends Model
 
 
     Protected $fillable = ['title','description','start','end','user_id','tipoevento_id'];
+    Protected $dates = ['start', 'end'];
 
     public function user()
     {

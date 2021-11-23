@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use App\Models\Event;
 use App\Models\TipoEvento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventPost;
+use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
@@ -22,7 +24,6 @@ class EventController extends Controller
         //En este caso no se hace como siempre que llevas los eventos
         //Ya que eso se hace con el controlador Mostrar y una linea en agenda.js
         $tipos = TipoEvento::where('general', true)->get();
-
         return view("event/index", ["tipos" => $tipos]);
     }
 
@@ -33,6 +34,13 @@ class EventController extends Controller
         return view("event/indexper", ["tipos" => $tipos]);
     }
 
+    public function index2()
+    {        
+        $events = Event::whereHas('tipoevento', function($q){
+        $q->where('general', true);})->get();
+        return view("event/index2",['events' => $events]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +48,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $tipoeventos = TipoEvento::where('general', true)->get();
+        return view("event/create",["event" => new Event(), "tipoeventos" => $tipoeventos]);
+
     }
 
     /**
@@ -51,13 +61,34 @@ class EventController extends Controller
      */
     public function store(StoreEventPost $request)
     {
-
+               
         //Almacenar el evento
         $user = Auth::user();
-        $event = Event::create($request->all());        
+        $event = new Event();
+        $event->title = $request->title;
+        
+        $event->description = $request->description;
+        $event->tipoevento_id = $request->tipoevento_id;
+        $event->start = $request->start;
+        if ($request->end == null) {
+            $event->end = $request->start;
+        }else{
+            $event->end = $request->end;
+        }
+        
+        // if ($event->start->gt($event->end)) {
+        //     return Redirect::to("event/create")->with('status','Fecha mal');
+        // }
+
         $event->user_id = $user->id;
         $event->save();
 
+        return Redirect::to("events")->with('status','Incidencia Creada Exitosamente');    
+
+        // $event = Event::create($request->all());        
+        // $event->user_id = $user->id;
+        // $event->save();
+        
     }
 
     /**
@@ -68,6 +99,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        return view("event.show", ["event" => $event]);
 
     }
 
@@ -98,13 +130,15 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit(Event $event)   {
 
-        //editar evento
-        $event = Event::find($id);
-        $tipo = TipoEvento::find($event->id);
+        $tipoeventos = TipoEvento::where('general', true)->get();
 
+
+        return view("event.edit", ["event" => $event, "tipoeventos" => $tipoeventos]);
+
+        
+        //editar evento       
         // $evento = array(
         //     "id" => $event->id,
         //     "title" => $event->title,
@@ -115,13 +149,14 @@ class EventController extends Controller
         //     "tipo" => $tipo->id,
         // );
 
-        $event->start =  Carbon::createFromFormat('Y-m-d H:i:s', $event->start)->format('Y-m-d');
-        $event->end =  Carbon::createFromFormat('Y-m-d H:i:s', $event->end)->format('Y-m-d');
+        //EDIT CALENDAR
+        // $event = Event::find($id);
+        // $tipo = TipoEvento::find($event->id);
 
+        // $event->start =  Carbon::createFromFormat('Y-m-d H:i:s', $event->start)->format('Y-m-d');
+        // $event->end =  Carbon::createFromFormat('Y-m-d H:i:s', $event->end)->format('Y-m-d');
 
-        //return response()->json($event);
-
-        return response()->json($event);
+        // return response()->json($event);
 
     }
 
@@ -135,8 +170,8 @@ class EventController extends Controller
     public function update(StoreEventPost $request, Event $event)
     {
         //actualizar evento
-        $event->update($request->all());
-        return response()->json($event);
+        $event->update($request->validated());
+        return Redirect::to("events")->with('status','Incidencia Actualizada');   
 
     }
 
@@ -146,11 +181,12 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
         //Eliminar evento
-        $event = Event::find($id)->delete();
-        return response()->json($event);
+        // $event = Event::find($event->id);
+        $event->delete();
+        return back()->with('status','Incidencia Eliminada');
 
     }
 }
