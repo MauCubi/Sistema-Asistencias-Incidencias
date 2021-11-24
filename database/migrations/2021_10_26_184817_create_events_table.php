@@ -24,8 +24,10 @@ class CreateEventsTable extends Migration
 
 
 
-            $table->bigInteger('user_id')->nullable();
-            
+
+            $table->bigInteger('empleado_id')->nullable();
+
+            $table->bigInteger('user_id')->nullable();            
             $table->bigInteger('tipoevento_id')->nullable();
             $table->timestamps();
         });

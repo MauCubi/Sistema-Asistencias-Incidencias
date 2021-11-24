@@ -25,4 +25,9 @@ class Empleado extends Model
         return $this->hasOne(User::class);
     }
     use HasFactory;
+
+        public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

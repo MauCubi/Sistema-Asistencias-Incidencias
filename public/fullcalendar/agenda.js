@@ -4,9 +4,22 @@ document.addEventListener("DOMContentLoaded", function() {
     //Define la variable de calendario, el ID de getelementbyid es un div en el index.blade de eventos.
     //Ese div es donde va a estar el calendario
     var calendarEl = document.getElementById("agenda");
+    
 
     //Varibale que toma los campos del formulario "event-form" en index.blade de eventos.
     let formulario = document.getElementById("event-form");
+
+    let labelin = document.getElementById("title");
+    let labelin2 = document.getElementById("description");
+
+    let labelin3 = document.getElementById("tipoevento");
+
+    let labelin4 = document.getElementById("start");
+
+    let labelin5 = document.getElementById("end");
+
+    $('#start').html().substr(0.8);
+
 
     //opciones de calendario, formato, idioma, si es editable, etc
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -47,16 +60,21 @@ document.addEventListener("DOMContentLoaded", function() {
             axios
                 .post("/event/editar/" + info.event.id)
                 .then(response => {
-                    console.log(response);
+                    labelin.innerHTML = response.data.title;
 
-                    formulario.id.value = response.data.id;
-                    formulario.title.value = response.data.title;
+                    labelin2.innerHTML = response.data.description; 
+                    // labelin3.innerHTML = response.data.tipoevento_id;
 
-                    formulario.description.value = response.data.description; 
-                    formulario.tipoevento_id.value = response.data.tipoevento_id;
+                    response.data.start = response.data.start
 
-                    formulario.start.value = response.data.start;
-                    formulario.end.value = response.data.end;
+                    var d1 = new Date(response.data.start);
+                    var d2 = new Date(response.data.end);
+                    //var str = d1.toString("YYYY MM DD");
+                    // Date.parse(d1).toString("YYYY");
+                    // var dateString = moment(d1).format('YYYY-MM-DD');
+                    // d1.formatDate('YYYY-MM-DD');
+                    labelin4.innerHTML = d1.getDate() + '-' + d1.getMonth() + '-' + d1.getFullYear();
+                    labelin5.innerHTML = d2.getDate() + '-' + d2.getMonth() + '-' + d2.getFullYear();
                     $("#event").modal("show");
                 })
                 .catch(error => {
@@ -70,45 +88,45 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     //Opciones de que hace cada boton del modal
-    document.getElementById("btnGuardar").addEventListener("click", function() {
-        enviarDatos("/event/store");
+    // document.getElementById("btnGuardar").addEventListener("click", function() {
+    //     enviarDatos("/event/store");
 
-    });
+    // });
 
-    document
-        .getElementById("btnEliminar")
-        .addEventListener("click", function() {
+    // document
+    //     .getElementById("btnEliminar")
+    //     .addEventListener("click", function() {
 
-            enviarDatos("/event/borrar/" + formulario.id.value);
+    //         enviarDatos("/event/borrar/" + formulario.id.value);
 
-        });
+    //     });
 
 
-        document
-        .getElementById("btnEditar")
-        .addEventListener("click", function() {
-        enviarDatos("/event/actualizar/" + formulario.id.value);
-        });
+        // document
+        // .getElementById("btnEditar")
+        // .addEventListener("click", function() {
+        // enviarDatos("/event/actualizar/" + formulario.id.value);
+        // });
 
 
         //funcion de enviar los datos por axios, DOLOR DE BOLAS
-        function enviarDatos(url){
+        // function enviarDatos(url){
 
-            const datos = new FormData(formulario);
+        //     const datos = new FormData(formulario);
 
             
 
-            axios
-                .post(url, datos)
-                .then(response => {
-                    console.log(response);
-                    calendar.refetchEvents();
-                    $("#event").modal("hide");
-                })
-                .catch(error => {
-                    console.log(error.response);
-                });
-        }
+        //     axios
+        //         .post(url, datos)
+        //         .then(response => {
+        //             console.log(response);
+        //             calendar.refetchEvents();
+        //             $("#event").modal("hide");
+        //         })
+        //         .catch(error => {
+        //             console.log(error.response);
+        //         });
+        // }
 
 
 

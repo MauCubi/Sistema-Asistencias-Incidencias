@@ -11,12 +11,12 @@ class Event extends Model
 {
 
 
-    Protected $fillable = ['title','description','start','end','user_id','tipoevento_id'];
+    Protected $fillable = ['title','description','start','end','empleado_id','tipoevento_id'];
     Protected $dates = ['start', 'end'];
 
-    public function user()
+    public function empleado()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(Empleado::class);
     }
 
     public function tipoevento()

@@ -51,6 +51,9 @@ Route::get('/events', [EventController::class, 'index2'])->name('event.index2');
 Route::get('/event/{event}', [EventController::class, 'show'])->name('event.show');
 Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
 
+Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
+
+
 
 
 

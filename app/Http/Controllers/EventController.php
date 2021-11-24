@@ -80,7 +80,7 @@ class EventController extends Controller
         //     return Redirect::to("event/create")->with('status','Fecha mal');
         // }
 
-        $event->user_id = $user->id;
+        $event->empleado_id = $user->empleado->id;
         $event->save();
 
         return Redirect::to("events")->with('status','Incidencia Creada Exitosamente');    
@@ -118,7 +118,8 @@ class EventController extends Controller
         //Por ahora solo trae los del usuario, pero no personales, sino todos los que dio de alta el user
         //voy a arreglar en estos dias eso
         $user = Auth::user();
-        $event = Event::where('user_id',$user->id)->get();
+        $id = $user->empleado_id; 
+        $event = Event::where('empleado_id',$id)->get();
 
        
         return response()->json($event);
@@ -187,6 +188,31 @@ class EventController extends Controller
         // $event = Event::find($event->id);
         $event->delete();
         return back()->with('status','Incidencia Eliminada');
+
+    }
+
+
+    public function editar($id)   {
+        
+        //editar evento       
+        // $evento = array(
+        //     "id" => $event->id,
+        //     "title" => $event->title,
+        //     "description" => $event->description,
+        //     "start" => $event->start,
+        //     "end" => $event->end,
+        //     "user_id" => $event->user_id,
+        //     "tipo" => $tipo->id,
+        // );
+
+        //EDIT CALENDAR
+        $event = Event::find($id);
+        $tipo = TipoEvento::find($event->id);
+
+        $event->start =  Carbon::createFromFormat('Y-m-d H:i:s', $event->start)->format('Y-m-d');
+        $event->end =  Carbon::createFromFormat('Y-m-d H:i:s', $event->end)->format('Y-m-d');
+
+        return response()->json($event);
 
     }
 }

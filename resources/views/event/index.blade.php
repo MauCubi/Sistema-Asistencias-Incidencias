@@ -24,58 +24,55 @@
       </div>
       <div class="modal-body">
 
-        <form action="" id="event-form">
-          @csrf
-          <div class="form-group d-none">
-            <input type="hidden" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
-          </div> 
+          {{-- <label class="control-label" id="title"><strong>Titulo:</strong></label> --}}
+            {{-- <label for="title">Nombre Incidencia</label>
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder=""> --}}
 
-          <div class="form-group">
-            <label for="title">Nombre Incidencia</label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="">
-          </div>
+{{--           
+          <label class="control-label" id="tipoevento_id" value=""><strong>Tipo de Incidencia:</strong></label>
+          
 
-          <div class="form-group">
-            <label for="description">Descripción</label>
-            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-          </div>
+          
+            <label class="control-label" id="description" value=""><strong>Detalles:</strong></label>   
+            
+            <label class="control-label" id="start" value=""><strong>Empieza:</strong></label>      
 
-          <div class="form-group">
-            <label for="tipoevento">Tipo de Incidencia</label>
-            <select class="form-control form-control-sm" name="tipoevento_id" id="tipoevento_id">
-              @foreach ($tipos as $tipo)                
-                  <option value="{{ $tipo->id}}">{{ $tipo->nombre}}</option>
-              @endforeach
-          </select>          
-        </div>
-
-          <div class="form-group">
-            <input type="hidden" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
-
-          </div>
-
-          <div class="form-group">
-            <input type="hidden" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
-
-          </div>
-
-          <div class="form-group d-none">
-            <input type="hidden" class="form-control" title="user-id" id="user-id" aria-describedby="helpId" placeholder="">
-          </div> 
-
-        </form>
+            <label class="control-label" id="end" value=""><strong>Termina:</strong></label>      --}}
 
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
-        <button type="button" class="btn btn-warning" id="btnEditar">Editar</button>
-        <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+            <form action="" id="event-form">
+              @csrf
+              <div class="form-group d-none">
+                <input type="hidden" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
+              </div> 
+    
+              <div class="form-group">
+                <label for="title"><strong>Incidencia: </strong></label><b> </b><label id="title"> </label>
+              </div>  
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    
+              <div class="form-group">
+                <label for="start"><strong>Empieza: </strong></label><b> </b><label id="start"> </label>
+              </div>
+    
+              <div class="form-group">
+                <label for="end"><strong>Termina: </strong></label><b> </b><label id="end"> </label>
+              </div>
+
+              <div class="form-group">
+                <label for="description"><strong>Detalles: </strong></label><b> </b><label id="description"> </label>
+              </div>
+    
+              {{-- <div class="form-group d-none">
+                <input type="hidden" class="form-control" title="user-id" id="user-id" aria-describedby="helpId" placeholder="">
+              </div>  --}}
+    
+            </form>
+
 
 
       </div>
+
     </div>
   </div>
 </div>
@@ -83,6 +80,7 @@
 <br>
 
 <script src="{{asset('fullcalendar/agenda.js')}}"></script>
+
 {{-- <script>
 
 let formulario = document.querySelector("form");

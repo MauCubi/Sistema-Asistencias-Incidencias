@@ -50,8 +50,8 @@ class User extends Authenticatable
     	return $this->belongsTo(Empleado::class);
     }
 
-    public function events()
-    {
-        return $this->hasMany(Event::class);
-    }
+    // public function events()
+    // {
+    //     return $this->hasMany(Event::class);
+    // }
 }
