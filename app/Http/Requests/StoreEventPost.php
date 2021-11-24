@@ -26,10 +26,9 @@ class StoreEventPost extends FormRequest
         return [
             'title' => 'required',
             'description' => '',
-            'start' => 'required',
-            
+            'start' => 'required',            
             'end' => 'after_or_equal:start',
-            'user_id' =>'',
+            'empleado_id' =>'',
             'tipoevento_id' =>'',
             
         ];

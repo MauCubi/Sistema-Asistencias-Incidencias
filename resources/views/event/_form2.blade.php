@@ -13,6 +13,21 @@
 </div>
 
 <div class="row">
+    <div class="form-group col-md-6 mb-3">
+        <label for="tipoevento_id">Empleado</label>
+        <select class="form-control form-control-sm" name="empleado_id" id="empleado_id">
+            @foreach ($empleados as $empleado)
+                <option {{ $event->empleado_id == $empleado->id ? 'selected="selected"' : ''}}  value="{{ $empleado->id}}">{{ $empleado->nombre}} {{ $empleado->apellido}} </option>
+            @endforeach
+        </select>
+        
+        @error('empleado_id')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror   
+    </div>
+    </div>
+
+<div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="tipoevento_id">Tipo de Incidencia</label>
     <select class="form-control form-control-sm" name="tipoevento_id" id="tipoevento_id">
@@ -80,12 +95,13 @@
 
 
 
-{{-- <script>
+<script>
     $(document).ready(function() {
-        $('#tipoeventos').select2();
+        $('#empleado_id').select2();
+        $('#tipoevento_id').select2();
     });
 
     $(document).on('select2:open', () => {
     document.querySelector('.select2-search__field').focus();
   });
-</script> --}}
+</script>

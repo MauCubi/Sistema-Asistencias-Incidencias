@@ -41,6 +41,9 @@ Route::resource('/tipoevento', TipoEventoController::class);
 Route::delete('/event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
 
 Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
+Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
+Route::get('/event/create2', [EventController::class, 'create2'])->name('event.create2');
+
 Route::get('/event/{event}/edit', [EventController::class, 'edit'])->name('event.edit');
 Route::put('/event/{event}', [EventController::class, 'update'])->name('event.update');
 Route::get('/event/mostrar', [EventController::class, 'mostrar'])->name('event.mostrar');
@@ -49,7 +52,15 @@ Route::get('/eventper', [EventController::class, 'indexper'])->name('event.index
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/events', [EventController::class, 'index2'])->name('event.index2');
 Route::get('/event/{event}', [EventController::class, 'show'])->name('event.show');
-Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
+
+//Rutas de incidencias personales
+Route::delete('/event2/{event}', [EventController::class, 'destroy2'])->name('event.destroy2');
+Route::post('/event/store2', [EventController::class, 'store2'])->name('event.store2');
+Route::get('/event/{event}/edit2', [EventController::class, 'edit2'])->name('event.edit2');
+Route::put('/event2/{event}', [EventController::class, 'update2'])->name('event.update2');
+Route::get('/events2', [EventController::class, 'index3'])->name('event.index3');
+Route::get('/event2/{event}', [EventController::class, 'show2'])->name('event.show2');
+
 
 Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
 

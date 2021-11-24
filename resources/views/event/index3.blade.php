@@ -5,7 +5,7 @@
 @section('content')
 <div class="row d-flex flex-row">
     <div class="p-2">
-        <h3 class="text-primary">Listado de Incidencias Generales</h3>
+        <h3 class="text-primary">Listado de Incidencias de Empleados</h3>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
 
 @include('partials.session-status')
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
-    Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Incidencia General.
+    Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Incidencia de un Empleado.
 </p>
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
     <thead class="bg-dark text-white">
@@ -26,6 +26,9 @@
                 Titulo
             </td>        
             <td>
+                Empleado
+            </td>   
+            <td>
                 Tipo de Incidencia
             </td>
             <td>
@@ -33,10 +36,11 @@
             </td>   
             <td>
                 Fecha de Finalización
-            </td>         
+            </td>
+      
             <td>
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('event.create') }}" >
+                    <a href="{{ route('event.create2') }}" >
                         <button class="btn btn-success btn-sm" type="button"><i class="fa fw fa-plus"></i> Nuevo</button>
                     </a>
                 </div>
@@ -53,7 +57,10 @@
                 {{ $event->title }}
             </td>
             <td>
-                {{ $event->tipoevento->nombre }} 
+                {{ $event->empleado->nombre }} {{ $event->empleado->apellido }}
+            </td>
+            <td>
+                {{ $event->tipoevento->nombre }}
             </td>
             <td>
                 {{ $event->start->format('Y-m-d') }}
@@ -61,10 +68,11 @@
             <td>
                 {{ $event->end->format('Y-m-d') }}
             </td>
+
             <td>
                 <div class="d-flex justify-content-center">
-                <a href="{{ route('event.show', $event->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
-                <a href="{{ route('event.edit', $event->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
+                <a href="{{ route('event.show2', $event->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
+                <a href="{{ route('event.edit2', $event->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
                 
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $event->id }}"><i class="fas fa-trash"></i> Eliminar</button>
                 </div>
@@ -91,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form  id="formDelete" action="{{ route('event.destroy',0) }}" method="POST" data-action="{{ route('event.destroy',0) }}">
+                <form  id="formDelete" action="{{ route('event.destroy2',0) }}" method="POST" data-action="{{ route('event.destroy2',0) }}">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>

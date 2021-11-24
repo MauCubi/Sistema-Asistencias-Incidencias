@@ -70,6 +70,50 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+
+            <div class="sidebar-heading">
+                Area Personal
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsist"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-clock"></i>
+                    <span>Asistencias</span>
+                </a>
+                <div id="collapseAsist" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                        <a class="collapse-item" href="{{ route('home') }}">Marcar Entrada/Salida</a>
+                        <a class="collapse-item" href="#">Mis Asistencias</a>
+                        <a class="collapse-item" href="#">Mis Horas Extras</a>
+                        <a class="collapse-item" href="#">Mis Inasistencias</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#calendarutil"
+                    aria-expanded="true" aria-controls="calendarutil">
+                    <i class="fas fa-calendar-alt"></i>
+                                        <span>Calendarios</span>
+                </a>
+                <div id="calendarutil" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="{{ route('event.index')}}">Calendario General</a> 
+
+                        <a class="collapse-item" href="{{ route('event.indexper')}}">Calendario Personal</a> 
+                    </div>
+                    
+                    
+                        
+                    
+                </div>
+
+            </li>
+
             <div class="sidebar-heading">
                 Administración
             </div>
@@ -120,7 +164,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="{{ route('event.index2')}}">Incidencias Generales</a>
-                        <a class="collapse-item" href="#">Incidencias de Empleados</a>
+                        <a class="collapse-item" href="{{ route('event.index3')}}">Incidencias de Empleados</a>
                         <a class="collapse-item" href="{{ route('tipoevento.index')}}">Tipos de Incidencias</a>
 
                     </div>
@@ -130,27 +174,7 @@
             
                 
        
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#calendarutil"
-                    aria-expanded="true" aria-controls="calendarutil">
-                    <i class="fas fa-calendar-alt"></i>
-                                        <span>Calendario</span>
-                </a>
-                <div id="calendarutil" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        
-                        <a class="collapse-item" href="{{ route('event.index')}}">Calendario Maestro</a> 
 
-                        <a class="collapse-item" href="{{ route('event.indexper')}}">Calendario Personal</a> 
-                    </div>
-                    
-                    
-                        
-                    
-                </div>
-
-            </li>
 
             
 

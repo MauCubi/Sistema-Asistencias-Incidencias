@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use Carbon\Carbon;
 use App\Models\Event;
+use App\Models\Empleado;
 use App\Models\TipoEvento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +81,7 @@ class EventController extends Controller
         //     return Redirect::to("event/create")->with('status','Fecha mal');
         // }
 
-        $event->empleado_id = $user->empleado->id;
+        $event->empleado_id = $user->empleado_id;
         $event->save();
 
         return Redirect::to("events")->with('status','Incidencia Creada Exitosamente');    
@@ -108,7 +109,8 @@ class EventController extends Controller
 
        //Trae y muestra en el calendario todos los eventos GENERALES
 
-        $event = Event::all();
+       $event = Event::whereHas('tipoevento', function($q){
+        $q->where('general', true);})->get();
         return response()->json($event);
     }
 
@@ -117,9 +119,14 @@ class EventController extends Controller
         //Trae y muestra en el calendario todos los eventos PERSONALES
         //Por ahora solo trae los del usuario, pero no personales, sino todos los que dio de alta el user
         //voy a arreglar en estos dias eso
+
+
         $user = Auth::user();
         $id = $user->empleado_id; 
-        $event = Event::where('empleado_id',$id)->get();
+        //$event = Event::where('empleado_id',$id)->get();
+
+        $event = Event::whereHas('tipoevento', function($q){
+            $q->where('general', false);})->where('empleado_id', $id)->get();
 
        
         return response()->json($event);
@@ -215,4 +222,83 @@ class EventController extends Controller
         return response()->json($event);
 
     }
+
+
+
+    //CONTROLLERS DE INCIDENCIAS PERSONALES
+
+    public function index3()
+    {        
+
+        // $user = Auth::user();
+        $events = Event::whereHas('tipoevento', function($q){
+        $q->where('general', false);})->get();
+        return view("event/index3",['events' => $events]);
+    }
+
+    public function create2()
+    {
+        $tipoeventos = TipoEvento::where('general', false)->get();
+        $empleados = Empleado::get();
+        return view("event/create2",["event" => new Event(), "tipoeventos" => $tipoeventos, "empleados" => $empleados]);
+
+    }
+
+
+    public function store2(StoreEventPost $request)
+    {               
+        //Almacenar el evento
+        //$user = Auth::user();
+        $event = new Event();
+        $event->title = $request->title;
+        
+        $event->description = $request->description;
+        $event->tipoevento_id = $request->tipoevento_id;
+        $event->start = $request->start;
+        if ($request->end == null) {
+            $event->end = $request->start;
+        }else{
+            $event->end = $request->end;
+        }
+
+        $event->empleado_id = $request->empleado_id;
+        $event->save();
+
+        return Redirect::to("events2")->with('status','Incidencia Creada Exitosamente');    
+        
+    }
+
+    public function show2(Event $event)
+    {
+        return view("event.show2", ["event" => $event]);
+
+    }
+
+
+    public function edit2(Event $event)   {
+
+        $tipoeventos = TipoEvento::where('general', false)->get();
+        $empleados = Empleado::get();
+        return view("event.edit2", ["event" => $event, "tipoeventos" => $tipoeventos, "empleados" => $empleados]);
+    }
+
+    public function update2(StoreEventPost $request, Event $event)
+    {
+        //actualizar evento
+        $event->update($request->validated());
+        return Redirect::to("events2")->with('status','Incidencia Actualizada');   
+
+    }
+
+    public function destroy2(Event $event)
+    {
+        //Eliminar evento  
+        $event->delete();
+        return back()->with('status','Incidencia Eliminada');
+
+    }
+
+
+
+
 }

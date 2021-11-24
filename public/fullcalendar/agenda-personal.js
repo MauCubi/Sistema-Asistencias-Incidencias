@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
             right: "dayGridMonth, listWeek"
         },
 
-        aspectRatio: 2,
+        //aspectRatio: 2,
 
         events: "http://asistencias.test/event/personal",        
 
