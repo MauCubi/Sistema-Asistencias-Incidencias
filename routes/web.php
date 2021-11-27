@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\DepartamentoController;
 
@@ -63,6 +64,13 @@ Route::get('/event2/{event}', [EventController::class, 'show2'])->name('event.sh
 
 
 Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
+
+//Asistencias
+Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asistencia.add');
+Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
+// Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
+
+
 
 
 

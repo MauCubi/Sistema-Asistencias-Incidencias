@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Asistencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AsistenciaController extends Controller
 {
@@ -81,5 +84,37 @@ class AsistenciaController extends Controller
     public function destroy(Asistencia $asistencia)
     {
         //
+    }
+
+    public function marcar()
+    {
+        $asistencia = Asistencia::where('verify', true)->first();
+
+        if ($asistencia == null) {
+            return view("asistencia/marcar");
+        }else{
+            return view("asistencia/marcar", ['asistencia' => $asistencia]);
+        }
+    }
+
+    public function add()
+    {
+        $asistencia = new Asistencia();
+        $now = Carbon::now('GMT-3');
+        $user = Auth::user();
+        
+        $asistencia->title = 'Asistencia'.' '.$now;
+        $asistencia->verify = true;
+        $asistencia->start = $now;
+        $asistencia->end = $now;
+        $asistencia->hora = 0;
+        $asistencia->minuto = 0;
+        $asistencia->tipoasistencia_id = 1;
+        $asistencia->empleado_id = $user->empleado_id;
+
+        $asistencia->save();
+
+        return Redirect::to("asistencia/marcar")->with('status','Entrada Marcada');
+
     }
 }

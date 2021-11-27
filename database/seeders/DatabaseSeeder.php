@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PuestoSeeder::class,
             EmpleadoSeeder::class,
             TipoEventoSeeder::class,
+            TipoAsistenciaSeeder::class,
 
         ]);
     }

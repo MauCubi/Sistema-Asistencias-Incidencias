@@ -84,7 +84,7 @@
                 <div id="collapseAsist" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                        <a class="collapse-item" href="{{ route('home') }}">Marcar Entrada/Salida</a>
+                        <a class="collapse-item" href="{{ route('asistencia.marcar') }}">Marcar Entrada/Salida</a>
                         <a class="collapse-item" href="#">Mis Asistencias</a>
                         <a class="collapse-item" href="#">Mis Horas Extras</a>
                         <a class="collapse-item" href="#">Mis Inasistencias</a>
@@ -113,6 +113,7 @@
                 </div>
 
             </li>
+            <hr class="sidebar-divider">
 
             <div class="sidebar-heading">
                 Administración

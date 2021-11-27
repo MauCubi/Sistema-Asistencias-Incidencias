@@ -16,6 +16,21 @@ class CreateAsistenciasTable extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('title');
+            $table->boolean('verify');
+
+            $table->integer('hora');
+            $table->integer('minuto');
+
+            $table->dateTime('start');
+            $table->dateTime('end');
+
+
+
+            $table->bigInteger('empleado_id');
+            $table->bigInteger('tipoasistencia_id');
+
         });
     }
 
