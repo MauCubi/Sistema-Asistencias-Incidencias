@@ -101,16 +101,19 @@ class AsistenciaController extends Controller
     {
         $asistencia = Asistencia::where('verify', true)->first();
         $now = Carbon::now('GMT-3');
+        $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
 
         if ($asistencia == null) {
             $asistencia = new Asistencia();            
             $user = Auth::user();            
-            $asistencia->title = 'Asistencia'.' '.$now;
+            $asistencia->title = 'Asistencia'.' '.$nowtitle;
             $asistencia->verify = true;
+            
             $asistencia->start = $now;
             $asistencia->end = $now;
             $asistencia->hora = 0;
             $asistencia->minuto = 0;
+            
             $asistencia->tipoasistencia_id = 1;
             $asistencia->empleado_id = $user->empleado_id;
     
@@ -121,7 +124,26 @@ class AsistenciaController extends Controller
 
             $asistencia->verify = false;
             $asistencia->end = $now;
+
+            //TESTEO DE CALCULO
+            // $datetime = new Carbon('2021-11-27 19:53:50');
+            // $asistencia->end = $datetime;
+
+            $time = new Carbon($asistencia->start);
+
+            $asistencia->hora = $time->diffInHours($asistencia->end);
+            $asistencia->minuto = $time->diffInMinutes($asistencia->end);
+
+            if ($asistencia->hora != 0) {
+                $asistencia->minuto = $asistencia->minuto - (60 * $asistencia->hora);
+            }
+            
+
             $asistencia->save();
+
+
+
+
             return Redirect::to("asistencia/marcar")->with('status','Salida Marcada');
 
         }

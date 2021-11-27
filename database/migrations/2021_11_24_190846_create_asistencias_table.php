@@ -22,6 +22,7 @@ class CreateAsistenciasTable extends Migration
 
             $table->integer('hora');
             $table->integer('minuto');
+            
 
             $table->dateTime('start');
             $table->dateTime('end');
