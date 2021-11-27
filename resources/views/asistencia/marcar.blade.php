@@ -33,7 +33,7 @@
                     <hr>
 
 
-                    <a href="#" class="btn btn-danger mr-2 btn-sm"><i
+                    <a href="{{ route('asistencia.add')}}" class="btn btn-danger mr-2 btn-sm"><i
                         class="fa fw fa-check"></i> Marcar Salida</a>
                     {{-- {{ __('Bienvenido!') }} --}}
                 </div>
@@ -42,7 +42,7 @@
                 <div style="text-align:center" class="card-body">
                     
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-danger" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif

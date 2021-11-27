@@ -99,22 +99,33 @@ class AsistenciaController extends Controller
 
     public function add()
     {
-        $asistencia = new Asistencia();
+        $asistencia = Asistencia::where('verify', true)->first();
         $now = Carbon::now('GMT-3');
-        $user = Auth::user();
-        
-        $asistencia->title = 'Asistencia'.' '.$now;
-        $asistencia->verify = true;
-        $asistencia->start = $now;
-        $asistencia->end = $now;
-        $asistencia->hora = 0;
-        $asistencia->minuto = 0;
-        $asistencia->tipoasistencia_id = 1;
-        $asistencia->empleado_id = $user->empleado_id;
 
-        $asistencia->save();
+        if ($asistencia == null) {
+            $asistencia = new Asistencia();            
+            $user = Auth::user();            
+            $asistencia->title = 'Asistencia'.' '.$now;
+            $asistencia->verify = true;
+            $asistencia->start = $now;
+            $asistencia->end = $now;
+            $asistencia->hora = 0;
+            $asistencia->minuto = 0;
+            $asistencia->tipoasistencia_id = 1;
+            $asistencia->empleado_id = $user->empleado_id;
+    
+            $asistencia->save();
+    
+            return Redirect::to("asistencia/marcar")->with('status','Entrada Marcada');
+        }else{
 
-        return Redirect::to("asistencia/marcar")->with('status','Entrada Marcada');
+            $asistencia->verify = false;
+            $asistencia->end = $now;
+            $asistencia->save();
+            return Redirect::to("asistencia/marcar")->with('status','Salida Marcada');
+
+        }
+
 
     }
 }
