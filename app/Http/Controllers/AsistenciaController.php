@@ -17,7 +17,14 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        $asistencias = Asistencia::where('empleado_id', $user->empleado_id)->get();
+        
+        //dd($asistencias[0]->id);
+
+        return view('asistencia.index', compact('asistencias'));
+        
     }
 
     /**
@@ -47,9 +54,17 @@ class AsistenciaController extends Controller
      * @param  \App\Models\Asistencia  $asistencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Asistencia $asistencia)
+    public function show($id)
+    // public function show( $id)
     {
-        //
+        $asistencia = Asistencia::find($id);
+
+        //$empleado = $asistencia->empleado()->first();
+
+        //dd($empleado);
+
+        return view('asistencia.show',['asistencia' => $asistencia]);
+        //dd($asistencia);
     }
 
     /**

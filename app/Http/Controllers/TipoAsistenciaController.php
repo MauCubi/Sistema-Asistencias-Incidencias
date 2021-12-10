@@ -46,7 +46,7 @@ class TipoAsistenciaController extends Controller
      */
     public function show(TipoAsistencia $tipoAsistencia)
     {
-        //
+        
     }
 
     /**

@@ -70,6 +70,9 @@ Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asist
 Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 // Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 
+//Ruta que me devuelve mis asistencias
+Route::get('/asistencia',[AsistenciaController::class, 'index'])->name('asistencia.index');
+Route::get('/asistencia/{id}',[AsistenciaController::class, 'show'])->name('asistencia.show');
 
 
 
