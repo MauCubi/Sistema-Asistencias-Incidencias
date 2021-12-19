@@ -28,7 +28,6 @@ class CreateAsistenciasTable extends Migration
             $table->dateTime('end');
 
 
-
             $table->bigInteger('empleado_id');
             $table->bigInteger('tipoasistencia_id');
 

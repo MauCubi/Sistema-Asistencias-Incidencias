@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoAsistenciasTable extends Migration
+class CreateCategoriaHorariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTipoAsistenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_asistencias', function (Blueprint $table) {
+        Schema::create('categoria_horarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');          
-            
+            $table->string('nombre');           
+
             $table->timestamps();
-            
         });
     }
 
@@ -29,6 +28,6 @@ class CreateTipoAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_asistencias');
+        Schema::dropIfExists('categoria_horarios');
     }
 }

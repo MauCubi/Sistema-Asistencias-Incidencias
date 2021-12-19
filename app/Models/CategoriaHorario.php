@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Asistencia;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class TipoAsistencia extends Model
+class CategoriaHorario extends Model
 {
-
     Protected $fillable = ['nombre'];
 
-    public function asistencia()
+    public function horarios()
     {
         return $this->hasMany(Asistencia::class);
     }

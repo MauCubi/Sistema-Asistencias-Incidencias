@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoAsistenciasTable extends Migration
+class CreateJornadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTipoAsistenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_asistencias', function (Blueprint $table) {
+        Schema::create('jornadas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');          
-            
+            $table->Integer('entrada');
+            $table->Integer('salida');
+            $table->boolean('periodo');
+
+            $table->bigInteger('horario_id');
             $table->timestamps();
-            
         });
     }
 
@@ -29,6 +31,6 @@ class CreateTipoAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_asistencias');
+        Schema::dropIfExists('jornadas');
     }
 }
