@@ -5,6 +5,8 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\JornadaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\TipoEventoController;
@@ -31,6 +33,9 @@ Route::resource('/departamento', DepartamentoController::class);
 Route::resource('/puesto', PuestoController::class);
 Route::resource('/empleado', EmpleadoController::class);
 Route::resource('/tipoevento', TipoEventoController::class);
+Route::resource('/horario', HorarioController::class);
+Route::resource('/jornada', JornadaController::class);
+
 
 
 
@@ -70,7 +75,8 @@ Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asist
 Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 // Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 
-
+//Jornada
+Route::post('/jornada/add/{horario}', [JornadaController::class, 'add'])->name('jornada.add');
 
 
 

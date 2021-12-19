@@ -16,7 +16,7 @@ class Horario extends Model
         return $this->hasMany(Jornada::class);
     }
 
-    public function categoriahorario()
+    public function categoria()
     {
         return $this->belongsTo(CategoriaHorario::class);
     }

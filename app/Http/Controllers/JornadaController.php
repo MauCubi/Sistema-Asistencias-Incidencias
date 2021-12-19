@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Horario;
 use App\Models\Jornada;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreJornadaPost;
 
 class JornadaController extends Controller
 {
@@ -81,5 +83,29 @@ class JornadaController extends Controller
     public function destroy(Jornada $jornada)
     {
         //
+    }
+
+
+    public function add(StoreJornadaPost $request, $horario)
+    {
+        $hor = Horario::find($horario);
+        $jornada = new Jornada;
+        $jornada->entrada = $request->entrada;
+        $jornada->salida = $request->salida;
+
+        if ($jornada->entrada < '12:00') {
+            $jornada->periodo = true;
+        }else{
+            $jornada->periodo = false; 
+        }
+ 
+
+        $jornada->horario_id = $hor->id;
+
+        $jornada->save();
+
+        return view("horario.show", ["horario" => $hor]);
+
+        
     }
 }

@@ -15,8 +15,8 @@ class CreateJornadasTable extends Migration
     {
         Schema::create('jornadas', function (Blueprint $table) {
             $table->id();
-            $table->Integer('entrada');
-            $table->Integer('salida');
+            $table->time('entrada');
+            $table->time('salida');
             $table->boolean('periodo');
 
             $table->bigInteger('horario_id');

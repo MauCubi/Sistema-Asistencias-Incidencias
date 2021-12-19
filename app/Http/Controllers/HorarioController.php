@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Horario;
 use Illuminate\Http\Request;
+use App\Models\CategoriaHorario;
+use App\Http\Requests\StoreHorarioPost;
+use Illuminate\Support\Facades\Redirect;
 
 class HorarioController extends Controller
 {
@@ -14,7 +17,8 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        //
+        $horarios = Horario::orderBy('created_at','desc')->paginate(10);
+        return view("horario/index",['horarios' => $horarios]);
     }
 
     /**
@@ -24,7 +28,9 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = CategoriaHorario::get();
+
+        return view("horario/create",["horario" => new Horario(), "categorias" => $categorias]);
     }
 
     /**
@@ -33,9 +39,10 @@ class HorarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHorarioPost $request)
     {
-        //
+        Horario::create($request->validated());
+        return Redirect::to("horario")->with('status','Horario Creado Exitosamente');    
     }
 
     /**
@@ -46,7 +53,7 @@ class HorarioController extends Controller
      */
     public function show(Horario $horario)
     {
-        //
+        return view("horario.show", ["horario" => $horario]);
     }
 
     /**
