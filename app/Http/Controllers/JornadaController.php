@@ -82,7 +82,8 @@ class JornadaController extends Controller
      */
     public function destroy(Jornada $jornada)
     {
-        //
+        $jornada->delete();
+        return back()->with('status','Jornada Eliminada');
     }
 
 
@@ -104,7 +105,9 @@ class JornadaController extends Controller
 
         $jornada->save();
 
-        return view("horario.show", ["horario" => $hor]);
+        //return view("horario.show", ["horario" => $hor]);
+
+        return redirect()->route('horario.show', ["horario" => $hor]);
 
         
     }
