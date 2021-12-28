@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Asistencia extends Model
 {
 
-    Protected $fillable = ['title','start','end','hora','minuto','verify','empleado_id','tipoasistencia_id'];
+    Protected $fillable = ['title','start','end','hora','minuto','verify','empleado_id','tipoasistencia_id','isEarly','isLate'];
     Protected $dates = ['start', 'end'];
 
 

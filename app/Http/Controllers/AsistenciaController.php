@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use App\Models\Jornada;
 use App\Models\Asistencia;
@@ -105,40 +106,43 @@ class AsistenciaController extends Controller
         $now = Carbon::now('GMT-3');
         $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
         $user = Auth::user();
+        $horita = Carbon::now('GMT-3')->format('H:i:s');
 
-        $horita = Carbon::now('GMT-3')->format('H:i');
+        // if($horita >= '12:00'){
+        //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', false)->first();
+        // }else{
+        //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', true)->first();
+        // };
 
-        if($horita >= '12:00'){
-            $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', false)->first();
-        }else{
-            $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', true)->first();
-        };
+        $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->get();
+        $comparar = null;
+        
 
-
-
-
-        //aca tendria que estar la busqueda de los horarios del usuario registrado
 
         if ($asistencia == null) {
-            $asistencia = new Asistencia();            
-            
+            $asistencia = new Asistencia();
 
-            if($horita > $jornada->entrada){
-                $asistencia->title = 'Asistencia TARDE'.' '.$nowtitle.' '.$horita.' '.$jornada->entrada;
-            }else{
-                $asistencia->title = 'Asistencia'.' '.$nowtitle.$horita.$jornada->entrada;
+            foreach ($jornadas as $j) {
+                $newdate = new Carbon($j->entrada);            
+                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita)){
+                    $jornada = $j;
+                    $comparar = $newdate->diffInMinutes($horita);                
+                }
+            }
+
+            $asistencia->title = 'Asistencia'.' '.$nowtitle.$horita.$jornada->entrada;
+            
+            if($horita > $jornada->entrada && $comparar > $jornada->horario->tolerancia){                
+                    $asistencia->isLate = true;                
             }
             
-            $asistencia->verify = true;
-            
+            $asistencia->verify = true;            
             $asistencia->start = $now;
             $asistencia->end = $now;
             $asistencia->hora = 0;
-            $asistencia->minuto = 0;
-            
+            $asistencia->minuto = 0;            
             $asistencia->tipoasistencia_id = 1;
-            $asistencia->empleado_id = $user->empleado_id;
-    
+            $asistencia->empleado_id = $user->empleado_id;    
             $asistencia->save();
     
             return Redirect::to("asistencia/marcar")->with('status','Entrada Marcada');
@@ -147,29 +151,36 @@ class AsistenciaController extends Controller
             $asistencia->verify = false;
             $asistencia->end = $now;
 
+            foreach ($jornadas as $j) {
+                $newdate = new Carbon($j->salida);            
+                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita)){
+                    $jornada = $j;
+                    $comparar = $newdate->diffInMinutes($horita);                
+                }
+            }
+
             //TESTEO DE CALCULO
             // $datetime = new Carbon('2021-11-27 19:53:50');
             // $asistencia->end = $datetime;
 
-            $time = new Carbon($asistencia->start);
+            if($horita < $jornada->salida && $comparar > $jornada->horario->tolerancia){    
+                //dd($jornada->salida);            
+                $asistencia->isEarly = true;                
+            }
 
+            $time = new Carbon($asistencia->start);
             $asistencia->hora = $time->diffInHours($asistencia->end);
             $asistencia->minuto = $time->diffInMinutes($asistencia->end);
 
             if ($asistencia->hora != 0) {
                 $asistencia->minuto = $asistencia->minuto - (60 * $asistencia->hora);
-            }
-            
+            }            
 
             $asistencia->save();
-
-
-
 
             return Redirect::to("asistencia/marcar")->with('status','Salida Marcada');
 
         }
-
 
     }
 }
