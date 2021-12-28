@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Jornada;
 use App\Models\Asistencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,14 +100,35 @@ class AsistenciaController extends Controller
 
     public function add()
     {
+        
         $asistencia = Asistencia::where('verify', true)->first();
         $now = Carbon::now('GMT-3');
         $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
+        $user = Auth::user();
+
+        $horita = Carbon::now('GMT-3')->format('H:i');
+
+        if($horita >= '12:00'){
+            $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', false)->first();
+        }else{
+            $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', true)->first();
+        };
+
+
+
+
+        //aca tendria que estar la busqueda de los horarios del usuario registrado
 
         if ($asistencia == null) {
             $asistencia = new Asistencia();            
-            $user = Auth::user();            
-            $asistencia->title = 'Asistencia'.' '.$nowtitle;
+            
+
+            if($horita > $jornada->entrada){
+                $asistencia->title = 'Asistencia TARDE'.' '.$nowtitle.' '.$horita.' '.$jornada->entrada;
+            }else{
+                $asistencia->title = 'Asistencia'.' '.$nowtitle.$horita.$jornada->entrada;
+            }
+            
             $asistencia->verify = true;
             
             $asistencia->start = $now;
@@ -121,7 +143,7 @@ class AsistenciaController extends Controller
     
             return Redirect::to("asistencia/marcar")->with('status','Entrada Marcada');
         }else{
-
+            
             $asistencia->verify = false;
             $asistencia->end = $now;
 

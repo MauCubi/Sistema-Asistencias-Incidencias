@@ -32,6 +32,7 @@ class StoreEmpleadoPost extends FormRequest
             'telefono' => 'required',
             'email' => 'required',
             'altafip' => 'required',
+            'horario_id' => 'required',
         ];
     }
 }

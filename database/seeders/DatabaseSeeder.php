@@ -22,10 +22,13 @@ class DatabaseSeeder extends Seeder
             AreaSeeder::class,
             DepartamentoSeeder::class,
             PuestoSeeder::class,
+            CategoriaHorarioSeeder::class,
+            HorarioSeeder::class,
+            JornadaSeeder::class,
             EmpleadoSeeder::class,
             TipoEventoSeeder::class,
             TipoAsistenciaSeeder::class,
-            CategoriaHorarioSeeder::class,
+
 
 
         ]);

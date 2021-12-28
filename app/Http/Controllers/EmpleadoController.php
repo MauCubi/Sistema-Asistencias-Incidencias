@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Puesto;
+use App\Models\Horario;
 use App\Models\Empleado;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
@@ -31,8 +32,9 @@ class EmpleadoController extends Controller
     {
         $puestos = Puesto::get();
         $departamentos = Departamento::get();
+        $horarios = Horario::get();
 
-        return view("empleado/create",["empleado" => new Empleado(), "puestos" => $puestos,"departamentos" => $departamentos]);
+        return view("empleado/create",["empleado" => new Empleado(), "puestos" => $puestos,"departamentos" => $departamentos, "horarios" => $horarios]);
     }
 
     /**
@@ -69,8 +71,9 @@ class EmpleadoController extends Controller
     {
         $puestos = Puesto::get();
         $departamentos = Departamento::get();
+        $horarios = Horario::get();
         $puestoid = Puesto::where('id',$empleado->puesto_id)->first();
-        return view("empleado.edit", ["empleado" => $empleado, "puestos" => $puestos,"departamentos" => $departamentos, "puestoid" => $puestoid]); 
+        return view("empleado.edit", ["empleado" => $empleado, "puestos" => $puestos,"departamentos" => $departamentos, "puestoid" => $puestoid, "horarios" => $horarios]); 
     }
 
     /**

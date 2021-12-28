@@ -78,7 +78,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsist"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-user-clock"></i>
                     <span>Asistencias</span>
                 </a>
                 <div id="collapseAsist" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -158,7 +158,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHorario"
                     aria-expanded="true" aria-controls="collapseHorario">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-clock"></i>
                     <span>Horarios</span>
                 </a>
                 <div id="collapseHorario" class="collapse" aria-labelledby="headingUtilities"

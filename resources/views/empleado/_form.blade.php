@@ -121,6 +121,15 @@
     @endforeach
     </select>
 </div>
+
+<div class="form-group col-md-6 mb-3">
+    <label for="horario_id" class="col-form-label col-form-label-sm">Horario</label>
+    <select id="horario_id" name="horario_id" class="form-control form-control-sm" required>
+    @foreach ($horarios as $horario)
+        <option {{ $horario->id == $empleado->horario_id ? 'selected="selected"' : ''}} value="{{ $horario->id}}" required focus>{{ $horario->nombre}}</option>
+    @endforeach
+    </select>
+</div>
 </div>
 
 <div class="row">
