@@ -99,6 +99,28 @@ class JornadaController extends Controller
         }else{
             $jornada->periodo = false; 
         }
+        
+        if ($request->has('isLunes')) {
+            $jornada->isLunes = true;
+        }
+        if ($request->has('isMartes')) {
+            $jornada->isMartes = true;
+        }
+        if ($request->has('isMiercoles')) {
+            $jornada->isMiercoles = true;
+        }
+        if ($request->has('isJueves')) {
+            $jornada->isJueves = true;
+        }
+        if ($request->has('isViernes')) {
+            $jornada->isViernes = true;
+        }
+        if ($request->has('isSabado')) {
+            $jornada->isSabado = true;
+        }
+        if ($request->has('isDomingo')) {
+            $jornada->isDomingo = true;
+        }
  
 
         $jornada->horario_id = $hor->id;

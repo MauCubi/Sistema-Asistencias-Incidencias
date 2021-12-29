@@ -19,6 +19,20 @@ class CreateJornadasTable extends Migration
             $table->time('salida');
             $table->boolean('periodo');
 
+            //dias
+            $table->boolean('isLunes')->default(false);
+            $table->boolean('isMartes')->default(false);
+            $table->boolean('isMiercoles')->default(false);
+            $table->boolean('isJueves')->default(false);
+            $table->boolean('isViernes')->default(false);
+            $table->boolean('isSabado')->default(false);
+            $table->boolean('isDomingo')->default(false);
+
+
+            
+                        
+            
+
             $table->bigInteger('horario_id');
             $table->timestamps();
         });

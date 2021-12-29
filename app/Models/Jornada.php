@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Jornada extends Model
 {
-    Protected $fillable = ['entrada','salida','periodo','horario_id'];
+    Protected $fillable = ['entrada','salida','periodo','horario_id','isLunes','isMartes','isMiercoles','isJueves','isViernes','isSabado','isDomingo'];
 
     public function horario()
     {

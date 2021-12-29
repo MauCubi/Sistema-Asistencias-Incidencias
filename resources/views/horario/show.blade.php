@@ -114,7 +114,7 @@
 
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">Nueva Jornada</h5>
@@ -146,6 +146,96 @@
                     
                     </div>
                 </div>
+                <div class="row">                    
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isLunes" id="isLunes">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isLunes">
+                                Lunes
+                            </label>
+                        
+                        </div>
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isMartes" id="isMartes">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isMartes">
+                                Martes
+                            </label>
+                        
+                        </div>         
+                        
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isMiercoles" id="isMiercoles">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isMiercoles">
+                                Miercoles
+                            </label>
+                        
+                        </div>  
+                
+                </div>
+                
+
+                <div class="row">                    
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isJueves" id="isJueves">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isJueves">
+                            Jueves
+                        </label>
+                    
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isViernes" id="isViernes">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isViernes">
+                            Viernes
+                        </label>
+                    
+                    </div>         
+                    
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isSabado" id="isSabado">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isSabado">
+                            Sabado
+                        </label>
+                    
+                    </div>  
+            
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-3 mb-3">
+                    {{-- @if ($tipoevento->general == true)
+                        <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                    @else --}}
+                        <input class="col-form-check-input" type="checkbox" name="isDomingo" id="isDomingo">
+                    {{-- @endif --}}
+                    <label class="col-form-check-label " for="isDomingo">
+                        Domingo
+                    </label>
+                
+                </div>  
 
             </div>
             <div class="modal-footer">

@@ -107,6 +107,9 @@ class AsistenciaController extends Controller
         $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
         $user = Auth::user();
         $horita = Carbon::now('GMT-3')->format('H:i:s');
+  
+
+        //dd($now->englishDayOfWeek);
 
         // if($horita >= '12:00'){
         //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', false)->first();
@@ -114,7 +117,38 @@ class AsistenciaController extends Controller
         //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', true)->first();
         // };
 
-        $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->get();
+
+        switch ($now->englishDayOfWeek) {
+            case 'Monday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isLunes', true)->get();
+                break;
+            case 'Tuesday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isMartes', true)->get();
+                break;
+            case 'Wednesday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isMiercoles', true)->get();
+                break;
+            case 'Thursday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isJueves', true)->get();
+                break;
+            case 'Friday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isViernes', true)->get();
+                break;
+            case 'Saturday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isSabado', true)->get();
+                break;
+            case 'Sunday':
+                $jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->where('isDomingo', true)->get();
+                break;
+
+        }
+
+        //dd($jornadas);
+        if($jornadas->isEmpty()){
+            return Redirect::to("asistencia/marcar")->with('status','No se encontraron horarios para este dia');        
+        }
+
+        //$jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->get();
         $comparar = null;
         
 
