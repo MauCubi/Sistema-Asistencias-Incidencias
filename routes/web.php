@@ -11,6 +11,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\IncidenciaHorariaController;
 
 
 Route::get('/', function () {
@@ -77,6 +78,9 @@ Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name(
 
 //Jornada
 Route::post('/jornada/add/{horario}', [JornadaController::class, 'add'])->name('jornada.add');
+
+//IncidenciaHoraria
+Route::get('/inasistencia/add', [IncidenciaHorariaController::class, 'add'])->name('inasistencia.add');
 
 
 

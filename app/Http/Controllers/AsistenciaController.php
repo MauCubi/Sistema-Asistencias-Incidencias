@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Jornada;
 use App\Models\Asistencia;
 use Illuminate\Http\Request;
+use App\Models\IncidenciaHoraria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -107,16 +108,6 @@ class AsistenciaController extends Controller
         $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
         $user = Auth::user();
         $horita = Carbon::now('GMT-3')->format('H:i:s');
-  
-
-        //dd($now->englishDayOfWeek);
-
-        // if($horita >= '12:00'){
-        //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', false)->first();
-        // }else{
-        //     $jornada = Jornada::where('horario_id', $user->empleado->horario_id)->where('periodo', true)->first();
-        // };
-
 
         switch ($now->englishDayOfWeek) {
             case 'Monday':
@@ -143,31 +134,38 @@ class AsistenciaController extends Controller
 
         }
 
-        //dd($jornadas);
+        //dd(count($jornadas));
+
         if($jornadas->isEmpty()){
             return Redirect::to("asistencia/marcar")->with('status','No se encontraron horarios para este dia');        
         }
 
-        //$jornadas = Jornada::where('horario_id', $user->empleado->horario_id)->get();
         $comparar = null;
-        
-
 
         if ($asistencia == null) {
             $asistencia = new Asistencia();
 
             foreach ($jornadas as $j) {
                 $newdate = new Carbon($j->entrada);            
-                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita)){
+                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita))
+                {
                     $jornada = $j;
                     $comparar = $newdate->diffInMinutes($horita);                
                 }
             }
 
-            $asistencia->title = 'Asistencia'.' '.$nowtitle.$horita.$jornada->entrada;
+            $asistencia->title = 'Asistencia'.' '.$nowtitle;
             
             if($horita > $jornada->entrada && $comparar > $jornada->horario->tolerancia){                
-                    $asistencia->isLate = true;                
+                    $asistencia->isLate = true;
+                    //Crear incidencia horaria
+                    $tarde = new IncidenciaHoraria;
+                    $tarde->fecha = $now;
+                    $tarde->tipo = 'Tardanza';
+                    $tarde->justificacion = false;
+                    $tarde->descripcion = 'Tarde por '.$comparar.' minutos';
+                    $tarde->empleado_id = $user->empleado_id;
+                    $tarde->save();                
             }
             
             $asistencia->verify = true;            
@@ -187,7 +185,8 @@ class AsistenciaController extends Controller
 
             foreach ($jornadas as $j) {
                 $newdate = new Carbon($j->salida);            
-                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita)){
+                if( $comparar == null | $comparar >= $newdate->diffInMinutes($horita))
+                {
                     $jornada = $j;
                     $comparar = $newdate->diffInMinutes($horita);                
                 }
@@ -197,16 +196,25 @@ class AsistenciaController extends Controller
             // $datetime = new Carbon('2021-11-27 19:53:50');
             // $asistencia->end = $datetime;
 
-            if($horita < $jornada->salida && $comparar > $jornada->horario->tolerancia){    
-                //dd($jornada->salida);            
-                $asistencia->isEarly = true;                
+            if($horita < $jornada->salida && $comparar > $jornada->horario->tolerancia)
+            {    
+                $asistencia->isEarly = true;
+                //Crear incidencia horaria
+                $temprano = new IncidenciaHoraria;
+                $temprano->fecha = $now;
+                $temprano->tipo = 'Retiro Temprano';
+                $temprano->justificacion = false;
+                $temprano->descripcion = 'Retiro temprano por '.$comparar.' minutos';
+                $temprano->empleado_id = $user->empleado_id;
+                $temprano->save();                      
             }
 
             $time = new Carbon($asistencia->start);
             $asistencia->hora = $time->diffInHours($asistencia->end);
             $asistencia->minuto = $time->diffInMinutes($asistencia->end);
 
-            if ($asistencia->hora != 0) {
+            if ($asistencia->hora != 0) 
+            {
                 $asistencia->minuto = $asistencia->minuto - (60 * $asistencia->hora);
             }            
 
