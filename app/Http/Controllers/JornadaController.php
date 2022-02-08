@@ -133,4 +133,70 @@ class JornadaController extends Controller
 
         
     }
+
+    public function editModal(Request $request)
+    {
+        $data = Jornada::where('id',$request->id)->first();
+        return response()->json($data);
+    }
+
+    public function update2(Request $request, Jornada $jornada2)
+    {
+
+        $jornada = Jornada::where('id', $request->jornada_id)->first();
+        $jornada->entrada = $request->entradaEdit;
+        if ($jornada->entrada < '12:00') {
+            $jornada->periodo = true;
+        }else{
+            $jornada->periodo = false; 
+        }
+
+        $jornada->salida = $request->salidaEdit;
+
+        if ($request->has('isLunesEdit')) {
+            $jornada->isLunes = true;
+        }else{
+            $jornada->isLunes = false;
+        }
+
+        if ($request->has('isMartesEdit')) {
+            $jornada->isMartes = true;
+        }else{
+            $jornada->isMartes = false;
+        }
+
+        if ($request->has('isMiercolesEdit')) {
+            $jornada->isMiercoles = true;
+        }else{
+            $jornada->isMiercoles = false;
+        }
+
+        if ($request->has('isJuevesEdit')) {
+            $jornada->isJueves = true;
+        }else{
+            $jornada->isJueves = false;
+        }
+
+        if ($request->has('isViernesEdit')) {
+            $jornada->isViernes = true;
+        }else{
+            $jornada->isViernes = false;
+        }
+
+        if ($request->has('isSabadoEdit')) {
+            $jornada->isSabado = true;
+        }else{
+            $jornada->isSabado = false;
+        }
+
+        if ($request->has('isDomingoEdit')) {
+            $jornada->isDomingo = true;
+        }else{
+            $jornada->isDomingo = false;
+        }
+
+        $jornada->update();
+
+        return redirect()->route('horario.show', ["horario" => $jornada->horario_id]);
+    }
 }

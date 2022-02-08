@@ -87,7 +87,7 @@
                         <a class="collapse-item" href="{{ route('asistencia.marcar') }}">Marcar Entrada/Salida</a>
                         <a class="collapse-item" href="{{ route('inasistencia.add') }}">Botonsito inasistencia</a>
                         <a class="collapse-item" href="#">Mis Asistencias</a>
-                        <a class="collapse-item" href="#">Mis Horas Extras</a>
+                        <a class="collapse-item" href="{{ route('horaextra.index_personal')}}">Mis Horas Extras</a>
                         <a class="collapse-item" href="#">Mis Inasistencias</a>
                     </div>
                 </div>
@@ -160,15 +160,21 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHorario"
                     aria-expanded="true" aria-controls="collapseHorario">
                     <i class="fas fa-clock"></i>
-                    <span>Horarios</span>
+                    <span>Horarios/Asistencias</span>
                 </a>
                 <div id="collapseHorario" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        
+                    <div class="bg-white py-2 collapse-inner rounded">                        
                         <a class="collapse-item" href="{{ route('horario.index')}}">Lista de Horarios</a> 
+                        <a class="collapse-item" href="{{ route('asistencia.index')}}">Lista de Asistencias</a> 
+                        <a class="collapse-item" href="{{ route('horaextra.index')}}">Lista de Horas Extras</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 3)}}">Lista de Inasistencias</a> 
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 1)}}">Lista de Tardanzas</a> 
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 2)}}">Lista de Retiros Tempranos</a> 
                     </div>
                 </div>
+
+                
             </li>
 
             <li class="nav-item">

@@ -39,7 +39,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="direccion" class="col-form-label col-form-label-sm">Dirección</label>
-    <input class="form-control form-control-sm" type="text" name="direccion" id="direccion" value="{{ old('direccion', $empleado->direccion)}}">
+    <input class="form-control form-control-sm" type="text" name="direccion" id="direccion" value="{{ old('direccion', $empleado->direccion)}}" required autofocus>
 
     @error('direccion')
     <small class="text-danger">{{ $message }}</small>
@@ -51,7 +51,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="telefono" class="col-form-label col-form-label-sm">Teléfono</label>
-    <input class="form-control form-control-sm " type="text" name="telefono" maxlength="15" id="telefono" value="{{ old('telefono', $empleado->telefono)}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+    <input class="form-control form-control-sm " type="text" name="telefono" maxlength="15" id="telefono" value="{{ old('telefono', $empleado->telefono)}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required autofocus>
 
     @error('telefono')
     <small class="text-danger">{{ $message }}</small>
@@ -62,7 +62,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="email" class="col-form-label col-form-label-sm">E-Mail</label>
-    <input class="form-control form-control-sm" type="email" name="email" id="email" maxlength="40" value="{{ old('email', $empleado->email)}}" placeholder="nombre@ejemplo.com">
+    <input class="form-control form-control-sm" type="email" name="email" id="email" maxlength="40" value="{{ old('email', $empleado->email)}}" placeholder="nombre@ejemplo.com" required autofocus>
 
     @error('email')
     <small class="text-danger">{{ $message }}</small>

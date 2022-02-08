@@ -18,8 +18,8 @@ class CreateIncidenciaHorariasTable extends Migration
 
             $table->date('fecha');
             $table->string('tipo');
-            $table->string('justificacion');
-            $table->string('descripcion');
+            $table->boolean('justificacion');
+            $table->string('descripcion')->nullable();
 
             $table->bigInteger('empleado_id');
             $table->timestamps();

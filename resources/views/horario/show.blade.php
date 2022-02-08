@@ -49,6 +49,7 @@
 
                 <hr>
 
+                {{-- jornadas --}}
                 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
                     <thead class="bg-dark text-white">
                         <tr>
@@ -59,7 +60,7 @@
                                 Salida    
                             </td>
                             <td>
-                                Periodo
+                                Dias
                             </td>          
                             <td>
                                 <div class="d-flex justify-content-center">
@@ -83,17 +84,33 @@
                                 {{ $jornada->salida }}
                             </td>
                             <td>
-                                @if ($jornada->periodo == 1)
-                                    Mañana
-                                @else
-                                    Tarde
-                                @endif                               
+                                @if ($jornada->isLunes == true)
+                                    Lu                                
+                                @endif  
+                                @if ($jornada->isMartes == true)
+                                    Ma                          
+                                @endif 
+                                @if ($jornada->isMiercoles == true)
+                                    Mi                                 
+                                @endif 
+                                @if ($jornada->isJueves == true)
+                                    Ju                                
+                                @endif 
+                                @if ($jornada->isViernes == true)
+                                    Vi                                
+                                @endif 
+                                @if ($jornada->isSabado == true)
+                                    Sa                                 
+                                @endif 
+                                @if ($jornada->isDomingo == true)
+                                    Do                                 
+                                @endif                              
                             </td>
                 
                             <td>
                                 <div class="d-flex justify-content-center">                
-                                <a href="{{ route('jornada.edit', $jornada->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
-                                
+                                {{-- <a href="{{ route('jornada.edit', $jornada->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a> --}}
+                                <button class="btn btn-warning btn-detail open_modal mr-2 btn-sm" value="{{$jornada->id}}"><i class="fa fw fa-edit"></i> Editar</button>
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $jornada->id }}"><i class="fas fa-trash"></i> Eliminar</button>
                                 </div>
                             </td>
@@ -128,7 +145,7 @@
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="entrada">Entrada</label>
-                        <input class="form-control form-control-sm" type="time" name="entrada" id="entrada"  required autofocus autocomplete="off"> 
+                        <input class="form-control form-control-sm" type="time" name="entrada" id="entrada"  required autofocus> 
                     
                         @error('entrada')
                         <small class="text-danger">{{ $message }}</small>
@@ -238,9 +255,152 @@
                 </div>  
 
             </div>
+        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                   
                 <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Editar Jornada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @isset($jornada)    
+                                   
+                <form  id="formEdit" action="{{ route('jornada.update2', $jornada) }}" method="POST" data-action="{{ route('jornada.update2', $jornada) }}">
+                    @method('PUT')
+                    @csrf
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="entradaEdit">Entrada</label>
+                        <input class="form-control form-control-sm" type="time" name="entradaEdit" id="entradaEdit"  required autofocus> 
+                    
+                        @error('entradaEdit')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror   
+                    
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="salidaEdit">Salida</label>
+                        <input class="form-control form-control-sm" type="time" name="salidaEdit" id="salidaEdit"  required autofocus autocomplete="off"> 
+                    
+                        @error('salidaEdit')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror   
+                    
+                    </div>
+                </div>
+                <div class="row">                    
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isLunesEdit" id="isLunesEdit">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isLunesEdit">
+                                Lunes
+                            </label>
+                        
+                        </div>
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isMartesEdit" id="isMartesEdit">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isMartesEdit">
+                                Martes
+                            </label>
+                        
+                        </div>         
+                        
+                        <div class="form-group col-md-3 mb-3">
+                            {{-- @if ($tipoevento->general == true)
+                                <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                            @else --}}
+                                <input class="col-form-check-input" type="checkbox" name="isMiercolesEdit" id="isMiercolesEdit">
+                            {{-- @endif --}}
+                            <label class="col-form-check-label " for="isMiercolesEdit">
+                                Miercoles
+                            </label>
+                        
+                        </div>  
+                
+                </div>
+                
+
+                <div class="row">                    
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isJuevesEdit" id="isJuevesEdit">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isJuevesEdit">
+                            Jueves
+                        </label>
+                    
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isViernesEdit" id="isViernesEdit">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isViernesEdit">
+                            Viernes
+                        </label>
+                    
+                    </div>         
+                    
+                    <div class="form-group col-md-3 mb-3">
+                        {{-- @if ($tipoevento->general == true)
+                            <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                        @else --}}
+                            <input class="col-form-check-input" type="checkbox" name="isSabadoEdit" id="isSabadoEdit">
+                        {{-- @endif --}}
+                        <label class="col-form-check-label " for="isSabadoEdit">
+                            Sabado
+                        </label>
+                    
+                    </div>  
+            
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-md-3 mb-3">
+                    {{-- @if ($tipoevento->general == true)
+                        <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
+                    @else --}}
+                        <input class="col-form-check-input" type="checkbox" name="isDomingoEdit" id="isDomingoEdit">
+                    {{-- @endif --}}
+                    <label class="col-form-check-label " for="isDomingoEdit">
+                        Domingo
+                    </label>
+                
+                </div>
+                <input type="hidden" id="jornada_id" name="jornada_id" value="0">
+  
+
+            </div>
+            @endisset
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                   
+                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Actualizar</button>
                 </form>
             </div>
         </div>
@@ -273,6 +433,7 @@
 </div>
 
 
+
 <!-- fin de row -->
 
 
@@ -294,6 +455,68 @@
   modal.find('.modal-title').text('Vas a borrar la Jornada con el id: ' + id)
 })
 }
+
+
+
+$(document).ready(function () {
+    $(document).on('click','.open_modal', function() {
+        var jornada_id = $(this).val();
+        
+        // var op = " ";
+        $.ajax({
+            type: 'get',
+            url: '{!!URL::to('/jornada/editmodal')!!}',
+            data: {'id':jornada_id},
+            success: function(data){
+                console.log(data);
+                $('#jornada_id').val(data.id);
+                $('#entradaEdit').val(data.entrada);
+                $('#salidaEdit').val(data.salida);
+                if(data.isLunes == 1){
+                    $('#isLunesEdit').prop("checked", true);
+                }else{
+                    $('#isLunesEdit').prop("checked", false);
+                }
+                if(data.isMartes == 1){
+                    $('#isMartesEdit').prop("checked", true);
+                }else{
+                    $('#isMartesEdit').prop("checked", false);
+                }
+                if(data.isMiercoles == 1){
+                    $('#isMiercolesEdit').prop("checked", true);
+                }else{
+                    $('#isMiercolesEdit').prop("checked", false);
+                }
+                if(data.isJueves == 1){
+                    $('#isJuevesEdit').prop("checked", true);
+                }else{
+                    $('#isJuevesEdit').prop("checked", false);
+                }
+                if(data.isViernes == 1){
+                    $('#isViernesEdit').prop("checked", true);
+                }else{
+                    $('#isViernesEdit').prop("checked", false);
+                }
+                if(data.isSabado == 1){
+                    $('#isSabadoEdit').prop("checked", true);
+                }else{
+                    $('#isSabadoEdit').prop("checked", false);
+                }
+                if(data.isDomingo == 1){
+                    $('#isDomingoEdit').prop("checked", true);
+                }else{
+                    $('#isDomingoEdit').prop("checked", false);
+                }
+
+                $('#editModal').modal('show');
+            },
+            error: function(){
+                console.log('success');
+            },
+        });
+    });
+});
+
 </script>
 
 

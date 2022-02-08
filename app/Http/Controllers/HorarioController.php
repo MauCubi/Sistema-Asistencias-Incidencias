@@ -21,6 +21,13 @@ class HorarioController extends Controller
         return view("horario/index",['horarios' => $horarios]);
     }
 
+    public function indexPersonal()
+    {
+        $user = Auth::user();
+        $horarios = Horario::orderBy('created_at','desc')->paginate(10);
+        return view("horario/index",['horarios' => $horarios]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -62,9 +69,10 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Horario $horario)
-    {
-        //
+    public function edit(Horario $horario)    {
+        
+        $categorias = CategoriaHorario::get();
+        return view("horario.edit", ["horario" => $horario, "categorias" => $categorias]);
     }
 
     /**
@@ -74,9 +82,10 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horario $horario)
+    public function update(StoreHorarioPost $request, Horario $horario)
     {
-        //
+        $horario->update($request->validated());
+        return Redirect::to("horario")->with('status','Horario Actualizado');
     }
 
     /**
