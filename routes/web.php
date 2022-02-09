@@ -1,6 +1,7 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\EventController;
@@ -16,8 +17,13 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\IncidenciaHorariaController;
 
 
-Route::get('/', function () {
-    return view('partials.admin');
+Route::get('/', function () {    
+    if (Auth::user() != null) {
+        return view('partials.admin');
+    }else{
+        return view('auth.login');
+    }
+    
 });
 
 
@@ -89,9 +95,10 @@ Route::get('/incidencia-horaria/index/{flag}', [IncidenciaHorariaController::cla
 Route::get('/incidencia-horaria/create/{flag}', [IncidenciaHorariaController::class, 'create'])->name('incidenciahoraria.create');
 Route::delete('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaController::class, 'destroy'])->name('incidenciahoraria.destroy');
 Route::post('/incidencia-horaria/store', [IncidenciaHorariaController::class, 'store'])->name('incidenciahoraria.store');
-Route::get('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaController::class, 'show'])->name('incidenciahoraria.show');
 Route::get('/incidencia-horaria/{incidenciahoraria}/edit', [IncidenciaHorariaController::class, 'edit'])->name('incidenciahoraria.edit');
 Route::put('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaController::class, 'update'])->name('incidenciahoraria.update');
+Route::get('/incidencia-horaria-personal/{incidenciahoraria}', [IncidenciaHorariaController::class, 'personal'])->name('incidenciahoraria.personal');
+Route::get('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaController::class, 'show'])->name('incidenciahoraria.show');
 
 //IncidenciaHoraria-retiros tempranos
 

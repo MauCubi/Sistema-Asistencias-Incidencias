@@ -20,6 +20,7 @@ class IncidenciaHorariaController extends Controller
      */
     public function index($flag)
     {
+        $user = Auth::user();
         switch ($flag) {
             case 1:
                 $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Tardanza')->paginate(10);
@@ -33,6 +34,21 @@ class IncidenciaHorariaController extends Controller
                 $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Inasistencia')->paginate(10);
                 return view("incidenciahoraria/inasistencia/index",['incidenciashorarias' => $incidenciashorarias]);
                 break;
+            case 4:
+                $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Tardanza')
+                ->where('empleado_id', $user->id )->paginate(10);
+                return view("incidenciahoraria/tardanza/index_personal",['incidenciashorarias' => $incidenciashorarias]);
+                break;
+            case 5:
+                $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Retiro Temprano')
+                ->where('empleado_id', $user->id )->paginate(10);
+                return view("incidenciahoraria/temprano/index_personal",['incidenciashorarias' => $incidenciashorarias]);
+                break;
+            case 6:
+                $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Inasistencia')
+                ->where('empleado_id', $user->id )->paginate(10);
+                return view("incidenciahoraria/inasistencia/index_personal",['incidenciashorarias' => $incidenciashorarias]);
+                break;    
             
             default:
                 # code...
@@ -123,6 +139,21 @@ class IncidenciaHorariaController extends Controller
                 break;
             case 'Inasistencia':               
                 return view("incidenciahoraria.inasistencia.show", ["incidenciahoraria" => $incidenciahoraria]);
+                break;
+        }
+    }
+
+    public function personal(IncidenciaHoraria $incidenciahoraria)
+    {
+        switch ($incidenciahoraria->tipo) {
+            case 'Tardanza':                         
+                return view("incidenciahoraria.tardanza.show_personal", ["incidenciahoraria" => $incidenciahoraria]);
+                break;
+            case 'Retiro Temprano':               
+                return view("incidenciahoraria.temprano.show_personal", ["incidenciahoraria" => $incidenciahoraria]);
+                break;
+            case 'Inasistencia':               
+                return view("incidenciahoraria.inasistencia.show_personal", ["incidenciahoraria" => $incidenciahoraria]);
                 break;
         }
     }

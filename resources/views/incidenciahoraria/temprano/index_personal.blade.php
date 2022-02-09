@@ -1,65 +1,67 @@
 @extends('partials.admin')
 
 
-
 @section('content')
 <div class="row d-flex flex-row">
     <div class="p-2">
-        <h3 class="text-primary">Mis Horas Extras</h3>
+        <h3 class="text-primary">Mis Retiros Tempranos</h3>
     </div>
 </div>
 
 {{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
+<hr>
+
+
 
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
     <thead class="bg-dark text-white">
         <tr>
             <td>
                 Id
-            </td>  
-            <td>
-                Entrada
             </td>
             <td>
-                Salida    
+                Fecha
             </td>
             <td>
-                Tiempo de trabajo
-            </td>                       
-            
+                Justificada
+            </td>
+
+            <td>
+                
+            </td>
         </tr>
     </thead>
     <tbody>
-       @foreach ( $horaextras as $horaextra)
-       <tr>
+        @if($incidenciashorarias->count() == 0)
+            <td style="background-color:gainsboro" colspan="5">No hay retiros tempranos registrados</td>
+        @else
+        @foreach ( $incidenciashorarias as $incidenciahoraria)
+        <tr>
             <td>
-                {{ $horaextra->id }}
+                {{ $incidenciahoraria->id }}
             </td>
             <td>
-                {{ $horaextra->start }}
+                {{ $incidenciahoraria->fecha }}
             </td>
-            <td>
-                {{ $horaextra->end }}
-            </td>
-            <td>
-                @if ($horaextra->hora < 10)
-                    0{{ $horaextra->hora }}
+            <td style="text-align: center">
+                @if ($incidenciahoraria->justificacion)
+                    <i class="fas fa-check"></i>
                 @else
-                    {{ $horaextra->hora }}
+                    <i class="fas fa-times"></i>
                 @endif
-                :
-                @if ($horaextra->minuto < 10)
-                    0{{ $horaextra->minuto }}
-                @else
-                    {{ $horaextra->minuto }}
-                @endif
-            </td>            
+            </td>
+
+            <td>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('incidenciahoraria.personal', $incidenciahoraria->id)}}" class="btn btn-primary mr-2 btn-sm"><i
+                            class="fa fw fa-info"></i> Ver</a>                    
+            </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 
-{{ $horaextras->links() }}
+{{ $incidenciashorarias->links() }}
 
 @endsection
-

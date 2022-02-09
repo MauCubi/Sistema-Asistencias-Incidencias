@@ -115,7 +115,7 @@
 
 <div class="form-group col-md-6 mb-3">
     <label for="puesto_id" class="col-form-label col-form-label-sm">Puesto</label>
-    <select id="puesto_id" name="puesto_id" class="form-control form-control-sm" required>
+    <select id="puesto_id" name="puesto_id" class="form-control form-control-sm" required onload="carga()">
     @foreach ($puestos as $puesto)
         <option {{ $puesto->id == $empleado->puesto_id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>{{ $puesto->nombre}}</option>
     @endforeach
@@ -181,5 +181,31 @@
         });
     });
 });
+
+document.getElementById('horario_id').addEventListener("load", carga());
+
+function carga(){
+    //var departamento_id = $(this).val();
+    var departamento_id = document.getElementById('departamento_id').value;
+
+        
+        var op = " ";
+        $.ajax({
+            type: 'get',
+            url: '{!!URL::to('/empleado/createfind')!!}',
+            data: {'id':departamento_id},
+            success: function(data){
+                for (var i = 0; i < data.length; i++){
+                    op += '<option value="'+data[i].id+'">'+data[i].nombre+'</option>';
+                }
+                $('#puesto_id').html(" ");
+                $('#puesto_id').append(op);
+            },
+            error: function(){
+                console.log('success');
+            },
+        });
+}
+
 
 </script>
