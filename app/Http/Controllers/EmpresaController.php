@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class EmpresaController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:empresa.admin');
+    }
     /**
      * Display a listing of the resource.
      *

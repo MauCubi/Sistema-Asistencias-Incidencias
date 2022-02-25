@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\EmpresaController;
@@ -32,8 +33,14 @@ Route::get('/admin', function () {
     return view('partials.admin');
 });
 
+//Inasistencia Automatica
+Route::get('/inasistencia/add', [IncidenciaHorariaController::class, 'add'])->name('inasistencia.add');
 
 Route::get('/empleado/createfind', [EmpleadoController::class, 'createfind'])->name('empleado.createfind');
+//Asistencias
+Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asistencia.add');
+Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
+Route::get('/jornada/editmodal', [JornadaController::class, 'editModal'])->name('jornada.editModal');
 
 //Rutas Resource
 Route::resource('/empresa', EmpresaController::class);
@@ -46,6 +53,7 @@ Route::resource('/horario', HorarioController::class);
 Route::resource('/jornada', JornadaController::class);
 Route::resource('/horaextra', HoraExtraController::class);
 Route::resource('/asistencia', AsistenciaController::class);
+Route::resource('/user', UserController::class);
 
 //Rutas de Eventos/Incidencias
 Route::delete('/event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
@@ -71,10 +79,8 @@ Route::get('/events2', [EventController::class, 'index3'])->name('event.index3')
 Route::get('/event2/{event}', [EventController::class, 'show2'])->name('event.show2');
 Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
 
-//Asistencias
-Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asistencia.add');
-Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
-// Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
+
+//Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 
 
 //Horarios
@@ -84,11 +90,9 @@ Route::get('/horarios-personal', [HorarioController::class, 'indexPersonal'])->n
 //Jornada
 Route::post('/jornada/add/{horario}', [JornadaController::class, 'add'])->name('jornada.add');
 Route::put('/jornada/update2/{jornada}', [JornadaController::class, 'update2'])->name('jornada.update2');
-Route::get('/jornada/editmodal', [JornadaController::class, 'editModal'])->name('jornada.editModal');
 
 
-//Inasistencia Automatica
-Route::get('/inasistencia/add', [IncidenciaHorariaController::class, 'add'])->name('inasistencia.add');
+
 
 //IncidenciaHoraria-tardanza
 Route::get('/incidencia-horaria/index/{flag}', [IncidenciaHorariaController::class, 'index'])->name('incidenciahoraria.index');

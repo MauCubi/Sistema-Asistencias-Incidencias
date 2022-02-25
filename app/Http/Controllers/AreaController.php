@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class AreaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:area.admin');
+    }
     /**
      * Display a listing of the resource.
      *

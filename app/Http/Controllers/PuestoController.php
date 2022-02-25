@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class PuestoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:puesto.admin');
+    }
     /**
      * Display a listing of the resource.
      *

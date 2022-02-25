@@ -94,10 +94,11 @@ class AsistenciaController extends Controller
         $asistencia = Asistencia::where('verify', true)->first();
 
         if ($asistencia == null) {
-            return view("asistencia/marcar");
+            return view("asistencia.marcar");
         }else{
-            return view("asistencia/marcar", ['asistencia' => $asistencia]);
+            return view("asistencia.marcar", ['asistencia' => $asistencia]);
         }
+        
     }
 
     public function add()

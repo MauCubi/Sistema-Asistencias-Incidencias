@@ -65,12 +65,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li> --}}
-
+            @can('public.home')
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-
+            
             <div class="sidebar-heading">
                 Area Personal
             </div>
@@ -116,8 +116,13 @@
                 </div>
 
             </li>
+            @endcan
+            @can('admin.home')
             <hr class="sidebar-divider">
 
+            
+                
+            
             <div class="sidebar-heading">
                 Administración
             </div>
@@ -142,7 +147,22 @@
 
 
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Users Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="{{ route('user.index')}}">Lista de Usuarios</a> 
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -195,7 +215,7 @@
                     </div>
                 </div>
             </li>
-
+            @endcan
             
                 
        

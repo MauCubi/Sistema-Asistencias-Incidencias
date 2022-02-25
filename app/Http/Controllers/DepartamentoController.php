@@ -10,6 +10,10 @@ use App\Http\Requests\StoreDepartamentoPost;
 
 class DepartamentoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:departamento.admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +26,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource
      *
      * @return \Illuminate\Http\Response
      */
@@ -88,7 +92,7 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Departamento $departamento)
-    {
+    {        
         $departamento->delete();
         return back()->with('status','Departamento Eliminado');
     }

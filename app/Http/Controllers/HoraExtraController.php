@@ -55,10 +55,13 @@ class HoraExtraController extends Controller
         //HoraExtra::create($request->validated());  
         $horaextra = new HoraExtra();      
         $horaextra->empleado_id = $request->empleado_id;
+        
         $horaextra->start = $request->start;
         $horaextra->end = $request->end;
         $horaextra->hora = 0;
         $horaextra->minuto = 0;     
+
+        //Calculo de cantidad de tiempo trabajado
         $time = new Carbon($horaextra->start);
         $horaextra->hora = $time->diffInHours($horaextra->end);
         $horaextra->minuto = $time->diffInMinutes($horaextra->end);
