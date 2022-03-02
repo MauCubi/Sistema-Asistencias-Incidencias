@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Redirect;
 class AreaController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:area.admin');
+        $this->middleware('can:area.index')->only('index');
+        $this->middleware('can:area.edit')->only('edit', 'update');
+        $this->middleware('can:area.destroy')->only('destroy');
+        $this->middleware('can:area.create')->only('create', 'store');
+        $this->middleware('can:area.show')->only('show');
     }
     /**
      * Display a listing of the resource.

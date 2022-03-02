@@ -12,7 +12,11 @@ class DepartamentoController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('can:departamento.admin');
+        $this->middleware('can:departamento.index')->only('index');
+        $this->middleware('can:departamento.edit')->only('edit', 'update');
+        $this->middleware('can:departamento.destroy')->only('destroy');
+        $this->middleware('can:departamento.create')->only('create', 'store');
+        $this->middleware('can:departamento.show')->only('show');    
     }
     /**
      * Display a listing of the resource.

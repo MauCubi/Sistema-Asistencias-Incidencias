@@ -11,7 +11,11 @@ class EmpresaController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('can:empresa.admin');
+        $this->middleware('can:empresa.index')->only('index');
+        $this->middleware('can:empresa.edit')->only('edit', 'update');
+        $this->middleware('can:empresa.destroy')->only('destroy');
+        $this->middleware('can:empresa.create')->only('create', 'store');
+        $this->middleware('can:empresa.show')->only('show');
     }
     /**
      * Display a listing of the resource.

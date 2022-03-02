@@ -152,13 +152,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                     aria-expanded="true" aria-controls="collapseUsers">
                     <i class="fas fa-users"></i>
-                    <span>Usuarios</span>
+                    <span>Usuarios/Roles</span>
                 </a>
                 <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="{{ route('user.index')}}">Lista de Usuarios</a> 
+                        <a class="collapse-item" href="{{ route('role.index')}}">Lista de Roles</a> 
                     </div>
                 </div>
             </li>

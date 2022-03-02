@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Redirect;
 class PuestoController extends Controller
 {
     public function __construct(){
-        $this->middleware('can:puesto.admin');
+        $this->middleware('can:puesto.index')->only('index');
+        $this->middleware('can:puesto.edit')->only('edit', 'update');
+        $this->middleware('can:puesto.destroy')->only('destroy');
+        $this->middleware('can:puesto.create')->only('create', 'store');
+        $this->middleware('can:puesto.show')->only('show');    
     }
     /**
      * Display a listing of the resource.

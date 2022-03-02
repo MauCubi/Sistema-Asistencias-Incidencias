@@ -17,7 +17,7 @@
         <label for="roles">Roles</label>
         @foreach ($roles as $role)
             <div>
-                <label for="">
+                <label for="roles[]">
                     <input type="checkbox" name="roles[]" value="{{ $role->id }}" class="mr-1" 
                     @if ($user->roles->contains('id', $role->id))
                         checked

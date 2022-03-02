@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PuestoController;
@@ -54,6 +55,7 @@ Route::resource('/jornada', JornadaController::class);
 Route::resource('/horaextra', HoraExtraController::class);
 Route::resource('/asistencia', AsistenciaController::class);
 Route::resource('/user', UserController::class);
+Route::resource('/role', RoleController::class);
 
 //Rutas de Eventos/Incidencias
 Route::delete('/event/{event}', [EventController::class, 'destroy'])->name('event.destroy');
