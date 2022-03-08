@@ -17,56 +17,58 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nueva Incidencia</h5>
+        <h5 class="modal-title">Incidencia</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-        <form action="" id="event-form">
-          @csrf
-          <div class="form-group d-none">
-            <input type="hidden" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
-          </div> 
+          {{-- <label class="control-label" id="title"><strong>Titulo:</strong></label> --}}
+            {{-- <label for="title">Nombre Incidencia</label>
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder=""> --}}
 
-          <div class="form-group">
-            <label for="title">Nombre Incidencia</label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="">
-          </div>
+{{--           
+          <label class="control-label" id="tipoevento_id" value=""><strong>Tipo de Incidencia:</strong></label>
+          
 
-          <div class="form-group">
-            <label for="description">Descripción</label>
-            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-          </div>
+          
+            <label class="control-label" id="description" value=""><strong>Detalles:</strong></label>   
+            
+            <label class="control-label" id="start" value=""><strong>Empieza:</strong></label>      
 
-          <div class="form-group">
-            <input type="hidden" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+            <label class="control-label" id="end" value=""><strong>Termina:</strong></label>      --}}
 
-          </div>
 
-          <div class="form-group">
-            <input type="hidden" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
 
-          </div>
+    
+              <div class="form-group">
+                <label for="title"><strong>Incidencia: </strong></label><b> </b><label id="title"> </label>
+              </div>  
 
-          <div class="form-group d-none">
-            <input type="hidden" class="form-control" title="user-id" id="user-id" aria-describedby="helpId" placeholder="">
-          </div> 
+    
+              <div class="form-group">
+                <label for="start"><strong>Empieza: </strong></label><b> </b><label id="start"> </label>
+              </div>
+    
+              <div class="form-group">
+                <label for="end"><strong>Termina: </strong></label><b> </b><label id="end"> </label>
+              </div>
 
-        </form>
+              <div class="form-group">
+                <label for="description"><strong>Detalles: </strong></label><b> </b><label id="description"> </label>
+              </div>
+    
+              {{-- <div class="form-group d-none">
+                <input type="hidden" class="form-control" title="user-id" id="user-id" aria-describedby="helpId" placeholder="">
+              </div>  --}}
+    
+            
+
 
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
-        <button type="button" class="btn btn-warning" id="btnEditar">Editar</button>
-        <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-
-      </div>
     </div>
   </div>
 </div>

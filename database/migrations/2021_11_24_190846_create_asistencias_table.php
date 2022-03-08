@@ -27,6 +27,8 @@ class CreateAsistenciasTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
 
+            $table->boolean('isLate')->default(false);
+            $table->boolean('isEarly')->default(false);
 
 
             $table->bigInteger('empleado_id');

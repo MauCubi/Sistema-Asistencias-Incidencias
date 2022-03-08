@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Puesto;
+use App\Models\Horario;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,7 +12,7 @@ class Empleado extends Model
 {
 
 
-    Protected $fillable = ['nombre','apellido','dni','direccion','telefono','email','puesto_id','alta','altafip'];
+    Protected $fillable = ['nombre','apellido','dni','direccion','telefono','email','puesto_id','alta','altafip', 'horario_id'];
 
 
     public function puesto()
@@ -29,5 +30,10 @@ class Empleado extends Model
         public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    public function horario()
+    {
+    	return $this->belongsTo(Horario::class);
     }
 }

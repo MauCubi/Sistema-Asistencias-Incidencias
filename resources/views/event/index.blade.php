@@ -40,11 +40,7 @@
             <label class="control-label" id="end" value=""><strong>Termina:</strong></label>      --}}
 
 
-            <form action="" id="event-form">
-              @csrf
-              <div class="form-group d-none">
-                <input type="hidden" class="form-control" title="id" id="id" aria-describedby="helpId" placeholder="">
-              </div> 
+
     
               <div class="form-group">
                 <label for="title"><strong>Incidencia: </strong></label><b> </b><label id="title"> </label>
@@ -67,7 +63,7 @@
                 <input type="hidden" class="form-control" title="user-id" id="user-id" aria-describedby="helpId" placeholder="">
               </div>  --}}
     
-            </form>
+            
 
 
 

@@ -25,7 +25,8 @@ class CreateEmpleadosTable extends Migration
             $table->date('altafip');
 
 
-            $table->bigInteger('puesto_id')->unsigned()->nullable();
+            $table->bigInteger('puesto_id')->unsigned();
+            $table->bigInteger('horario_id')->unsigned();
             $table->timestamps();
         });
     }

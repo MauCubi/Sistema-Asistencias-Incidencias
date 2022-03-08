@@ -10,6 +10,14 @@ use App\Http\Requests\StoreDepartamentoPost;
 
 class DepartamentoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:departamento.index')->only('index');
+        $this->middleware('can:departamento.edit')->only('edit', 'update');
+        $this->middleware('can:departamento.destroy')->only('destroy');
+        $this->middleware('can:departamento.create')->only('create', 'store');
+        $this->middleware('can:departamento.show')->only('show');    
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +30,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource
      *
      * @return \Illuminate\Http\Response
      */
@@ -88,7 +96,7 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Departamento $departamento)
-    {
+    {        
         $departamento->delete();
         return back()->with('status','Departamento Eliminado');
     }

@@ -49,7 +49,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-business-time"></i>
                 </div>
@@ -65,12 +65,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li> --}}
-
+            @can('public.home')
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-
+            
             <div class="sidebar-heading">
                 Area Personal
             </div>
@@ -78,16 +78,20 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsist"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-user-clock"></i>
                     <span>Asistencias</span>
                 </a>
                 <div id="collapseAsist" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="{{ route('asistencia.marcar') }}">Marcar Entrada/Salida</a>
-                        <a class="collapse-item" href="{{ route('asistencia.index')}}">Mis Asistencias</a>
-                        <a class="collapse-item" href="#">Mis Horas Extras</a>
-                        <a class="collapse-item" href="#">Mis Inasistencias</a>
+                        <a class="collapse-item" href="{{ route('asistencia.index')}}">Mis Asistencias</a>                        
+                        
+                        <a class="collapse-item" href="{{ route('inasistencia.add') }}">Botonsito inasistencia</a>                        
+                        <a class="collapse-item" href="{{ route('horaextra.index_personal')}}">Mis Horas Extras</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 6)}}">Mis Inasistencias</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 4)}}">Mis Tardanzas</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 5)}}">Mis Retiros Tempranos</a>
                     </div>
                 </div>
             </li>
@@ -113,8 +117,13 @@
                 </div>
 
             </li>
+            @endcan
+            @can('admin.home')
             <hr class="sidebar-divider">
 
+            
+                
+            
             <div class="sidebar-heading">
                 Administración
             </div>
@@ -139,7 +148,23 @@
 
 
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Users Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-users"></i>
+                    <span>Usuarios/Roles</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="{{ route('user.index')}}">Lista de Usuarios</a> 
+                        <a class="collapse-item" href="{{ route('role.index')}}">Lista de Roles</a> 
+                    </div>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -153,6 +178,27 @@
                         <a class="collapse-item" href="{{ route('empleado.index')}}">Lista de Empleados</a> 
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHorario"
+                    aria-expanded="true" aria-controls="collapseHorario">
+                    <i class="fas fa-clock"></i>
+                    <span>Horarios/Asistencias</span>
+                </a>
+                <div id="collapseHorario" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">                        
+                        <a class="collapse-item" href="{{ route('horario.index')}}">Lista de Horarios</a> 
+                        <a class="collapse-item" href="{{ route('asistencia.index')}}">Lista de Asistencias</a> 
+                        <a class="collapse-item" href="{{ route('horaextra.index')}}">Lista de Horas Extras</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 3)}}">Lista de Inasistencias</a> 
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 1)}}">Lista de Tardanzas</a> 
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 2)}}">Lista de Retiros Tempranos</a> 
+                    </div>
+                </div>
+
+                
             </li>
 
             <li class="nav-item">
@@ -171,7 +217,7 @@
                     </div>
                 </div>
             </li>
-
+            @endcan
             
                 
        

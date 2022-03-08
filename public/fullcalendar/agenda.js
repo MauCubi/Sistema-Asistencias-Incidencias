@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     //Varibale que toma los campos del formulario "event-form" en index.blade de eventos.
-    let formulario = document.getElementById("event-form");
+    // let formulario = document.getElementById("event-form");
 
     let labelin = document.getElementById("title");
     let labelin2 = document.getElementById("description");

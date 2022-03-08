@@ -15,9 +15,7 @@ class CreateTipoAsistenciasTable extends Migration
     {
         Schema::create('tipo_asistencias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            
-            
+            $table->string('nombre');          
             
             $table->timestamps();
             

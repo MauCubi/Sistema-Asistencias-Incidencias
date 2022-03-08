@@ -76,12 +76,12 @@
                                         $currentTime['minutes'] .",".
                                         $currentTime['seconds']; ?>));
 
-                                        document.getElementById('clock').innerHTML = (date.getHours() +':' + date.getMinutes() + ':' + date.getSeconds() );
+                                        document.getElementById('clock').innerHTML = ( ("0" + date.getHours()).slice(-2) +':' + ("0" + date.getMinutes()).slice(-2) + ':' + ("0" + date.getSeconds()).slice(-2) );
 
     setInterval(function() {
         date.setSeconds(date.getSeconds() + 1);
 
-        document.getElementById('clock').innerHTML = (date.getHours() +':' + date.getMinutes() + ':' + date.getSeconds() );
+        document.getElementById('clock').innerHTML = ( ("0" + date.getHours()).slice(-2) +':' + ("0" + date.getMinutes()).slice(-2) + ':' + ("0" + date.getSeconds()).slice(-2) );
         
     }, 1000);
 </script>

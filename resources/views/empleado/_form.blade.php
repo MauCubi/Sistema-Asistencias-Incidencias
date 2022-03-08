@@ -39,7 +39,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="direccion" class="col-form-label col-form-label-sm">Dirección</label>
-    <input class="form-control form-control-sm" type="text" name="direccion" id="direccion" value="{{ old('direccion', $empleado->direccion)}}">
+    <input class="form-control form-control-sm" type="text" name="direccion" id="direccion" value="{{ old('direccion', $empleado->direccion)}}" required autofocus>
 
     @error('direccion')
     <small class="text-danger">{{ $message }}</small>
@@ -51,7 +51,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="telefono" class="col-form-label col-form-label-sm">Teléfono</label>
-    <input class="form-control form-control-sm " type="text" name="telefono" maxlength="15" id="telefono" value="{{ old('telefono', $empleado->telefono)}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+    <input class="form-control form-control-sm " type="text" name="telefono" maxlength="15" id="telefono" value="{{ old('telefono', $empleado->telefono)}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required autofocus>
 
     @error('telefono')
     <small class="text-danger">{{ $message }}</small>
@@ -62,7 +62,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="email" class="col-form-label col-form-label-sm">E-Mail</label>
-    <input class="form-control form-control-sm" type="email" name="email" id="email" maxlength="40" value="{{ old('email', $empleado->email)}}" placeholder="nombre@ejemplo.com">
+    <input class="form-control form-control-sm" type="email" name="email" id="email" maxlength="40" value="{{ old('email', $empleado->email)}}" placeholder="nombre@ejemplo.com" required autofocus>
 
     @error('email')
     <small class="text-danger">{{ $message }}</small>
@@ -115,9 +115,18 @@
 
 <div class="form-group col-md-6 mb-3">
     <label for="puesto_id" class="col-form-label col-form-label-sm">Puesto</label>
-    <select id="puesto_id" name="puesto_id" class="form-control form-control-sm" required>
+    <select id="puesto_id" name="puesto_id" class="form-control form-control-sm" required onload="carga()">
     @foreach ($puestos as $puesto)
         <option {{ $puesto->id == $empleado->puesto_id ? 'selected="selected"' : ''}} value="{{ $puesto->id}}" required focus>{{ $puesto->nombre}}</option>
+    @endforeach
+    </select>
+</div>
+
+<div class="form-group col-md-6 mb-3">
+    <label for="horario_id" class="col-form-label col-form-label-sm">Horario</label>
+    <select id="horario_id" name="horario_id" class="form-control form-control-sm" required>
+    @foreach ($horarios as $horario)
+        <option {{ $horario->id == $empleado->horario_id ? 'selected="selected"' : ''}} value="{{ $horario->id}}" required focus>{{ $horario->nombre}}</option>
     @endforeach
     </select>
 </div>
@@ -172,5 +181,31 @@
         });
     });
 });
+
+document.getElementById('horario_id').addEventListener("load", carga());
+
+function carga(){
+    //var departamento_id = $(this).val();
+    var departamento_id = document.getElementById('departamento_id').value;
+
+        
+        var op = " ";
+        $.ajax({
+            type: 'get',
+            url: '{!!URL::to('/empleado/createfind')!!}',
+            data: {'id':departamento_id},
+            success: function(data){
+                for (var i = 0; i < data.length; i++){
+                    op += '<option value="'+data[i].id+'">'+data[i].nombre+'</option>';
+                }
+                $('#puesto_id').html(" ");
+                $('#puesto_id').append(op);
+            },
+            error: function(){
+                console.log('success');
+            },
+        });
+}
+
 
 </script>
