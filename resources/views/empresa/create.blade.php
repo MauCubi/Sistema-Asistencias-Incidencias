@@ -14,11 +14,10 @@
 </div>
 
 @include('partials.validation-error')
-<div class="card">
-    <div class="card-body">
+
         <form action="{{  route("empresa.store") }}" method="post">
             @include('empresa._form')
         </form>
-    </div>
-</div>
+    
+
 @endsection
