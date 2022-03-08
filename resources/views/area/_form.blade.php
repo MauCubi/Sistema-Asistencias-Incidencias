@@ -19,7 +19,7 @@
         @foreach ($empresas as $empresa)
             <option {{ $area->empresa_id == $empresa->id ? 'selected="selected"' : ''}} value="{{ $empresa->id}}">{{ $empresa->nombre}}</option>
         @endforeach
-    </selecst>
+    </select>
     
     @error('empresa_id')
     <small class="text-danger">{{ $message }}</small>
