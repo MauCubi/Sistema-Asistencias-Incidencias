@@ -2,14 +2,28 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card">
-                <div style="text-align:center" class="card-header">{{ __('Inicio de Sesión') }}</div>
-                    <div style="text-align: center">
-
-                    {{ __('Bienvenido!') }}
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-9">
+                <div class="card bg-warning text-white mb-6">
+                    <div class="card-body">
+                        <h3>
+                            Eventos Próximos
+                        </h3>
+                        
+                            content
+                        
                     </div>
+                </div>
+                <br>
+                <div class="card bg-success text-white mc-6">
+                    <div class="card-body">
+                        <h3>
+                            Días no laborales Próximos
+                        </h3>                        
+                            content                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -14,11 +14,9 @@
 </div>
 
 {{-- @include('partials.validation-error') --}}
-<div class="card">
-    <div class="card-body">
+
 <form action="{{  route("area.store")  }}" method="post">
 @include('area._form')
 </form>
-    </div>
-</div>
+
 @endsection

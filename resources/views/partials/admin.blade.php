@@ -49,7 +49,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-business-time"></i>
                 </div>
@@ -151,7 +151,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                     aria-expanded="true" aria-controls="collapseUsers">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-user-tag"></i>
                     <span>Usuarios/Roles</span>
                 </a>
                 <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers"
@@ -202,7 +202,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseThree">
                     <i class="fas fa-thumbtack"></i>
                     <span>Incidencias</span>
                 </a>
@@ -212,6 +212,22 @@
                         <a class="collapse-item" href="{{ route('event.index2')}}">Incidencias Generales</a>
                         <a class="collapse-item" href="{{ route('event.index3')}}">Incidencias de Empleados</a>
                         <a class="collapse-item" href="{{ route('tipoevento.index')}}">Tipos de Incidencias</a>
+
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseFour">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reportes</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                        <a class="collapse-item" href="{{ route('pdf.seleccionar')}}">Generar Reportes</a>                       
 
                     </div>
                 </div>

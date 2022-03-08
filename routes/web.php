@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,10 @@ Route::get('/empleado/createfind', [EmpleadoController::class, 'createfind'])->n
 Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asistencia.add');
 Route::get('/asistencia/marcar', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');
 Route::get('/jornada/editmodal', [JornadaController::class, 'editModal'])->name('jornada.editModal');
+
+//PDF
+Route::post('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf.generar');
+Route::get('/reporte/seleccionar-empleado', [PDFController::class, 'seleccionarEmpleado'])->name('pdf.seleccionar');
 
 //Rutas Resource
 Route::resource('/empresa', EmpresaController::class);

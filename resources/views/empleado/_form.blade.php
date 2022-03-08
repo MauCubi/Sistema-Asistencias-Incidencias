@@ -1,7 +1,8 @@
 {{-- <script src="{{asset('js/app.js')}}"></script> --}}
 
 @csrf
-
+<div class="card">
+    <div class="card-body">
 <div class="row">
 <div class="form-group col-md-3 mb-3">
     <label for="nombre" class="col-form-label col-form-label-sm">Nombre</label>
@@ -137,13 +138,10 @@
 <input class="btn btn-primary" type="submit" value="Guardar">
 </div>
 </div>
+</div>
+</div>
 
 
-@isset($record)
-    
-@else
-
-@endisset
 {{-- <script>
     var departamento = document.getElementById("departamento_id");
     var puesto = document.getElementById("puesto_id");
