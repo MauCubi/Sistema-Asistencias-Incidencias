@@ -19,6 +19,7 @@ class CreateTipoEventosTable extends Migration
             $table->string('nombre')->unique();
             $table->boolean('general');
             $table->boolean('descuento');
+            $table->boolean('noLaboral');
 
 
             $table->timestamps();

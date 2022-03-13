@@ -97,7 +97,12 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        $area->delete();
-        return back()->with('status','Area Eliminada');
+
+        if($area->departamentos->count() == 0){
+            $area->delete();
+            return back()->with('status','Area Eliminada');
+        }else{
+            return back()->with('error','No puede eliminarse el area ya que tiene información asociada'); 
+        }
     }
 }

@@ -185,7 +185,6 @@ document.getElementById('horario_id').addEventListener("load", carga());
 function carga(){
     //var departamento_id = $(this).val();
     var departamento_id = document.getElementById('departamento_id').value;
-
         
         var op = " ";
         $.ajax({

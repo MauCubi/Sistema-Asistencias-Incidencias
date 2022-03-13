@@ -97,8 +97,12 @@ class DepartamentoController extends Controller
      */
     public function destroy(Departamento $departamento)
     {        
-        $departamento->delete();
-        return back()->with('status','Departamento Eliminado');
+        if($departamento->puestos->count() == 0){
+            $departamento->delete();
+            return back()->with('status','Departamento Eliminado');
+        }else{
+            return back()->with('error','No puede eliminarse el departamento ya que tiene información asociada'); 
+        }
     }
 
 

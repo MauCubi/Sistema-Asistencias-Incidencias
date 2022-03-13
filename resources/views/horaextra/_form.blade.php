@@ -1,4 +1,6 @@
 @csrf
+{{ $horaextra->start->format('Y-m-d\TH:i')}} <br>
+{{ $horaextra->start}}
 <div class="card">
     <div class="card-body">
 <div class="row">

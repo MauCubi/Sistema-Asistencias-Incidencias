@@ -55,6 +55,12 @@ class TipoEventoController extends Controller
             $tipoevento->descuento = false;
         }
 
+        if ($request->has('laboral')) {
+            $tipoevento->noLaboral = true;
+        }else{
+            $tipoevento->noLaboral = false;
+        }
+
         $tipoevento->save();
         
         return Redirect::to("tipoevento")->with('status','Tipo de Incidencia Creado Exitosamente');
@@ -66,9 +72,9 @@ class TipoEventoController extends Controller
      * @param  \App\Models\TipoEvento  $tipoEvento
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoEvento $tipoEvento)
+    public function show(TipoEvento $tipoevento)
     {
-        //
+        return view("tipoevento.show", ["tipoevento" => $tipoevento]);
     }
 
     /**
@@ -105,6 +111,12 @@ class TipoEventoController extends Controller
             $tipoevento->descuento = false;
         }
 
+        if ($request->has('laboral')) {
+            $tipoevento->noLaboral = true;
+        }else{
+            $tipoevento->noLaboral = false;
+        }
+
         $tipoevento->save();
 
         return Redirect::to("tipoevento")->with('status','Tipo de Incidencia Actualizado Exitosamente');
@@ -120,7 +132,11 @@ class TipoEventoController extends Controller
      */
     public function destroy(TipoEvento $tipoevento)
     {
-        $tipoevento->delete();
-        return back()->with('status','Tipo de Incidencia Eliminado');
+        if($tipoevento->events->count() == 0){
+            $tipoevento->delete();
+            return back()->with('status','Tipo de Incidencia Eliminado');
+        }else{
+            return back()->with('error','No puede eliminarse el horario ya que tiene información asociada'); 
+        }
     }
 }

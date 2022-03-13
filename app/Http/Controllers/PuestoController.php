@@ -97,7 +97,11 @@ class PuestoController extends Controller
      */
     public function destroy(Puesto $puesto)
     {
-        $puesto->delete();
-        return back()->with('status','Puesto Eliminado');
+        if($puesto->empleados->count() == 0){
+            $puesto->delete();
+            return back()->with('status','Puesto Eliminado');
+        }else{
+            return back()->with('error','No puede eliminarse el puesto ya que tiene información asociada'); 
+        }
     }
 }

@@ -96,6 +96,14 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        //
+        if($horario->empleados->count() == 0){
+            foreach ($horario->jornadas as $jornada) {
+                $jornada->delete();
+            }            
+            $horario->delete();
+            return back()->with('status','Horario Eliminado');
+        }else{
+            return back()->with('error','No puede eliminarse el horario ya que tiene información asociada'); 
+        }
     }
 }

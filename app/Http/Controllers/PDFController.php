@@ -21,6 +21,10 @@ class PDFController extends Controller
 
     public function generatePDF(Request $request)
     {
+        $request->validate([
+                'start' => 'required',            
+                'end' => 'after_or_equal:start',
+            ]);
         
         $empleado = Empleado::where('id', $request->empleado_id)->first();
         $start = $request->start;
