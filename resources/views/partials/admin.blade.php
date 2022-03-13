@@ -190,7 +190,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">                        
                         <a class="collapse-item" href="{{ route('horario.index')}}">Lista de Horarios</a> 
-                        <a class="collapse-item" href="{{ route('asistencia.index')}}">Lista de Asistencias</a> 
+                        <a class="collapse-item" href="{{ route('asistencia.indexall')}}">Lista de Asistencias</a> 
                         <a class="collapse-item" href="{{ route('horaextra.index')}}">Lista de Horas Extras</a>
                         <a class="collapse-item" href="{{ route('incidenciahoraria.index', 3)}}">Lista de Inasistencias</a> 
                         <a class="collapse-item" href="{{ route('incidenciahoraria.index', 1)}}">Lista de Tardanzas</a> 

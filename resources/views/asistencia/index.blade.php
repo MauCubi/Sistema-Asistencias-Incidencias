@@ -52,4 +52,6 @@
     </tbody>
 </table>
 
+{{ $asistencias->links() }}
+
 @endsection

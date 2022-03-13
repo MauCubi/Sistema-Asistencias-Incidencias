@@ -113,9 +113,17 @@ Route::get('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaControll
 
 //IncidenciaHoraria-retiros tempranos
 
-//Ruta que me devuelve mis asistencias
-Route::get('/asistencia',[AsistenciaController::class, 'index'])->name('asistencia.index');
+//Ruta de Asistencias
+// Index personal
+Route::get('/mis-asistencias',[AsistenciaController::class, 'index'])->name('asistencia.index');
+// Index general
+Route::get('/lista-asistencias',[AsistenciaController::class,'indexAll'])->name('asistencia.indexall');
 Route::get('/asistencia/{id}',[AsistenciaController::class, 'show'])->name('asistencia.show');
+Route::get('/lista-asistencias/create',[AsistenciaController::class,'create'])->name('asistecia.create');
+Route::post('lista-asistencias/store',[AsistenciaController::class,'store'])->name('asistencia.store');
+Route::get('lista-asistencias/{asistencia}/edit',[AsistenciaController::class,'edit'])->name('asistencia.edit');
+Route::put('lista-asistencias/{asistencia}',[AsistenciaController::class,'update'])->name('asistencia.update');
+Route::delete('lista-asistencias/{asistencia}',[AsistenciaController::class,'destroy'])->name('asistencia.destroy');
 
 //Horas Extras
 Route::get('/horas-extras-personal', [HoraExtraController::class, 'indexPersonal'])->name('horaextra.index_personal');

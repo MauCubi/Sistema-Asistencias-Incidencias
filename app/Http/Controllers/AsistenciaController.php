@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 use App\Models\IncidenciaHoraria;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Empleado;
 
 class AsistenciaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Este index muestra las asistencias de la PERSONA logueada.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,12 +23,22 @@ class AsistenciaController extends Controller
     {
         $user = auth()->user();
 
-        $asistencias = Asistencia::where('empleado_id', $user->empleado_id)->get();
+        $asistencias = Asistencia::where('empleado_id', $user->empleado_id)->orderBy('created_at','desc')->paginate(10);
         
         //dd($asistencias[0]->id);
 
         return view('asistencia.index', compact('asistencias'));
         
+    }
+
+    /**
+     * Este index es para mostrar las asistencias de TODOS los empleados.
+     */
+    public function indexAll(){
+        $user = auth()->user();
+        $asistencias = Asistencia::orderBy('created_at','desc')->paginate(10);
+
+        return view('asistencia.indexall',compact('asistencias'));
     }
 
     /**
@@ -37,7 +48,9 @@ class AsistenciaController extends Controller
      */
     public function create()
     {
-        //
+        $empleados = Empleado::all();
+
+        return view('asistencia.create',compact('empleados'));
     }
 
     /**
@@ -48,7 +61,34 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $empleado = Empleado::find($request->empleado_id);
+        $asistencia = new Asistencia;
+
+        //Transformo a string la fecha y armo el titulo
+        $date = "Asistencia"." ".date('d-m-Y',strtotime($request->start));
+        $asistencia->title = $date;
+        $asistencia->verify = 0;
+        $asistencia->verify = true;            
+        $asistencia->start = $request->start;
+        $asistencia->end = $request->end;
+
+        //Calculo de cantidad de tiempo trabajado
+        $time = new Carbon($request->start);
+        $asistencia->hora = $time->diffInHours($request->end);
+        $asistencia->minuto = $time->diffInMinutes($request->end);
+
+        if ($asistencia->hora != 0) 
+        {
+            $asistencia->minuto = $asistencia->minuto - (60 * $asistencia->hora);
+        }    
+
+        // Asocio las claves foraneas 
+        $asistencia->tipoasistencia_id = 1;
+        $asistencia->empleado_id = $empleado->id;
+        $asistencia->empleado()->associate($empleado);   
+        $asistencia->save();
+
+        return Redirect::to("lista-asistencias")->with('status','Asistencia cargada');
     }
 
     /**
@@ -62,12 +102,7 @@ class AsistenciaController extends Controller
     {
         $asistencia = Asistencia::find($id);
 
-        //$empleado = $asistencia->empleado()->first();
-
-        //dd($empleado);
-
         return view('asistencia.show',['asistencia' => $asistencia]);
-        //dd($asistencia);
     }
 
     /**
@@ -78,7 +113,11 @@ class AsistenciaController extends Controller
      */
     public function edit(Asistencia $asistencia)
     {
-        //
+        //dd(date('d-m-Y',strtotime($asistencia->start)));
+        
+        $empleados =Empleado::all();
+
+        return view('asistencia.edit',['asistencia'=>$asistencia,'empleados'=>$empleados]);
     }
 
     /**
@@ -90,7 +129,33 @@ class AsistenciaController extends Controller
      */
     public function update(Request $request, Asistencia $asistencia)
     {
-        //
+        $empleado = Empleado::find($request->empleado_id);
+
+        //Transformo a string la fecha y armo el titulo
+        $date = "Asistencia"." ".date('d-m-Y',strtotime($request->start));
+        $asistencia->title = $date;
+        $asistencia->verify = 0;
+        $asistencia->verify = true;            
+        $asistencia->start = $request->start;
+        $asistencia->end = $request->end;
+
+        //Calculo de cantidad de tiempo trabajado
+        $time = new Carbon($request->start);
+        $asistencia->hora = $time->diffInHours($request->end);
+        $asistencia->minuto = $time->diffInMinutes($request->end);
+
+        if ($asistencia->hora != 0) 
+        {
+            $asistencia->minuto = $asistencia->minuto - (60 * $asistencia->hora);
+        }    
+
+        // Asocio las claves foraneas 
+        $asistencia->tipoasistencia_id = 1;
+        $asistencia->empleado_id = $empleado->id;
+        $asistencia->empleado()->associate($empleado);   
+        $asistencia->save();
+
+        return Redirect::to("lista-asistencias")->with('status','Asistencia editada');        
     }
 
     /**
@@ -101,7 +166,8 @@ class AsistenciaController extends Controller
      */
     public function destroy(Asistencia $asistencia)
     {
-        //
+        $asistencia->delete();
+        return back()->with('status','Asistencia Eliminada');
     }
 
     public function marcar()
