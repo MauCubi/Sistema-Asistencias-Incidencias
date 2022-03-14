@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($asistencias as $a)
+        @forelse ($asistencias as $a)
        <tr>
            <td>
                {{ $a->empleado->apellido }}, {{ $a->empleado->nombre }}
@@ -60,7 +60,11 @@
                 </div>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td> Aún no posee asistencias registradas </td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 

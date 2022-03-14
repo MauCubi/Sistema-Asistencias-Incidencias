@@ -19,10 +19,15 @@
     <div class="card">
         <div class="card-body">
 
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-danger"> ( * ) Campos obligatorios</p>
+                </div>
+            </div>
             <!-- Select de Empleados -->
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
-                    <label for="empleado_id">Empleado</label>
+                    <label for="empleado_id"><small class="text-danger">*</small> Empleado</label>
                     <select class="form-control form-control-sm" name="empleado_id" id="empleado_id">
                         @foreach ($empleados as $empleado)
                         <option {{ old('empleado_id') == $empleado->id ? 'selected' : '' }}
@@ -42,7 +47,7 @@
             {{-- Hora de entrada --}}
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
-                    <label for="start">Entrada</label>
+                    <label for="start"><small class="text-danger">*</small> Entrada</label>
                         <input class="form-control form-control-sm" type="datetime-local" name="start" id="start" required autofocus
                         autocomplete="off" value="{{ old('start')}}" max="<?php $hoy=date("Y-m-d\TH:i"); echo $hoy;?>">
             
@@ -57,7 +62,7 @@
             {{-- Hora de salida --}}
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
-                    <label for="end">Salida</label>
+                    <label for="end"><small class="text-danger">*</small> Salida</label>
                     <input class="form-control form-control-sm" type="datetime-local" name="end" id="end" required autofocus
                         autocomplete="off" value="{{ old('end')}}" max="<?php $hoy=date("Y-m-d\TH:i"); echo $hoy;?>">
             

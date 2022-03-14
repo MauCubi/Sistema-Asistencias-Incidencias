@@ -61,6 +61,17 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'start' => 'required',
+                'end'   => 'required|after_or_equal:start'
+            ],
+            [
+                'end.after_or_equal'=> 'La fecha de salida debe ser posterior a la de entrada',
+            ]
+        );
+
         $empleado = Empleado::find($request->empleado_id);
         $asistencia = new Asistencia;
 
@@ -129,6 +140,17 @@ class AsistenciaController extends Controller
      */
     public function update(Request $request, Asistencia $asistencia)
     {
+        $this->validate(
+            $request,
+            [
+                'start' => 'required',
+                'end'   => 'required|after_or_equal:start'
+            ],
+            [
+                'end.after_or_equal'=> 'La fecha de salida debe ser posterior a la de entrada',
+            ]
+        );
+        
         $empleado = Empleado::find($request->empleado_id);
 
         //Transformo a string la fecha y armo el titulo

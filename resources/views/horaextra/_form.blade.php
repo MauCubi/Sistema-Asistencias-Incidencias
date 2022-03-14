@@ -25,10 +25,10 @@
         <label for="start">Entrada</label>
         @isset($horaextra->start)
         <input class="form-control form-control-sm" type="datetime-local" name="start" id="start" required autofocus
-            autocomplete="off" value="{{ $horaextra->start->format('Y-m-d\TH:i')}}">
+            autocomplete="off" value="{{ $horaextra->start->format('Y-m-d\TH:i')}}" max="<?php $hoy=date("Y-m-d\TH:i"); echo $hoy;?>">
         @else
         <input class="form-control form-control-sm" type="datetime-local" name="start" id="start" required autofocus
-            autocomplete="off" value="{{ old('start')}}">
+            autocomplete="off" value="{{ old('start')}}" max="<?php $hoy=date("Y-m-d\TH:i"); echo $hoy;?>">
         @endisset
 
         @error('start')

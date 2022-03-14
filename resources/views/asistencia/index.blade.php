@@ -31,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-       @foreach ($asistencias as $a)
+       @forelse ($asistencias as $a)
        <tr>
             <td>
                 {{ date_format($a->start, " d/m/Y") }}
@@ -48,7 +48,11 @@
                 </div>
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="4"> Aún no posee asistencias registradas </td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 
