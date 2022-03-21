@@ -49,6 +49,7 @@ class AsistenciaController extends Controller
     public function create()
     {
         $empleados = Empleado::all();
+        //Probando
 
         return view('asistencia.create',compact('empleados'));
     }
