@@ -62,7 +62,7 @@
         </tr>
         @empty
         <tr>
-            <td> Aún no posee asistencias registradas </td>
+            <td style="background-color:gainsboro" colspan="5"> Aún no posee asistencias registradas </td>
         </tr>
         @endforelse
     </tbody>

@@ -51,7 +51,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="4"> Aún no posee asistencias registradas </td>
+            <td style="background-color:gainsboro" colspan="4"> Aún no posee asistencias registradas </td>
         </tr>
         @endforelse
     </tbody>
