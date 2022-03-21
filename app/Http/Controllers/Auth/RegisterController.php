@@ -7,9 +7,11 @@ use App\Models\Empleado;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 class RegisterController extends Controller
 {
     /*
@@ -65,13 +67,46 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $empleado = Empleado::where('email',$data['email'])->first();
 
+
+        $empleado = Empleado::where('email',$data['email'])->first();
+        if($empleado != null){
         return User::create([
             'name' => $empleado->nombre.' '.$empleado->apellido,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'empleado_id' => $empleado->id,
         ]);
+        }else{
+            return Redirect::to("register")->with('status','Error');
+        }
+    }
+
+
+    public function register(Request $request)
+    {
+        $empleado = Empleado::where('email',$request['email'])->first();
+        if($empleado != null){
+        User::create([
+            'name' => $empleado->nombre.' '.$empleado->apellido,
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'empleado_id' => $empleado->id,
+        ]);
+            return Redirect::to("login")->with('status','Te registraste Correctamente');
+        }else{
+            return Redirect::to("register")->with('status','El email ingresado no corresponde a ningun empleado');
+        }
+        // $this->validator($request->all())->validate();
+        // event(new Registered($user = $this->create([
+        //     'name' => 'Juan',
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request['password']),
+        //     'empleado_id' => 5,
+        // ])));
+        
+        // return $this->registered($request, $user)
+        //    // ?: redirect($this->redirectPath());
+        //   ?: redirect()->route('home')->with('success', 'You are successfully Registered!');
     }
 }

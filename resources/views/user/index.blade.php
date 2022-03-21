@@ -13,8 +13,9 @@
 
 
 @include('partials.session-status')
+@include('partials.session-error')
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
-    Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> un Usuario.
+    Desde aquí, podrá <strong>Ver, </strong> o <strong>Modificar Roles</strong> de un Usuario.
 </p>
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
     <thead class="bg-dark text-white">
@@ -29,15 +30,14 @@
                 Email    
             </td>          
             <td>
-                <div class="d-flex justify-content-center">
-                    <a href="{{ route('user.create') }}" >
-                        <button class="btn btn-success btn-sm" type="button"><i class="fa fw fa-plus"></i> Nuevo</button>
-                    </a>
-                </div>
+                
             </td>
         </tr>
     </thead>
     <tbody>
+        @if($users->count() == 0)
+            <td style="background-color:gainsboro" colspan="5">No hay usuarios registrados</td>
+        @else
        @foreach ( $users as $user)
        <tr>
             <td>
@@ -51,14 +51,15 @@
             </td>
             <td>
                 <div class="d-flex justify-content-center">
-                <a href="{{ route('user.show', $user->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
-                <a href="{{ route('user.edit', $user->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
+                {{-- <a href="{{ route('user.show', $user->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a> --}}
+                <a href="{{ route('user.edit', $user->id)}}" class="btn btn-info mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar Roles</a>
                 
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}"><i class="fas fa-trash"></i> Eliminar</button>
+                {{-- <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}"><i class="fas fa-trash"></i> Eliminar</button> --}}
                 </div>
             </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

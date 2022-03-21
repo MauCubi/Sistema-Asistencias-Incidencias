@@ -89,7 +89,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isLunes)
-        <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+        <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -98,7 +98,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isMartes)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -107,7 +107,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isMiercoles)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -116,7 +116,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isJueves)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -125,7 +125,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isViernes)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -134,7 +134,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isSabado)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>
@@ -143,7 +143,7 @@
     <ul>
     @foreach ($horarios as $horario)
         @if ($horario->isDomingo)
-       <li>{{date('h:m', strtotime($horario->entrada))}} hs - {{date('h:m', strtotime($horario->salida))}} hs</li>
+       <li>{{date('H:i', strtotime($horario->entrada))}} hs - {{date('H:i', strtotime($horario->salida))}} hs</li>
         @endif        
     @endforeach
     </ul>

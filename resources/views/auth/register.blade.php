@@ -8,7 +8,12 @@
                 <div class="card-header">{{ __('Registrarse') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    @if (session('status'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form method="POST" action="{{ route('register.registrar') }}">
                         @csrf
 
                         <div class="form-group row">

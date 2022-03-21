@@ -18,6 +18,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Licencia por maternidad/paternidad',
             'general' => false,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -27,6 +28,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Licencia por enfermedad',
             'general' => false,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -36,6 +38,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Licencia por matrimonio',
             'general' => false,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -45,6 +48,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Licencia por fallecimiento',
             'general' => false,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -54,6 +58,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Licencia por motivos personales',
             'general' => false,
             'descuento' => true,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -63,6 +68,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Vacaciones',
             'general' => false,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -81,6 +87,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Feriado',
             'general' => true,
             'descuento' => false,
+            'noLaboral' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -90,6 +97,7 @@ class TipoEventoSeeder extends Seeder
             'nombre' => 'Fecha de Entrega',
             'general' => true,
             'descuento' => false,
+            'noLaboral' => false,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  

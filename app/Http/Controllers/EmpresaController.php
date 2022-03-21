@@ -99,7 +99,12 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        $empresa->delete();
-        return back()->with('status','Empresa Eliminada');
+        //dd($empresa->areas);
+        if($empresa->areas->count() == 0){
+            $empresa->delete();
+            return back()->with('status','Empresa Eliminada');
+        }else{
+            return back()->with('error','No puede eliminarse la empresa ya que tiene información asociada');
+        }
     }
 }

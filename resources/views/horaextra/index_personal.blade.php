@@ -30,6 +30,9 @@
         </tr>
     </thead>
     <tbody>
+        @if($horaextras->count() == 0)
+            <td style="background-color:gainsboro" colspan="5">No hay horas extras registradas</td>
+        @else
        @foreach ( $horaextras as $horaextra)
        <tr>
             <td>
@@ -56,6 +59,7 @@
             </td>            
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

@@ -56,6 +56,16 @@
                 </label>
 
                 <br>
+
+                <label class="control-label">
+                    <strong>Día no laboral:</strong>
+                    @if ($tipoevento->noLaboral == true)
+                        <i class="fas fa-check"></i>
+                    @else
+                        <i class="fas fa-times"></i>
+                    @endif
+                </label>
+                <br>
                 
 
             </div>

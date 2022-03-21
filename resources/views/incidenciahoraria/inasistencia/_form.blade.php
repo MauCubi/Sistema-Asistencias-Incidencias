@@ -1,5 +1,6 @@
 @csrf
-
+<div class="card">
+    <div class="card-body">
 <div class="row">
     <div class="form-group col-md-6 mb-3">
         <label for="empleado_id">Empleado</label>
@@ -89,6 +90,8 @@
     <input class="btn btn-primary" type="submit" value="Guardar">
 </div>
 
+</div>
+</div>
 <script>
     $(document).ready(function() {
         $('#empleado_id').select2();        

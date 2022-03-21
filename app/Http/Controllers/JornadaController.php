@@ -9,6 +9,14 @@ use App\Http\Requests\StoreJornadaPost;
 
 class JornadaController extends Controller
 {
+
+    public function __construct(){
+        
+        $this->middleware('can:jornada.edit')->only('editModal', 'update2');
+        $this->middleware('can:jornada.destroy')->only('destroy');
+        $this->middleware('can:jornada.create')->only('add');
+        
+    }
     /**
      * Display a listing of the resource.
      *

@@ -13,6 +13,7 @@
 
 
 @include('partials.session-status')
+@include('partials.session-error')
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
     Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Hora Extra.
 </p>
@@ -45,6 +46,9 @@
         </tr>
     </thead>
     <tbody>
+        @if($horaextras->count() == 0)
+            <td style="background-color:gainsboro" colspan="6">No hay horas extras registradas</td>
+        @else
        @foreach ( $horaextras as $horaextra)
        <tr>
             <td>
@@ -82,6 +86,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

@@ -13,6 +13,7 @@
 
 
 @include('partials.session-status')
+@include('partials.session-error')
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
     Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Incidencia de un Empleado.
 </p>
@@ -48,6 +49,9 @@
         </tr>
     </thead>
     <tbody>
+        @if($events->count() == 0)
+            <td style="background-color:gainsboro" colspan="7">No hay incidencias registradas</td>
+        @else
        @foreach ( $events as $event)
        <tr>
             <td>
@@ -79,6 +83,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

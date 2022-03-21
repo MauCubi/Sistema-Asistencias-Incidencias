@@ -47,7 +47,7 @@
                     @if ($incidenciahoraria->justificacion)
                         Si
                     @else
-                        NO
+                        No
                     @endif                    
                 </label>
 

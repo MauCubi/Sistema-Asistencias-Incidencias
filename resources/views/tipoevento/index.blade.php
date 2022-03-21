@@ -13,6 +13,7 @@
 
 
 @include('partials.session-status')
+@include('partials.session-error')
 <p class="alert alert-info d-none d-sm-block animated fadeIn">
     Desde aquí, podrá <strong>crear, editar</strong> o <strong>eliminar</strong> un tipo de incidencia.
 </p>
@@ -32,6 +33,9 @@
                 Aplica Descuento
             </td>
             <td>
+                No Laboral
+            </td>
+            <td>
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('tipoevento.create') }}">
                         <button class="btn btn-success btn-sm" type="button"><i class="fa fw fa-plus"></i>
@@ -42,6 +46,9 @@
         </tr>
     </thead>
     <tbody>
+        @if($tipoeventos->count() == 0)
+            <td style="background-color:gainsboro" colspan="5">No hay tipo de incidencias registrados</td>
+        @else
         @foreach ( $tipoeventos as $tipoevento)
         <tr>
             <td>
@@ -65,6 +72,14 @@
                 @endif
             </td>
 
+            <td style="text-align: center">
+                @if ($tipoevento->noLaboral == true)
+                    <i class="fas fa-check"></i>
+                @else
+                    <i class="fas fa-times"></i>
+                @endif
+            </td>
+
 
 
             <td>
@@ -80,6 +95,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

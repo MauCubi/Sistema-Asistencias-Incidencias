@@ -13,6 +13,7 @@
 
 
 @include('partials.session-status')
+@include('partials.session-error')
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
     Desde aquí, podrá <strong>crear, editar</strong> o <strong>dar de baja</strong> una Empresa.
 </p>
@@ -35,6 +36,9 @@
         </tr>
     </thead>
     <tbody>
+        @if($empresas->count() == 0)
+            <td style="background-color:gainsboro" colspan="5">No hay empresas registradas</td>
+        @else
        @foreach ( $empresas as $empresa)
        <tr>
             <td>
@@ -53,6 +57,7 @@
             </td>
         </tr>
         @endforeach
+        @endif
     </tbody>
 </table>
 

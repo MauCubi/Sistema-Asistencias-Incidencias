@@ -89,9 +89,25 @@
                         
                         <a class="collapse-item" href="{{ route('inasistencia.add') }}">Botonsito inasistencia</a>                        
                         <a class="collapse-item" href="{{ route('horaextra.index_personal')}}">Mis Horas Extras</a>
-                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 6)}}">Mis Inasistencias</a>
-                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 4)}}">Mis Tardanzas</a>
-                        <a class="collapse-item" href="{{ route('incidenciahoraria.index', 5)}}">Mis Retiros Tempranos</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index_personal', 6)}}">Mis Inasistencias</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index_personal', 4)}}">Mis Tardanzas</a>
+                        <a class="collapse-item" href="{{ route('incidenciahoraria.index_personal', 5)}}">Mis Retiros Tempranos</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#colapsinci"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-thumbtack"></i>
+                    <span>Incidencias</span>
+                </a>
+                <div id="colapsinci" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                        <a class="collapse-item" href="#">Incidencias Generales</a>
+                        <a class="collapse-item" href="{{ route('event.indexpersonal')}}">Mis Incidencias</a>
+
                     </div>
                 </div>
             </li>

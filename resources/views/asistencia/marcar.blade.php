@@ -69,7 +69,7 @@
 
 
 <script>
-    var date = new Date(Date.UTC(<?php echo $currentTime['year'] .",".
+    var date = new Date(Date(<?php echo $currentTime['year'] .",".
                                         $currentTime['mon'] .",".
                                         $currentTime['mday'] .",".
                                         $currentTime['hours'] .",".

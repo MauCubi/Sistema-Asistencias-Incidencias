@@ -1,4 +1,6 @@
 @csrf
+<div class="card">
+    <div class="card-body">
 <div class="form-group">
     <label for="name">Nombre del Rol</label>
     <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $role->name)}}">
@@ -25,3 +27,6 @@
 @endforeach
 
 <input class="btn btn-primary" type="submit" value="Guardar">
+
+</div>
+</div>

@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class EventController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:event.index')->only('index2','index3');
+        $this->middleware('can:event.edit')->only('edit', 'update','edit2','update2','editar');
+        $this->middleware('can:event.destroy')->only('destroy','destroy2');
+        $this->middleware('can:event.create')->only('create', 'store','create2','store2');
+        $this->middleware('can:event.show')->only('show','show2');
+        $this->middleware('can:event.indexPersonal')->only('indexPersonal');
+        $this->middleware('can:event.showPersonal')->only('showPersonal');
+        $this->middleware('can:event.calendario')->only('index','indexper','mostrar','personal');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,21 +36,29 @@ class EventController extends Controller
         //En este caso no se hace como siempre que llevas los eventos
         //Ya que eso se hace con el controlador Mostrar y una linea en agenda.js
         $tipos = TipoEvento::where('general', true)->get();
-        return view("event/index", ["tipos" => $tipos]);
+        return view("event.index", ["tipos" => $tipos]);
     }
 
     public function indexper()
     {        
         //Igual que arriba, solo que trae tipos de eventos que son personales, hace falta control del usuario
         $tipos = TipoEvento::where('general', false)->get();
-        return view("event/indexper", ["tipos" => $tipos]);
+        return view("event.indexper", ["tipos" => $tipos]);
+    }
+
+    public function indexPersonal()
+    {   
+        $user = Auth::user();     
+        $events = Event::where('empleado_id', $user->id)->whereHas('tipoevento', function($q){
+            $q->where('general', false);})->paginate(10);
+            return view("event.indexpersonal",['events' => $events]);
     }
 
     public function index2()
     {        
         $events = Event::whereHas('tipoevento', function($q){
         $q->where('general', true);})->get();
-        return view("event/index2",['events' => $events]);
+        return view("event.index2",['events' => $events]);
     }
 
     /**
@@ -50,7 +69,7 @@ class EventController extends Controller
     public function create()
     {
         $tipoeventos = TipoEvento::where('general', true)->get();
-        return view("event/create",["event" => new Event(), "tipoeventos" => $tipoeventos]);
+        return view("event.create",["event" => new Event(), "tipoeventos" => $tipoeventos]);
 
     }
 
@@ -101,6 +120,12 @@ class EventController extends Controller
     public function show(Event $event)
     {
         return view("event.show", ["event" => $event]);
+
+    }
+
+    public function showPersonal(Event $event)
+    {
+        return view("event.showpersonal", ["event" => $event]);
 
     }
 
@@ -233,14 +258,14 @@ class EventController extends Controller
         // $user = Auth::user();
         $events = Event::whereHas('tipoevento', function($q){
         $q->where('general', false);})->get();
-        return view("event/index3",['events' => $events]);
+        return view("event.index3",['events' => $events]);
     }
 
     public function create2()
     {
         $tipoeventos = TipoEvento::where('general', false)->get();
         $empleados = Empleado::get();
-        return view("event/create2",["event" => new Event(), "tipoeventos" => $tipoeventos, "empleados" => $empleados]);
+        return view("event.create2",["event" => new Event(), "tipoeventos" => $tipoeventos, "empleados" => $empleados]);
 
     }
 

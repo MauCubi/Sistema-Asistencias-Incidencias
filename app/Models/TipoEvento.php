@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class TipoEvento extends Model
 {
 
-    Protected $fillable = ['nombre','general','descuento'];
+    Protected $fillable = ['nombre','general','descuento','noLaboral'];
 
 
     public function events()

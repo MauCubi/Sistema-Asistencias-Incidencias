@@ -1,5 +1,6 @@
 @csrf
-
+<div class="card">
+    <div class="card-body">
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="nombre" class="col-form-label col-form-label-sm">Nombre</label>
@@ -29,7 +30,7 @@
 </div>
 </div> --}}
 
-<div class="row">
+
     <div class="form-group col-md-3 mb-3">
         @if ($tipoevento->general == true)
             <input class="col-form-check-input" type="checkbox" name="general" id="general" checked>
@@ -54,7 +55,19 @@
             Aplica Descuento
         </label>
     </div>
+
+    <div class="form-group col-md-3 mb-3">
+        @if ($tipoevento->noLaboral == true)
+            <input class="col-form-check-input" type="checkbox" name="laboral" id="laboral" checked>
+        @else
+            <input class="col-form-check-input" type="checkbox" name="laboral" id="laboral">
+        @endif
+        <label class="col-form-check-label " for="laboral">
+            Día No Laboral
+        </label>
+    
     </div>
+    
 
 <div class="row">
 <div class="col-md-6 mb-3">
@@ -62,7 +75,8 @@
 </div>
 </div>
 
-
+</div>
+</div>
 
 {{-- <script>
     var departamento = document.getElementById("departamento_id");

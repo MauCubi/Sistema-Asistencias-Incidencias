@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class HorarioController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:horario.index')->only('index');
+        $this->middleware('can:horario.edit')->only('edit', 'update');
+        $this->middleware('can:horario.destroy')->only('destroy');
+        $this->middleware('can:horario.create')->only('create', 'store');
+        $this->middleware('can:horario.show')->only('show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -96,6 +104,14 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        //
+        if($horario->empleados->count() == 0){
+            foreach ($horario->jornadas as $jornada) {
+                $jornada->delete();
+            }            
+            $horario->delete();
+            return back()->with('status','Horario Eliminado');
+        }else{
+            return back()->with('error','No puede eliminarse el horario ya que tiene información asociada'); 
+        }
     }
 }
