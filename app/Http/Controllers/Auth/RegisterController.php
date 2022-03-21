@@ -85,7 +85,17 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]            
+        );
         $empleado = Empleado::where('email',$request['email'])->first();
+        $user = User::where('email', $request['email'])->first();
+
         if($empleado != null){
         User::create([
             'name' => $empleado->nombre.' '.$empleado->apellido,
