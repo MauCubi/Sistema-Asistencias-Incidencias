@@ -12,7 +12,7 @@
     </div>
 
     <div class="ml-auto p-2 d-flex align-items-center">
-        <a href="{{ route('incidenciahoraria.index', 6) }}">
+        <a href="{{ route('incidenciahoraria.index_personal', 6) }}">
             <button class="btn btn-info btn-circle"><i class="fa fw fa-arrow-left"></i></button>
         </a>
     </div>
@@ -37,7 +37,7 @@
                     @if ($incidenciahoraria->justificacion)
                     Si
                     @else
-                    NO
+                    No
                     @endif
                 </label>
 

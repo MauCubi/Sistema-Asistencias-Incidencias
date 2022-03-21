@@ -12,6 +12,15 @@ use App\Http\Requests\StoreHoraExtraPost;
 
 class HoraExtraController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:horaextra.index')->only('index');
+        $this->middleware('can:horaextra.edit')->only('edit', 'update');
+        $this->middleware('can:horaextra.destroy')->only('destroy');
+        $this->middleware('can:horaextra.create')->only('create', 'store');
+        $this->middleware('can:horaextra.show')->only('show');
+        $this->middleware('can:horaextra.indexPersonal')->only('indexPersonal');
+    }
     /**
      * Display a listing of the resource.
      *

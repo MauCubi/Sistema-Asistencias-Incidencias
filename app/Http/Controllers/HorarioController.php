@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class HorarioController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:horario.index')->only('index');
+        $this->middleware('can:horario.edit')->only('edit', 'update');
+        $this->middleware('can:horario.destroy')->only('destroy');
+        $this->middleware('can:horario.create')->only('create', 'store');
+        $this->middleware('can:horario.show')->only('show');
+    }
     /**
      * Display a listing of the resource.
      *

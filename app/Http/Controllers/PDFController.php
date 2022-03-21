@@ -12,18 +12,25 @@ use Illuminate\Support\Facades\Auth;
 
 class PDFController extends Controller
 {
+
+   public function __construct(){
+        $this->middleware('can:reporte.generar');
+                
+   }    
+
+
     public function seleccionarEmpleado(){
         $empleados = Empleado::get();
         return view("reporte/create",["empleados" => $empleados]);
     }
 
-
+    
 
     public function generatePDF(Request $request)
     {
         $request->validate([
                 'start' => 'required',            
-                'end' => 'after_or_equal:start',
+                'end' => 'required|after_or_equal:start',
             ]);
         
         $empleado = Empleado::where('id', $request->empleado_id)->first();

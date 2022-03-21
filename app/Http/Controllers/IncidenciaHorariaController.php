@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class IncidenciaHorariaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:incidenciahoraria.index')->only('index');
+        $this->middleware('can:incidenciahoraria.edit')->only('edit', 'update');
+        $this->middleware('can:incidenciahoraria.destroy')->only('destroy');
+        $this->middleware('can:incidenciahoraria.create')->only('create', 'store');
+        $this->middleware('can:incidenciahoraria.show')->only('show');
+        $this->middleware('can:incidenciahoraria.personal')->only('indexPersonal', 'personal');
+        $this->middleware('can:incidenciahoraria.marcarAsistencia')->only('add');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +42,18 @@ class IncidenciaHorariaController extends Controller
             case 3:
                 $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Inasistencia')->paginate(10);
                 return view("incidenciahoraria/inasistencia/index",['incidenciashorarias' => $incidenciashorarias]);
+                break;              
+            
+            default:
+                # code...
                 break;
+        }
+    }
+
+    public function indexPersonal($flag)
+    {
+        $user = Auth::user();
+        switch ($flag) {            
             case 4:
                 $incidenciashorarias = IncidenciaHoraria::orderBy('created_at','desc')->where('tipo', 'Tardanza')
                 ->where('empleado_id', $user->id )->paginate(10);

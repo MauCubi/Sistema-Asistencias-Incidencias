@@ -6,18 +6,13 @@
 
 <div class="row d-flex flex-row">
     <div class="p-2">
-        <h3 class="text-primary">{{ $event->title }}
-            <a href="{{ route('event.edit2',$event->id) }}">
-                <button class="btn btn-warning btn-circle btn-sm">
-                    <i class="fa fw fa-edit"></i>
-                </button>
-            </a>
+        <h3 class="text-primary">{{ $event->title }}            
         </h3>
 
     </div>
 
     <div class="ml-auto p-2 d-flex align-items-center">
-        <a href="{{ route('event.index3') }}">
+        <a href="{{ route('event.indexpersonal') }}">
             <button class="btn btn-info btn-circle"><i class="fa fw fa-arrow-left"></i></button>
         </a>
     </div>
@@ -32,12 +27,7 @@
                     <strong>Titulo:</strong>
                     {{ $event->title }}
                 </label>
-                <br>
-                <label class="control-label">
-                    <strong>Empleado:</strong>
-                    {{ $event->empleado->nombre }} {{ $event->empleado->apellido }}
-                </label>
-                <br>
+                <br>                
                 <label class="control-label">
                     <strong>Tipo de Incidencia:</strong>
                     {{ $event->tipoevento->nombre }}

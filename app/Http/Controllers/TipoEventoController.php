@@ -9,6 +9,13 @@ use App\Http\Requests\StoreTipoEventoPost;
 
 class TipoEventoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:tipoevento.index')->only('index');
+        $this->middleware('can:tipoevento.edit')->only('edit', 'update');
+        $this->middleware('can:tipoevento.destroy')->only('destroy');
+        $this->middleware('can:tipoevento.create')->only('create', 'store');
+        $this->middleware('can:tipoevento.show')->only('show');
+    }
     /**
      * Display a listing of the resource.
      *

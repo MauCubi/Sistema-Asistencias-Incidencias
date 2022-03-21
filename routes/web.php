@@ -17,6 +17,7 @@ use App\Http\Controllers\HoraExtraController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\IncidenciaHorariaController;
 
 
@@ -34,6 +35,9 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('partials.admin');
 });
+
+Route::post('/registrar', [RegisterController::class, 'register'])->name('register.registrar');
+
 
 //Inasistencia Automatica
 Route::get('/inasistencia/add', [IncidenciaHorariaController::class, 'add'])->name('inasistencia.add');
@@ -76,6 +80,8 @@ Route::get('/event', [EventController::class, 'index'])->name('event.index');
 Route::get('/events', [EventController::class, 'index2'])->name('event.index2');
 Route::get('/event/{event}', [EventController::class, 'show'])->name('event.show');
 Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
+Route::get('/eventpersonal', [EventController::class, 'indexPersonal'])->name('event.indexpersonal');
+Route::get('/eventpersonal/{event}', [EventController::class, 'showPersonal'])->name('event.showpersonal');
 
 //Rutas de incidencias personales
 Route::delete('/event2/{event}', [EventController::class, 'destroy2'])->name('event.destroy2');
@@ -102,6 +108,8 @@ Route::put('/jornada/update2/{jornada}', [JornadaController::class, 'update2'])-
 
 
 //IncidenciaHoraria-tardanza
+Route::get('/incidencia-horaria-personal/index/{flag}', [IncidenciaHorariaController::class, 'indexPersonal'])->name('incidenciahoraria.index_personal');
+
 Route::get('/incidencia-horaria/index/{flag}', [IncidenciaHorariaController::class, 'index'])->name('incidenciahoraria.index');
 Route::get('/incidencia-horaria/create/{flag}', [IncidenciaHorariaController::class, 'create'])->name('incidenciahoraria.create');
 Route::delete('/incidencia-horaria/{incidenciahoraria}', [IncidenciaHorariaController::class, 'destroy'])->name('incidenciahoraria.destroy');
