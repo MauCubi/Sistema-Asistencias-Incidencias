@@ -8,7 +8,9 @@
         <h3 class="text-primary">Mis Horas Extras</h3>
     </div>
 </div>
-
+<p class="alert alert-info d-none d-sm-block animated fadeIn" >
+    Desde aquí, podrá <strong>ver todas sus horas extras registradas</strong>.
+</p>
 {{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
 
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
@@ -31,7 +33,7 @@
     </thead>
     <tbody>
         @if($horaextras->count() == 0)
-            <td style="background-color:gainsboro" colspan="5">No hay horas extras registradas</td>
+            <td style="background-color:gainsboro" colspan="4">No hay horas extras registradas</td>
         @else
        @foreach ( $horaextras as $horaextra)
        <tr>

@@ -7,11 +7,10 @@
         <h3 class="text-primary">Mis Retiros Tempranos</h3>
     </div>
 </div>
-
+<p class="alert alert-info d-none d-sm-block animated fadeIn" >
+    Desde aquí, podrá <strong>ver todos sus retiros tempranos registrados</strong>.
+</p>
 {{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
-<hr>
-
-
 
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">
     <thead class="bg-dark text-white">

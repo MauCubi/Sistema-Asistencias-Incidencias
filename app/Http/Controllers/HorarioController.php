@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 use App\Models\CategoriaHorario;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreHorarioPost;
 use Illuminate\Support\Facades\Redirect;
 
@@ -33,7 +34,7 @@ class HorarioController extends Controller
     {
         $user = Auth::user();
         $horarios = Horario::orderBy('created_at','desc')->paginate(10);
-        return view("horario/index",['horarios' => $horarios]);
+        return view("horario.index",['horarios' => $horarios]);
     }
 
     /**

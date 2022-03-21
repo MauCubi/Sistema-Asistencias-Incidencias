@@ -4,7 +4,7 @@
 
 <div class="row d-flex flex-row">
     <div class="p-2">
-        <h3 class="text-primary">Mis asistencias</h3>
+        <h3 class="text-primary">Mis Asistencias</h3>
     </div>
 </div>
 
@@ -18,6 +18,9 @@
     <thead class="bg-dark text-white">
         <tr>
             <td>
+                id
+            </td>
+            <td>
                 Fecha
             </td>
             <td>
@@ -26,14 +29,15 @@
             <td>
                 Salida
             </td>            
-            <td>
-                
-            </td>
+            
         </tr>
     </thead>
     <tbody>
        @forelse ($asistencias as $a)
        <tr>
+            <td>
+            {{ $a->id }}
+            </td>
             <td>
                 {{ date_format($a->start, " d/m/Y") }}
             </td>
@@ -43,11 +47,7 @@
             <td>
                 {{ date_format($a->end, " H:i:s") }}
             </td>
-            <td>
-                <div class="d-flex justify-content-center">
-                <a href="{{ route('asistencia.show', $a->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
-                </div>
-            </td>
+            
         </tr>
         @empty
         <tr>

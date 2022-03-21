@@ -164,7 +164,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'event.calendario',
                             'description' => 'Ver calendario'])->assignRole($role1, $role2);
 
-        //Incidencias Horarias
+
+                            //Incidencias Horarias
         Permission::create(['name' => 'incidenciahoraria.index',
                             'description' => 'Ver listado de incidencias horarias'])->assignRole($role1);
         Permission::create(['name' => 'incidenciahoraria.show',
@@ -177,7 +178,24 @@ class RoleSeeder extends Seeder
                             'description' => 'Dar de baja una incidencia horaria'])->assignRole($role1);        
         Permission::create(['name' => 'incidenciahoraria.personal',
                             'description' => 'Ver informacion de incidencias horarias personales'])->assignRole($role1, $role2);
-        Permission::create(['name' => 'incidenciahoraria.marcarAsistencia',
+        // Permission::create(['name' => 'incidenciahoraria.marcarAsistencia',
+        //                     'description' => 'Marcar Incidencia'])->assignRole($role1, $role2);
+
+        
+        //Asistencias
+        Permission::create(['name' => 'asistencia.index',
+                            'description' => 'Ver listado de asistencias'])->assignRole($role1);
+        Permission::create(['name' => 'asistencia.show',
+                            'description' => 'Ver informacion de una asistencias'])->assignRole($role1);
+        Permission::create(['name' => 'asistencia.create',
+                            'description' => 'Dar de alta una asistencias'])->assignRole($role1);
+        Permission::create(['name' => 'asistencia.edit',
+                            'description' => 'Editar informacion de una asistencias'])->assignRole($role1);
+        Permission::create(['name' => 'asistencia.destroy',
+                            'description' => 'Dar de baja una asistencias'])->assignRole($role1);        
+        Permission::create(['name' => 'asistencia.personal',
+                            'description' => 'Ver informacion de asistencias personales'])->assignRole($role1, $role2);
+        Permission::create(['name' => 'asistencia.marcarAsistencia',
                             'description' => 'Marcar asistencia'])->assignRole($role1, $role2);
 
         //PDF
