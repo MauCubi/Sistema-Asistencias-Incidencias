@@ -52,6 +52,9 @@ Route::get('/jornada/editmodal', [JornadaController::class, 'editModal'])->name(
 Route::post('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf.generar');
 Route::get('/reporte/seleccionar-empleado', [PDFController::class, 'seleccionarEmpleado'])->name('pdf.seleccionar');
 
+//Mis horarios personales
+Route::get('/horario/mis_horarios',[HorarioController::class,'indexPersonal'])->name('horario.index_personal');
+
 //Rutas Resource
 Route::resource('/empresa', EmpresaController::class);
 Route::resource('/area', AreaController::class);
@@ -97,7 +100,7 @@ Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('eve
 
 
 //Horarios
-Route::get('/horarios-personal', [HorarioController::class, 'indexPersonal'])->name('horario.index_personal');
+//Route::get('/horarios-personal', [HorarioController::class, 'indexPersonal'])->name('horario.index_personal');
 
 
 //Jornada

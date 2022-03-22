@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Horario;
+use App\Models\Jornada;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 use App\Models\CategoriaHorario;
 use App\Http\Requests\StoreHorarioPost;
@@ -31,9 +33,62 @@ class HorarioController extends Controller
 
     public function indexPersonal()
     {
-        $user = Auth::user();
-        $horarios = Horario::orderBy('created_at','desc')->paginate(10);
-        return view("horario/index",['horarios' => $horarios]);
+        $user = auth()->user();
+        $empleado = Empleado::find($user->empleado_id);
+        $horario = $empleado->horario()->first();
+        $jornadas = Jornada::where('horario_id',$horario->id)->get();
+        
+        //Obtengo todos los horarios del empleado
+        $lunes = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isLunes){
+                $lunes->push($jornada);
+            }
+        }
+
+        $martes = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isMartes){
+                $martes->push($jornada);
+            }
+        }
+
+        $miercoles = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isMiercoles){
+                $miercoles->push($jornada);
+            }
+        }
+
+        $jueves = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isJueves){
+                $jueves->push($jornada);
+            }
+        }
+
+        $viernes = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isViernes){
+                $viernes->push($jornada);
+            }
+        }
+
+        $sabado = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isSabado){
+                $sabado->push($jornada);
+            }
+        }
+
+        $domingo = collect([]);
+        foreach ($jornadas as $jornada){
+            if($jornada->isDomingo){
+                $domingo->push($jornada);
+            }
+        }
+        //return view("horario/listaHorarioPersonal",['horario' => $horario, 'jornadas' => $jornadas]);
+        return view("horario/listaHorarioPersonal",['jornadas'=>$jornadas, 'lunes' => $lunes, 'martes' => $martes, 'miercoles' => $miercoles, 'jueves' => $jueves,'viernes' => $viernes,'sabado' => $sabado,'domingo' => $domingo ]);
     }
 
     /**

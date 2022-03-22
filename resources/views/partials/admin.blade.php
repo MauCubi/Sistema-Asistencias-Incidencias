@@ -85,6 +85,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                         <a class="collapse-item" href="{{ route('asistencia.marcar') }}">Marcar Entrada/Salida</a>
+                        <a class="collapse-item" href="{{ route('horario.index_personal')}}">Mis Horarios</a>   
                         <a class="collapse-item" href="{{ route('asistencia.index')}}">Mis Asistencias</a>                        
                         
                         <a class="collapse-item" href="{{ route('inasistencia.add') }}">Botonsito inasistencia</a>                        
