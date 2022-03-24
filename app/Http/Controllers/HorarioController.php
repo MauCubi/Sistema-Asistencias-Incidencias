@@ -37,57 +37,16 @@ class HorarioController extends Controller
         $empleado = Empleado::find($user->empleado_id);
         $horario = $empleado->horario()->first();
         $jornadas = Jornada::where('horario_id',$horario->id)->get();
+
+        // Obtengo todos los horarios del empleado
+        $lunes = Jornada::where('horario_id', $horario->id)->where('isLunes',1)->get();
+        $martes = Jornada::where('horario_id', $horario->id)->where('isMartes',1)->get();
+        $miercoles = Jornada::where('horario_id', $horario->id)->where('isMiercoles',1)->get();
+        $jueves = Jornada::where('horario_id', $horario->id)->where('isJueves',1)->get();
+        $viernes = Jornada::where('horario_id', $horario->id)->where('isViernes',1)->get();
+        $sabado = Jornada::where('horario_id', $horario->id)->where('isSabado',1)->get();
+        $domingo = Jornada::where('horario_id', $horario->id)->where('isDomingo',1)->get();
         
-        //Obtengo todos los horarios del empleado
-        $lunes = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isLunes){
-                $lunes->push($jornada);
-            }
-        }
-
-        $martes = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isMartes){
-                $martes->push($jornada);
-            }
-        }
-
-        $miercoles = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isMiercoles){
-                $miercoles->push($jornada);
-            }
-        }
-
-        $jueves = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isJueves){
-                $jueves->push($jornada);
-            }
-        }
-
-        $viernes = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isViernes){
-                $viernes->push($jornada);
-            }
-        }
-
-        $sabado = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isSabado){
-                $sabado->push($jornada);
-            }
-        }
-
-        $domingo = collect([]);
-        foreach ($jornadas as $jornada){
-            if($jornada->isDomingo){
-                $domingo->push($jornada);
-            }
-        }
-        //return view("horario/listaHorarioPersonal",['horario' => $horario, 'jornadas' => $jornadas]);
         return view("horario/listaHorarioPersonal",['jornadas'=>$jornadas, 'lunes' => $lunes, 'martes' => $martes, 'miercoles' => $miercoles, 'jueves' => $jueves,'viernes' => $viernes,'sabado' => $sabado,'domingo' => $domingo ]);
     }
 
