@@ -7,10 +7,11 @@
         <h3 class="text-primary">Mis Inasistencias</h3>
     </div>
 </div>
-
 {{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
-<hr>
 
+<p class="alert alert-info d-none d-sm-block animated fadeIn" >
+    Desde aquí, podrá <strong>ver todas sus inasistencias registradas</strong>.
+</p>
 
 
 <table class="table table-bordered table-hover table-responsive-sm shadow table-sm">

@@ -19,8 +19,8 @@ class IncidenciaHorariaController extends Controller
         $this->middleware('can:incidenciahoraria.destroy')->only('destroy');
         $this->middleware('can:incidenciahoraria.create')->only('create', 'store');
         $this->middleware('can:incidenciahoraria.show')->only('show');
-        $this->middleware('can:incidenciahoraria.personal')->only('indexPersonal', 'personal');
-        $this->middleware('can:incidenciahoraria.marcarAsistencia')->only('add');
+        $this->middleware('can:incidenciahoraria.personal')->only('indexPersonal', 'personal', 'add');
+        //$this->middleware('can:incidenciahoraria.marcarAsistencia')->only('add');
     }
     /**
      * Display a listing of the resource.

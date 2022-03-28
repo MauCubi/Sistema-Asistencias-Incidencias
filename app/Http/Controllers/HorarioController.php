@@ -7,6 +7,7 @@ use App\Models\Jornada;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 use App\Models\CategoriaHorario;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreHorarioPost;
 use Illuminate\Support\Facades\Redirect;
 

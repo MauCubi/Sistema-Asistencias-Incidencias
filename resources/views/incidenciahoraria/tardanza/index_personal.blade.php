@@ -7,9 +7,11 @@
         <h3 class="text-primary">Mis Tardanzas</h3>
     </div>
 </div>
-
+<p class="alert alert-info d-none d-sm-block animated fadeIn" >
+    Desde aquí, podrá <strong>ver todas sus tardanzas registradas</strong>.
+</p>
 {{-- <a class="btn btn-success mt-3 mb-3" href="{{ route('empresa.create') }}">Crear</a> --}}
-<hr>
+
 
 
 

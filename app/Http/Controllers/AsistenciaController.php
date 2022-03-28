@@ -14,6 +14,16 @@ use App\Models\Empleado;
 
 class AsistenciaController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:asistencia.index')->only('indexAll');
+        $this->middleware('can:asistencia.edit')->only('edit', 'update');
+        $this->middleware('can:asistencia.destroy')->only('destroy');
+        $this->middleware('can:asistencia.create')->only('create', 'store');
+        $this->middleware('can:asistencia.show')->only('show');
+        $this->middleware('can:asistencia.personal')->only('index', 'marcar', 'add');
+        //$this->middleware('can:incidenciahoraria.marcarAsistencia')->only('add');
+    }
     /**
      * Este index muestra las asistencias de la PERSONA logueada.
      *
