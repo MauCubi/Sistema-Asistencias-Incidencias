@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 class RegisterController extends Controller
 {
     /*
@@ -102,7 +104,7 @@ class RegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'empleado_id' => $empleado->id,
-        ]);
+        ])->assignRole('Empleado');
             return Redirect::to("login")->with('status','Te registraste Correctamente');
         }else{
             return Redirect::to("register")->with('status','El email ingresado no corresponde a ningun empleado');

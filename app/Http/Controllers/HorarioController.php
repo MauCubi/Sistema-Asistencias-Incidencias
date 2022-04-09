@@ -71,8 +71,10 @@ class HorarioController extends Controller
      */
     public function store(StoreHorarioPost $request)
     {
-        Horario::create($request->validated());
-        return Redirect::to("horario")->with('status','Horario Creado Exitosamente');    
+        $horario = Horario::create($request->validated());
+        //return Redirect::to("horario")->with('status','Horario Creado Exitosamente');
+        return redirect()->route('horario.show', $horario);    
+
     }
 
     /**

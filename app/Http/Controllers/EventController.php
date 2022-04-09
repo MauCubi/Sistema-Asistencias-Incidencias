@@ -57,7 +57,7 @@ class EventController extends Controller
     public function index2()
     {        
         $events = Event::whereHas('tipoevento', function($q){
-        $q->where('general', true);})->get();
+        $q->where('general', true);})->paginate(10);
         return view("event.index2",['events' => $events]);
     }
 

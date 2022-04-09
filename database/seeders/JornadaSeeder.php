@@ -19,6 +19,10 @@ class JornadaSeeder extends Seeder
             'salida' => '20:00',
             'periodo' => '0',
             'horario_id' => '1',
+            'isLunes' => true,
+            'isMiercoles' => true,
+            'isViernes' => true,
+            'isSabado' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -29,6 +33,24 @@ class JornadaSeeder extends Seeder
             'salida' => '12:00',
             'periodo' => '1',
             'horario_id' => '2',
+            'isLunes' => true,
+            'isMartes' => true,
+            'isJueves' => true,
+            'created_at'   => date("Y-m-d H:i:s"),
+            'updated_at'   => date("Y-m-d H:i:s"),
+ 
+        ]);
+
+        DB::table('jornadas')->insert([
+            'entrada' => '14:00',
+            'salida' => '21:00',
+            'periodo' => '1',
+            'horario_id' => '3',
+            'isLunes' => true,
+            'isMartes' => true,
+            'isMiercoles' => true,
+            'isViernes' => true,
+            'isJueves' => true,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
