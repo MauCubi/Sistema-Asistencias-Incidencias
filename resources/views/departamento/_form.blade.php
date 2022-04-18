@@ -4,7 +4,7 @@
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="nombre">Nombre</label>
-    <input class="form-control form-control-sm" type="text" name="nombre" id="nombre" value="{{ old('nombre', $departamento->nombre)}}">
+    <input class="form-control form-control-sm" type="text" name="nombre" id="nombre" value="{{ old('nombre', $departamento->nombre)}}" required autofocus>
 
     @error('nombre')
     <small class="text-danger">{{ $message }}</small>

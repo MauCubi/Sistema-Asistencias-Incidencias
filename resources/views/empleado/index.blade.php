@@ -48,8 +48,13 @@
         @if($empleados->count() == 0)
             <td style="background-color:gainsboro" colspan="5">No hay empleados registrados</td>
         @else
-       @foreach ( $empleados as $empleado)
-       <tr>
+        @foreach ( $empleados as $empleado)
+        @if ($empleado->alta == true)
+            <tr>
+        @else
+            <tr style="background-color:gainsboro">
+        @endif
+       
             <td>
                 {{ $empleado->id }}
             </td>
@@ -78,7 +83,11 @@
                 <a href="{{ route('empleado.show', $empleado->id)}}" class="btn btn-primary mr-2 btn-sm"><i class="fa fw fa-info"></i> Ver</a>
                 <a href="{{ route('empleado.edit', $empleado->id)}}" class="btn btn-warning mr-2 btn-sm"><i class="fa fw fa-edit"></i> Editar</a>
                 
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->id }}"><i class="fas fa-user-slash"></i> Baja</button>
+                @if ($empleado->alta)
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $empleado->id }}"><i class="fas fa-user-slash"></i> Baja</button>
+                @else
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#altaModal" data-id="{{ $empleado->id }}"><i class="fas fa-user"></i> Alta</button>
+                @endif
                 </div>
             </td>
         </tr>
@@ -114,6 +123,32 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="altaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Seguro que desea dar de alta el empleado seleccionado?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form  id="formAlta" action="{{ route('empleado.alta',0) }}" method="POST" data-action="{{ route('empleado.alta',0) }}">
+                    @method('PUT')
+                    @csrf
+                    <button type="submit" class="btn btn-success"><i class="fas fa-user"></i> Dar de Alta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     window.onload = function() {
     $('#deleteModal').on('show.bs.modal', function (event) {  
@@ -130,8 +165,30 @@
   
   var modal = $(this)
   modal.find('.modal-title').text('Vas a dar de baja el empleado con el id: ' + id)
+
+})
+
+
+$('#altaModal').on('show.bs.modal', function (event) {  
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  action2 = $('#formAlta').attr('data-action').slice(0,-1)
+  action2 += id
+  console.log(action2)
+
+  $('#formAlta').attr('action', action2)  
+  
+  var modal2 = $(this)
+  modal2.find('.modal-title').text('Vas a dar de alta el empleado con el id: ' + id)
 })
 }
+
+// window.onload = function() {
+    
+// }
+
 </script>
 
 @endsection

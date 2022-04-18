@@ -15,7 +15,7 @@
 
 {{-- @include('partials.validation-error') --}}
 
-<form action="{{  route("incidenciahoraria.store")  }}" method="post" class="was-validated">
+<form action="{{  route("incidenciahoraria.store")  }}" method="post">
 @include('incidenciahoraria.inasistencia._form')
 </form>
 

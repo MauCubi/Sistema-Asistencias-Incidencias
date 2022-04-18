@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Jimena Fleitas',
-            'email' => 'jimefle@gmail.com',
+            'email' => 'jfleitas@gmail.com',
             'password' => bcrypt('12345678'),
             'empleado_id' => 4
         ])->assignRole('Empleado');

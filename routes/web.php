@@ -42,6 +42,8 @@ Route::post('/registrar', [RegisterController::class, 'register'])->name('regist
 //Inasistencia Automatica
 Route::get('/inasistencia/add', [IncidenciaHorariaController::class, 'add'])->name('inasistencia.add');
 
+//Empleados
+Route::put('/empleadoalta/{empleado}', [EmpleadoController::class, 'alta'])->name('empleado.alta');
 Route::get('/empleado/createfind', [EmpleadoController::class, 'createfind'])->name('empleado.createfind');
 //Asistencias
 Route::get('/asistencia/add', [AsistenciaController::class, 'add'])->name('asistencia.add');
@@ -94,6 +96,8 @@ Route::put('/event2/{event}', [EventController::class, 'update2'])->name('event.
 Route::get('/events2', [EventController::class, 'index3'])->name('event.index3');
 Route::get('/event2/{event}', [EventController::class, 'show2'])->name('event.show2');
 Route::post('/event/editar/{id}', [EventController::class, 'editar'])->name('event.editar');
+Route::get('/eventsall', [EventController::class, 'allIndex'])->name('event.all_index');
+Route::get('/eventsall/{event}', [EventController::class, 'showAll'])->name('event.show_all');
 
 
 //Route::get('/asistencia/marcar/{}', [AsistenciaController::class, 'marcar'])->name('asistencia.marcar');

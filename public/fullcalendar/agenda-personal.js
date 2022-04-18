@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         initialView: "dayGridMonth",
         locale: "es",
         editable: true,
-
+        //allDay : true,
         displayEventTime:false,
         headerToolbar: {
             left: "prev,next today",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
 
         //aspectRatio: 2,
-
+        //nextDayThreshold: '09:00:00',
         events: "http://asistencias.test/event/personal",        
 
   

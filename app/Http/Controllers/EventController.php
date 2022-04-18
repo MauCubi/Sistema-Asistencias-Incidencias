@@ -21,7 +21,7 @@ class EventController extends Controller
         $this->middleware('can:event.destroy')->only('destroy','destroy2');
         $this->middleware('can:event.create')->only('create', 'store','create2','store2');
         $this->middleware('can:event.show')->only('show','show2');
-        $this->middleware('can:event.indexPersonal')->only('indexPersonal');
+        $this->middleware('can:event.indexPersonal')->only('indexPersonal', 'allIndex');
         $this->middleware('can:event.showPersonal')->only('showPersonal');
         $this->middleware('can:event.calendario')->only('index','indexper','mostrar','personal');
     }
@@ -90,10 +90,13 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->tipoevento_id = $request->tipoevento_id;
         $event->start = $request->start;
+        $fechin = Carbon::parse($request->end);
+        $fechin->setHour(23);
         if ($request->end == null) {
             $event->end = $request->start;
         }else{
-            $event->end = $request->end;
+            //$event->end = $request->end;
+            $event->end = $fechin;
         }
         
         // if ($event->start->gt($event->end)) {
@@ -280,10 +283,13 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->tipoevento_id = $request->tipoevento_id;
         $event->start = $request->start;
+        $fechin = Carbon::parse($request->end);
+        $fechin->setHour(23);
         if ($request->end == null) {
             $event->end = $request->start;
         }else{
-            $event->end = $request->end;
+            //$event->end = $request->end;
+            $event->end = $fechin;
         }
 
         $event->empleado_id = $request->empleado_id;
@@ -320,6 +326,18 @@ class EventController extends Controller
         //Eliminar evento  
         $event->delete();
         return back()->with('status','Incidencia Eliminada');
+
+    }
+
+    public function allIndex(){
+        $events = Event::whereHas('tipoevento', function($q){
+            $q->where('general', true);})->paginate(10);
+            return view("event.index_all",['events' => $events]);
+    }
+
+    public function showAll(Event $event)
+    {
+        return view("event.show_all", ["event" => $event]);
 
     }
 

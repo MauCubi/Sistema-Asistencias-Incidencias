@@ -58,7 +58,7 @@
             <td>
                 {{ $incidenciahoraria->fecha }}
             </td>
-            <td>
+            <td style="text-align: center">
                 @if ($incidenciahoraria->justificacion)
                     <i class="fas fa-check"></i>
                 @else

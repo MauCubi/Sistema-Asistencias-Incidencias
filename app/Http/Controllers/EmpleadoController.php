@@ -26,7 +26,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::orderBy('created_at','desc')->paginate(10);
+        $empleados = Empleado::orderBy('alta','desc')->paginate(10);
         return view("empleado.index",['empleados' => $empleados]);
     }
 
@@ -115,6 +115,13 @@ class EmpleadoController extends Controller
         $data = Puesto::select('id', 'nombre')->where('departamento_id', $request->id)->get();
 
         return response()->json($data);
+    }
+
+    public function alta(Empleado $empleado)
+    {
+        $empleado->alta = true;
+        $empleado->save();
+        return back()->with('status','Empleado Dado de Alta');
     }
 
 

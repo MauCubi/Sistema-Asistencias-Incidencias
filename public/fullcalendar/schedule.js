@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         locale: "es",
-
+        //allDay : true,
         headerToolbar: {
             left: "prev,next today",
             center: "title",
             right: "dayGridMonth, timeGridWeek, listWeek"
         },
-
+        //nextDayThreshold: '09:00:00',
         events: "http://asistencias.test/event/mostrar",
 
         aspectRatio: 2,

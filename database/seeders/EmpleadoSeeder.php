@@ -51,7 +51,7 @@ class EmpleadoSeeder extends Seeder
             'dni' => '39000002',
             'direccion' => '9 de julio',
             'telefono' => '3764232344',
-            'email' => 'julgar@gmail.com',
+            'email' => 'jgarcia@gmail.com',
             'puesto_id' => 6,
             'horario_id' => 2,
             'alta' => true,
@@ -66,7 +66,7 @@ class EmpleadoSeeder extends Seeder
             'dni' => '39000003',
             'direccion' => '9 de julio',
             'telefono' => '3764232344',
-            'email' => 'jimefle@gmail.com',
+            'email' => 'jfleitas@gmail.com',
             'puesto_id' => 4,
             'horario_id' => 2,
             'alta' => true,
@@ -76,15 +76,90 @@ class EmpleadoSeeder extends Seeder
         ]);
 
         DB::table('empleados')->insert([
-            'nombre' => 'Rubén',
+            'nombre' => 'Nelson',
             'apellido' => 'Ojeda',
             'dni' => '39000004',
             'direccion' => '9 de julio',
             'telefono' => '3764232344',
-            'email' => 'rubenojeda@gmail.com',
-            'puesto_id' => 6,
+            'email' => 'nojeda@gmail.com',
+            'puesto_id' => 12,
             'horario_id' => 1,
-            'alta' => false,
+            'alta' => true,
+            'altafip' => Carbon::parse('2021-11-17'),
+            'created_at' => Carbon::parse('2021-11-17'),
+ 
+        ]);
+
+        DB::table('empleados')->insert([
+            'nombre' => 'Jonathan',
+            'apellido' => 'Brittan',
+            'dni' => '39000005',
+            'direccion' => '9 de julio',
+            'telefono' => '3764232345',
+            'email' => 'jbrittan@gmail.com',
+            'puesto_id' => 8,
+            'horario_id' => 1,
+            'alta' => true,
+            'altafip' => Carbon::parse('2021-11-17'),
+            'created_at' => Carbon::parse('2021-11-17'),
+ 
+        ]);
+
+        DB::table('empleados')->insert([
+            'nombre' => 'Cristal',
+            'apellido' => 'Miño',
+            'dni' => '39000006',
+            'direccion' => '9 de julio',
+            'telefono' => '3764232346',
+            'email' => 'cmiño@gmail.com',
+            'puesto_id' => 9,
+            'horario_id' => 3,
+            'alta' => true,
+            'altafip' => Carbon::parse('2021-11-17'),
+            'created_at' => Carbon::parse('2021-11-17'),
+ 
+        ]);
+
+        DB::table('empleados')->insert([
+            'nombre' => 'Fanny',
+            'apellido' => 'Cuello',
+            'dni' => '39000007',
+            'direccion' => '9 de julio',
+            'telefono' => '3764232347',
+            'email' => 'fcuello@gmail.com',
+            'puesto_id' => 15,
+            'horario_id' => 3,
+            'alta' => true,
+            'altafip' => Carbon::parse('2021-11-17'),
+            'created_at' => Carbon::parse('2021-11-17'),
+ 
+        ]);
+
+        DB::table('empleados')->insert([
+            'nombre' => 'Guillermo',
+            'apellido' => 'Rotchen',
+            'dni' => '39000008',
+            'direccion' => '9 de julio',
+            'telefono' => '3764232348',
+            'email' => 'grotchen@gmail.com',
+            'puesto_id' => 11,
+            'horario_id' => 2,
+            'alta' => true,
+            'altafip' => Carbon::parse('2021-11-17'),
+            'created_at' => Carbon::parse('2021-11-17'),
+ 
+        ]);
+
+        DB::table('empleados')->insert([
+            'nombre' => 'Ruben',
+            'apellido' => 'Krauchuk',
+            'dni' => '39000009',
+            'direccion' => '9 de julio',
+            'telefono' => '3764232349',
+            'email' => 'rkrauchuk@gmail.com',
+            'puesto_id' => 10,
+            'horario_id' => 2,
+            'alta' => true,
             'altafip' => Carbon::parse('2021-11-17'),
             'created_at' => Carbon::parse('2021-11-17'),
  

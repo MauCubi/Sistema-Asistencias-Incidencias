@@ -31,7 +31,7 @@
         <label for="end" class="col-form-label col-form-label-sm">Termina</label>
 
         
-        <input class="form-control form-control-sm" type="date" name="end" id="end" value="{{ old('end')}}">
+        <input class="form-control form-control-sm" type="date" name="end" id="end" value="{{ old('end')}}" required autofocus>
           
     
         @error('end')

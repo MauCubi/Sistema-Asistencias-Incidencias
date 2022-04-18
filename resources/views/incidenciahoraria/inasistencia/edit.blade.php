@@ -14,7 +14,7 @@
 </div>
 {{-- @include('partials.validation-error') --}}
 
-<form action="{{  route("incidenciahoraria.update", $incidenciahoraria)  }}" method="post" class="was-validated">
+<form action="{{  route("incidenciahoraria.update", $incidenciahoraria)  }}" method="post">
     @method('PUT')
     @include('incidenciahoraria.inasistencia._form')
 </form>
