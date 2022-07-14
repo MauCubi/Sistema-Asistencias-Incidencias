@@ -37,9 +37,23 @@ class HomeController extends Controller
         })->whereBetween('start', [Carbon::today(), $week2])->get();
         //$eventos = Event::whereBetween('start', [Carbon::today(), $week2])->get();
 
-        $feriados = Event::whereHas('tipoevento', function ($query) {
+        # ACA FILTRAR LOS PERSONALES
+        $feriados1 = Event::whereHas('tipoevento', function ($query) {
             return $query->where('noLaboral', true);
+        })->whereHas('tipoevento', function ($query) {
+            return $query->where('general', true);
         })->whereBetween('start', [Carbon::today(), $week2])->get();
+        
+        $feriados2 = Event::whereHas('tipoevento', function ($query) {
+            return $query->where('noLaboral', true);
+        })->whereHas('tipoevento', function ($query) {
+            return $query->where('general', false);
+        })->whereBetween('start', [Carbon::today(), $week2])
+        ->where('empleado_id', $user->empleado_id)
+        ->get();
+        #dd($feriados);
+
+        $feriados = $feriados1->merge($feriados2);
 
         $personales = Event::whereHas('tipoevento', function ($query) {
             return $query->where('general', false);

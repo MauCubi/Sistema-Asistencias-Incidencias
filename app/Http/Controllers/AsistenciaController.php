@@ -204,7 +204,13 @@ class AsistenciaController extends Controller
 
     public function marcar()
     {
-        $asistencia = Asistencia::where('verify', true)->first();
+        # ACA ARREGLAR
+        $user = Auth::user();
+        $asistencia = Asistencia::where('verify', true)->where('empleado_id', $user->empleado_id)->first();
+
+        #$event = Event::whereHas('tipoevento', function($q){
+        #    $q->where('general', false);})->where('empleado_id', $id)->get();
+
 
         if ($asistencia == null) {
             return view("asistencia.marcar");
@@ -216,11 +222,11 @@ class AsistenciaController extends Controller
 
     public function add()
     {
-        
-        $asistencia = Asistencia::where('verify', true)->first();
+        $user = Auth::user();
+        $asistencia = Asistencia::where('verify', true)->where('empleado_id', $user->empleado_id)->first();
         $now = Carbon::now('GMT-3');
         $nowtitle = Carbon::now('GMT-3')->format('d-m-Y');
-        $user = Auth::user();
+        
         $horita = Carbon::now('GMT-3')->format('H:i:s');
 
         switch ($now->englishDayOfWeek) {
