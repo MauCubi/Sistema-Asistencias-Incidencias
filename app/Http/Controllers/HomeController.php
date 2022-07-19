@@ -52,7 +52,7 @@ class HomeController extends Controller
         ->where('empleado_id', $user->empleado_id)
         ->get();
         #dd($feriados);
-
+        # Comentario
         $feriados = $feriados1->merge($feriados2);
 
         $personales = Event::whereHas('tipoevento', function ($query) {
