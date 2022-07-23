@@ -24,7 +24,7 @@
                 Id
             </td>
             <td>
-                Nombre
+                Razón Social
             </td>          
             <td>
                 <div class="d-flex justify-content-center">

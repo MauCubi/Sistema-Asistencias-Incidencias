@@ -15,8 +15,11 @@ class EmpresaSeeder extends Seeder
     public function run()
     {
         DB::table('empresas')->insert([
-            'nombre' => 'EmpresaTest',
- 
+            'cuit'          => '30123456789',
+            'nombre'        => 'EmpresaTest',
+            'contacto'      => 'contact.empresatest@gmail.com',
+            'created_at'  	=> date("Y-m-d H:i:s"),
+        	'updated_at'    => date("Y-m-d H:i:s"),
         ]);
     }
 }
