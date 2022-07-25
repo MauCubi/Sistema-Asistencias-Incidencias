@@ -30,7 +30,7 @@
           <input type="text" maxlength="100" name="contacto" id="contacto" class="form-control" value="{{ old('contacto', $empresa->contacto)}}">
         </div>
 
-    <input class="btn btn-primary" type="submit" value="Guardar">
+    <input class="btn btn-primary" type="submit" id="empresa_boton" value="Guardar">
 
 </div>
 </div>

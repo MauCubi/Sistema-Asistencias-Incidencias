@@ -24,9 +24,9 @@ class StoreEmpresaPost extends FormRequest
     public function rules()
     {
         return [
-            'cuit'      => 'required',
+            'cuit'      => 'required|min:11',
             'nombre'    => 'required',
-            'contacto'  => 'string:100'
+            'contacto'  => 'nullable|string:100'
         ];
     }
 }
