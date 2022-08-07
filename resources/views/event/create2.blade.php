@@ -15,6 +15,7 @@
 </div>
 
 @include('partials.validation-error')
+@include('partials.session-error')
 
 <form action="{{  route("event.store2")  }}" method="post">
 @include('event._form2')

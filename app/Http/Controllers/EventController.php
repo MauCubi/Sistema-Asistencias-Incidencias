@@ -90,6 +90,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->tipoevento_id = $request->tipoevento_id;
         $event->start = $request->start;
+        $fechinStart = Carbon::parse($request->start);
         $fechin = Carbon::parse($request->end);
         $fechin->setHour(23);
         if ($request->end == null) {
@@ -102,6 +103,15 @@ class EventController extends Controller
         // if ($event->start->gt($event->end)) {
         //     return Redirect::to("event/create")->with('status','Fecha mal');
         // }
+
+        if ($event->tipoevento->diasLimite != 0) {
+            $diferencia = $fechin->diffInDays($fechinStart);
+            $event->title = $diferencia;
+            if ($diferencia >= $event->tipoevento->diasLimite) {
+                return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
+                (Max '.$event->tipoevento->diasLimite.' días) ');
+            }           
+        }
 
         $event->empleado_id = $user->empleado_id;
         $event->save();
@@ -206,6 +216,18 @@ class EventController extends Controller
     public function update(StoreEventPost $request, Event $event)
     {
         //actualizar evento
+        $fechinStart = Carbon::parse($request->start);
+        $fechin = Carbon::parse($request->end);
+
+        if ($event->tipoevento->diasLimite != 0) {
+            $diferencia = $fechin->diffInDays($fechinStart);
+            $event->title = $diferencia;
+            if ($diferencia >= $event->tipoevento->diasLimite) {
+                return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
+                (Max '.$event->tipoevento->diasLimite.' días) ');
+            }           
+        }
+        
         $event->update($request->validated());
         return Redirect::to("events")->with('status','Incidencia Actualizada');   
 
@@ -283,6 +305,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->tipoevento_id = $request->tipoevento_id;
         $event->start = $request->start;
+        $fechinStart = Carbon::parse($request->start);
         $fechin = Carbon::parse($request->end);
         $fechin->setHour(23);
         if ($request->end == null) {
@@ -290,6 +313,15 @@ class EventController extends Controller
         }else{
             //$event->end = $request->end;
             $event->end = $fechin;
+        }
+
+        if ($event->tipoevento->diasLimite != 0) {
+            $diferencia = $fechin->diffInDays($fechinStart);
+            $event->title = $diferencia;
+            if ($diferencia >= $event->tipoevento->diasLimite) {
+                return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
+                (Max '.$event->tipoevento->diasLimite.' días) ');
+            }           
         }
 
         $event->empleado_id = $request->empleado_id;
@@ -316,6 +348,18 @@ class EventController extends Controller
     public function update2(StoreEventPost $request, Event $event)
     {
         //actualizar evento
+        $fechinStart = Carbon::parse($request->start);
+        $fechin = Carbon::parse($request->end);
+
+        if ($event->tipoevento->diasLimite != 0) {
+            $diferencia = $fechin->diffInDays($fechinStart);
+            $event->title = $diferencia;
+            if ($diferencia >= $event->tipoevento->diasLimite) {
+                return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
+                (Max '.$event->tipoevento->diasLimite.' días) ');
+            }           
+        }
+
         $event->update($request->validated());
         return Redirect::to("events2")->with('status','Incidencia Actualizada');   
 

@@ -13,12 +13,15 @@
 </div>
 </div>
 
+
 <div class="row">
 <div class="form-group col-md-6 mb-3">
     <label for="tipoevento_id">Tipo de Incidencia</label>
     <select class="form-control form-control-sm" name="tipoevento_id" id="tipoevento_id">
         @foreach ($tipoeventos as $tipoevento)
-            <option {{ $event->tipoevento_id == $tipoevento->id ? 'selected="selected"' : ''}}  value="{{ $tipoevento->id}}">{{ $tipoevento->nombre}}</option>
+            <option {{ $event->tipoevento_id == $tipoevento->id ? 'selected="selected"' : ''}}  
+                {{ (old("tipoevento_id") == $tipoevento->id ? "selected":"") }}
+                value="{{ $tipoevento->id}}">{{ $tipoevento->nombre}}</option>
         @endforeach
     </select>
     

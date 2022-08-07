@@ -13,6 +13,18 @@
 </div>
 </div>
 
+<div class="row">
+<div class="form-group col-md-2 mb-3">
+    <label for="diasLimite" class="col-form-label col-form-label-sm">Dias Límite</label>
+    
+    <input style="width: 50%" min="0" max="360" class="form-control form-control-sm" type="number" name="diasLimite" id="diasLimite" value="{{ old('diasLimite', $tipoevento->diasLimite)}}" required autofocus>
+    
+    @error('diasLimite')
+    <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
+</div>
+
 
 {{-- 
 <div class="row">
@@ -39,13 +51,10 @@
         @endif
         <label class="col-form-check-label " for="general">
             General
-        </label>
-    
+        </label>    
     </div>
     
-    <div class="form-group col-md-3 mb-3">
-
-                
+    <div class="form-group col-md-3 mb-3">                
         @if ($tipoevento->descuento == true)
             <input class="col-form-check-input" type="checkbox" name="descuento" id="descuento" checked>
         @else
@@ -90,3 +99,17 @@
 
 
 </script> --}}
+
+<script>
+    let dias = document.getElementById('diasLimite');
+
+    dias.addEventListener('input', control);
+
+    function control(){
+        if(dias.value > 360){
+            dias.value = 360;
+        }
+        dias.value = Math.abs(dias.value)
+    }
+    
+</script>

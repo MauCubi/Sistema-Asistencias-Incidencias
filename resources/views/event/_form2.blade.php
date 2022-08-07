@@ -19,7 +19,9 @@
         <label for="tipoevento_id">Empleado</label>
         <select class="form-control form-control-sm" name="empleado_id" id="empleado_id">
             @foreach ($empleados as $empleado)
-                <option {{ $event->empleado_id == $empleado->id ? 'selected="selected"' : ''}}  value="{{ $empleado->id}}">{{ $empleado->nombre}} {{ $empleado->apellido}} </option>
+                <option {{ $event->empleado_id == $empleado->id ? 'selected="selected"' : ''}}
+                    {{ (old("empleado_id") == $empleado->id ? "selected":"") }}  
+                    value="{{ $empleado->id}}">{{ $empleado->nombre}} {{ $empleado->apellido}} </option>
             @endforeach
         </select>
         
@@ -34,7 +36,9 @@
     <label for="tipoevento_id">Tipo de Incidencia</label>
     <select class="form-control form-control-sm" name="tipoevento_id" id="tipoevento_id">
         @foreach ($tipoeventos as $tipoevento)
-            <option {{ $event->tipoevento_id == $tipoevento->id ? 'selected="selected"' : ''}}  value="{{ $tipoevento->id}}">{{ $tipoevento->nombre}}</option>
+            <option {{ $event->tipoevento_id == $tipoevento->id ? 'selected="selected"' : ''}}  
+                {{ (old("tipoevento_id") == $tipoevento->id ? "selected":"") }}
+                value="{{ $tipoevento->id}}">{{ $tipoevento->nombre}}</option>
         @endforeach
     </select>
     

@@ -36,6 +36,13 @@
                 <br>
 
                 <label class="control-label">
+                    <strong>Días Límite:</strong>
+                    {{ $tipoevento->diasLimite }}
+                </label>
+
+                <br>
+
+                <label class="control-label">
                     <strong>General:</strong>
                     @if ($tipoevento->general == true)
                         <i class="fas fa-check"></i>

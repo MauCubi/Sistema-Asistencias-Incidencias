@@ -15,10 +15,11 @@ class TipoEventoSeeder extends Seeder
     public function run()
     {
         DB::table('tipo_eventos')->insert([
-            'nombre' => 'Licencia por maternidad/paternidad',
+            'nombre' => 'Licencia por maternidad',
             'general' => false,
             'descuento' => false,
             'noLaboral' => true,
+            'diasLimite' => 90,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -39,6 +40,7 @@ class TipoEventoSeeder extends Seeder
             'general' => false,
             'descuento' => false,
             'noLaboral' => true,
+            'diasLimite' => 10,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
@@ -49,16 +51,18 @@ class TipoEventoSeeder extends Seeder
             'general' => false,
             'descuento' => false,
             'noLaboral' => true,
+            'diasLimite' => 3,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  
         ]);
 
         DB::table('tipo_eventos')->insert([
-            'nombre' => 'Licencia por motivos personales',
+            'nombre' => 'Licencia por exámen',
             'general' => false,
             'descuento' => true,
             'noLaboral' => true,
+            'diasLimite' => 2,
             'created_at'   => date("Y-m-d H:i:s"),
             'updated_at'   => date("Y-m-d H:i:s"),
  

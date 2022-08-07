@@ -13,6 +13,7 @@
     </div>
 </div>
 @include('partials.validation-error')
+@include('partials.session-error')
 
 <form action="{{  route("event.update", $event->id)  }}" method="post">
     @method('PUT')

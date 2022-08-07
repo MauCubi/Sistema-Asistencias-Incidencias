@@ -20,6 +20,7 @@ class CreateTipoEventosTable extends Migration
             $table->boolean('general');
             $table->boolean('descuento');
             $table->boolean('noLaboral');
+            $table->Integer('diasLimite')->default(0);
 
 
             $table->timestamps();

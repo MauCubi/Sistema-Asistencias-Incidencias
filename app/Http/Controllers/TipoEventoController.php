@@ -45,10 +45,10 @@ class TipoEventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTipoEventoPost $request)
-    {
-
+    {        
         $tipoevento = new TipoEvento();
         $tipoevento->nombre = $request->nombre;
+        $tipoevento->diasLimite = $request->diasLimite;
 
         if ($request->has('general')) {
             $tipoevento->general = true;
@@ -105,6 +105,7 @@ class TipoEventoController extends Controller
     public function update(StoreTipoEventoPost $request, TipoEvento $tipoevento)
     {
         $tipoevento->nombre = $request->nombre;
+        $tipoevento->diasLimite = $request->diasLimite;
 
         if ($request->has('general')) {
             $tipoevento->general = true;

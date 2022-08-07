@@ -14,6 +14,7 @@
 
 @include('partials.session-status')
 @include('partials.session-error')
+
 <p class="alert alert-info d-none d-sm-block animated fadeIn" >
     Desde aquí, podrá <strong>Ver</strong> las Incidencia General.
 </p>
