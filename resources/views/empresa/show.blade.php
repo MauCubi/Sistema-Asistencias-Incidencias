@@ -29,10 +29,23 @@
         <div class="card shadow border-bottom-info">
             <div class="card-body">
                 <label class="control-label">
-                    <strong>Nombre:</strong>
+                    <strong>CUIT:</strong>
+                    {{ $empresa->cuit }}
+                </label>
+                <br>
+                <label class="control-label">
+                    <strong>Razon social:</strong>
                     {{ $empresa->nombre }}
                 </label>
                 <br>
+                <label class="control-label">
+                    <strong>Contacto: </strong>
+                    @if ($empresa->contacto)
+                        {{ $empresa->contacto }}
+                    @else
+                        <i>No posee contacto</i>
+                    @endif
+                </label>
 
             </div>
         </div>
