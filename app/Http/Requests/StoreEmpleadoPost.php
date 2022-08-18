@@ -30,7 +30,7 @@ class StoreEmpleadoPost extends FormRequest
             'puesto_id' => 'required',
             'direccion' => 'required',
             'telefono' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:empleados',
             'altafip' => 'required',
             'horario_id' => 'required',
         ];
