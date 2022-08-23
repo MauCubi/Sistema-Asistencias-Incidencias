@@ -39,11 +39,20 @@
                 </label>
                 <br>
                 <label class="control-label">
-                    <strong>Contacto: </strong>
+                    <strong>Email: </strong>
                     @if ($empresa->contacto)
                         {{ $empresa->contacto }}
                     @else
-                        <i>No posee contacto</i>
+                        <i>No posee email</i>
+                    @endif
+                </label>
+                <br>
+                <label class="control-label">
+                    <strong>Teléfono: </strong>
+                    @if ($empresa->telefono)
+                        {{ $empresa->telefono }}
+                    @else
+                        <i>No posee teléfono</i>
                     @endif
                 </label>
 

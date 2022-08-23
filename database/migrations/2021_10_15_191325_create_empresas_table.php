@@ -19,6 +19,7 @@ class CreateEmpresasTable extends Migration
             //nombre -> razon social
             $table->string("nombre",100);
             $table->string("contacto",100)->nullable();
+            $table->string('telefono')->nullable();
             $table->timestamps();
         });
     }

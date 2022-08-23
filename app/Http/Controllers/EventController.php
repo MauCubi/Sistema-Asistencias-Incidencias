@@ -106,7 +106,7 @@ class EventController extends Controller
 
         if ($event->tipoevento->diasLimite != 0) {
             $diferencia = $fechin->diffInDays($fechinStart);
-            $event->title = $diferencia;
+            $event->title = $request->title;
             if ($diferencia >= $event->tipoevento->diasLimite) {
                 return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
                 (Max '.$event->tipoevento->diasLimite.' días) ');
@@ -221,7 +221,7 @@ class EventController extends Controller
 
         if ($event->tipoevento->diasLimite != 0) {
             $diferencia = $fechin->diffInDays($fechinStart);
-            $event->title = $diferencia;
+            $event->title = $request->title;
             if ($diferencia >= $event->tipoevento->diasLimite) {
                 return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
                 (Max '.$event->tipoevento->diasLimite.' días) ');
@@ -317,7 +317,7 @@ class EventController extends Controller
 
         if ($event->tipoevento->diasLimite != 0) {
             $diferencia = $fechin->diffInDays($fechinStart);
-            $event->title = $diferencia;
+            $event->title = $request->title;
             if ($diferencia >= $event->tipoevento->diasLimite) {
                 return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
                 (Max '.$event->tipoevento->diasLimite.' días) ');
@@ -353,7 +353,7 @@ class EventController extends Controller
 
         if ($event->tipoevento->diasLimite != 0) {
             $diferencia = $fechin->diffInDays($fechinStart);
-            $event->title = $diferencia;
+            $event->title = $request->title;
             if ($diferencia >= $event->tipoevento->diasLimite) {
                 return Redirect::back()->withInput()->with('error','Superado el limite de dias para el tipo de incidencia 
                 (Max '.$event->tipoevento->diasLimite.' días) ');

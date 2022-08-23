@@ -26,7 +26,8 @@ class StoreEmpresaPost extends FormRequest
         return [
             'cuit'      => 'required|min:11',
             'nombre'    => 'required',
-            'contacto'  => 'nullable|string:100'
+            'contacto'  => 'nullable|string:100',
+            'telefono' => 'required',
         ];
     }
 }

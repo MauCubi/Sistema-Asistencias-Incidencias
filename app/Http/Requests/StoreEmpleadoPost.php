@@ -26,7 +26,7 @@ class StoreEmpleadoPost extends FormRequest
         return [
             'nombre' => 'required',
             'apellido' => 'required',
-            'dni' => 'required|max:8|min:8',
+            'dni' => 'required|max:8|min:8|unique:empleados,dni',
             'puesto_id' => 'required',
             'direccion' => 'required',
             'telefono' => 'required',

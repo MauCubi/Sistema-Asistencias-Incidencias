@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call('App\Http\Controllers\IncidenciaHorariaController@add')->at('18:11');
+        $schedule->call('App\Http\Controllers\IncidenciaHorariaController@add')->at('17:50');
         //$schedule->call('App\Http\Controllers\IncidenciaHorariaController@add')->everyMinute();
         // $schedule->command('inspire')->hourly();
     }

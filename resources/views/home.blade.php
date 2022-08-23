@@ -60,7 +60,7 @@
                         </h3>                        
                         <ul>
                             @if($feriados->count() == 0)
-                                <li>No hay Dia no Laborales en los proximos 7 días</li>
+                                <li>No hay Dias no Laborales en los proximos 7 días</li>
                             @else
                             @foreach ($feriados as $feriado)
                                 <li><b>{{ $feriado->title }}</b><ul><li>{{$feriado->start->format('d/m/Y')}} 

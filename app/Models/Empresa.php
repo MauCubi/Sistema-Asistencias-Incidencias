@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Empresa extends Model
 {
-    Protected $fillable = ['cuit','nombre','contacto'];
+    Protected $fillable = ['cuit','nombre','contacto','telefono'];
 
 
     public function areas()

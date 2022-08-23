@@ -12,7 +12,6 @@
         </a>
     </div>
 </div>
-@include('partials.validation-error')
 
 <form action="{{  route("empleado.update", $empleado->id)  }}" method="post">
     @method('PUT')

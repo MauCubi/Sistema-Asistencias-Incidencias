@@ -90,9 +90,22 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreEmpleadoPost $request, Empleado $empleado)
+    public function update(Request $request, Empleado $empleado)
     {
-        $empleado->update($request->validated());
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'dni' => 'required|max:8|min:8|unique:empleados,dni,'.$empleado->id,
+            'puesto_id' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'email' => 'required|unique:empleados,email,'.$empleado->id,
+            'altafip' => 'required',
+            'horario_id' => 'required',
+        ]);
+
+        $empleado->update();
+
         return Redirect::to("empleado")->with('status','Empleado Actualizado');    
     }
 
