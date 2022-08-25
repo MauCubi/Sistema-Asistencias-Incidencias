@@ -25,9 +25,6 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = Empresa::orderBy('created_at','desc')->paginate(10);
-
-        //dd($empresas);
-
         return view("empresa/index",['empresas' => $empresas]);
     }
 
