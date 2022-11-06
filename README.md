@@ -29,4 +29,5 @@ Sistema para el marcado de asistencias y de control de incidencias laborales
 4. Modificar el nombre del archivo env.example a env
 5. Reemplazar los valores de las variables de Base de Datos a la configuracion local de tu BD (DB_CONNECTION,DB_HOST,DB_PORT,DB_USERNAME,DB_PASSWORD)
 6. Abrir una terminal e ir a la carpeta del proyecto y ejecutar el comando 'php artisan migrate:refresh --seed' para crear las tablas y hacer un seed inicial
+7. Al abrir el sistema web se debera logear con los siguientes datos: email = mauro@mail.com  ,  password = 12345678
 
