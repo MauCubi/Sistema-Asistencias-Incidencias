@@ -23,4 +23,10 @@ Sistema para el marcado de asistencias y de control de incidencias laborales
 
 ### Instalación
 
+1. Descargue la ultima version del proyecto (https://github.com/MauCubi/Sistema-Asistencias-Incidencias/releases)
+2. Descomprima el .zip dentro de la carpeta de proyectos de su entorno de desarrollo (laragon/www, xampp/htdocs, etc)
+3. Cree una base de datos en el entorno con el nombre 'asistencias'
+4. Modificar el nombre del archivo env.example a env
+5. Reemplazar los valores de las variables de Base de Datos a la configuracion local de tu BD (DB_CONNECTION,DB_HOST,DB_PORT,DB_USERNAME,DB_PASSWORD)
+6. Abrir una terminal e ir a la carpeta del proyecto y ejecutar el comando 'php artisan migrate:refresh --seed' para crear las tablas y hacer un seed inicial
 
